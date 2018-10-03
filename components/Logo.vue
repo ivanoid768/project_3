@@ -3,10 +3,11 @@
     <div class="Triangle Triangle--two"/>
     <div class="Triangle Triangle--one"/>
     <div class="Triangle Triangle--three"/>
-    <div class="Triangle Triangle--four"/>
+    <div class="Triangle Triangle--four"/> 
   </div>
-</template>
-
+  <h1>SWITCH</h1> 
+</template>  
+  
 <style>
 .VueToNuxtLogo {
   display: inline-block;
@@ -15,14 +16,14 @@
   position: relative;
   overflow: hidden;
   height: 180px;
-  width: 245px;
+  width: 245px; 
 }
 
 .Triangle {
-  position: absolute;
+  position: absolute; 
   top: 0;
   left: 0;
-  width: 0;
+  width: 0; 
   height: 0;
 }
 
@@ -54,14 +55,14 @@
   top: 120px;
   left: 70px;
   animation: godown 0.5s linear forwards 3s;
-  border-left: 35px solid transparent;
+  border-left: 35px solid transparent; 
   border-right: 35px solid transparent;
   border-bottom: 60px solid #fff;
 }
 
 @keyframes turn {
   100% {
-    transform: rotateX(0deg);
+    transform: rotateX(0deg); 
   }
 }
 

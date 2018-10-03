@@ -17,6 +17,12 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="assets\img\Bitcoin.svg" />
+    <Content Include="assets\img\dash-3.svg" />
+    <Content Include="assets\img\Dash-D-white_on_blue_circle.png" />
+    <Content Include="assets\img\litecoin.png" />
+    <Content Include="assets\img\litecoin.svg" />
+    <Content Include="assets\img\logo.svg" />
     <Content Include="components\web_components\footer.vue" />
     <Content Include="components\web_components\header.vue" />
     <Content Include="components\web_components\layout.vue" />
@@ -38,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets" />
+    <Folder Include="assets\img\" />
     <Folder Include="assets\styles\" />
     <Folder Include="components" />
     <Folder Include="components\web_components\" />
