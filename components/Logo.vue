@@ -1,11 +1,7 @@
 <template>
-  <div class="VueToNuxtLogo">
-    <div class="Triangle Triangle--two"/>
-    <div class="Triangle Triangle--one"/>
-    <div class="Triangle Triangle--three"/>
-    <div class="Triangle Triangle--four"/> 
-  </div>
-  <h1>SWITCH</h1> 
+  <a href="" class="navbar-brand">
+      <img src="~assets/img/logo.svg" /> 
+  </a>
 </template>  
   
 <style>

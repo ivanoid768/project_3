@@ -23,13 +23,19 @@
     <Content Include="assets\img\litecoin.png" />
     <Content Include="assets\img\litecoin.svg" />
     <Content Include="assets\img\logo.svg" />
+    <Content Include="assets\css\main.scss">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="components\web_components\footer.vue" />
     <Content Include="components\web_components\header.vue" />
+    <Content Include="components\web_components\header_components\Navigation.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="components\web_components\layout.vue" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Compile Include="assets\styles\_mixin.sass">
+    <Compile Include="assets\css\_mixin.sass">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="nuxt.config.js" />
@@ -45,7 +51,7 @@
   <ItemGroup>
     <Folder Include="assets" />
     <Folder Include="assets\img\" />
-    <Folder Include="assets\styles\" />
+    <Folder Include="assets\css\" />
     <Folder Include="components" />
     <Folder Include="components\web_components\" />
     <Folder Include="components\web_components\header_components\" />
