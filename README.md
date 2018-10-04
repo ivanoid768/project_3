@@ -19,4 +19,6 @@ $ npm start
 $ npm run generate
 ```
 
+BASE_URL = http://0.0.0.0:3000
+
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
