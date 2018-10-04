@@ -17,6 +17,9 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="pages\dashboard.vue">
+      <SubType>Code</SubType>
+    </Compile>
     <Content Include="assets\img\Bitcoin.svg" />
     <Content Include="assets\img\dash-3.svg" />
     <Content Include="assets\img\Dash-D-white_on_blue_circle.png" />
