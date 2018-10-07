@@ -7,8 +7,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar nav">
-          <li class="nav-item"> 
-              <DropdownCurrency />  
+          <li class="nav-item">
+            <DropdownCurrency />
           </li>
           <li class="nav-item">
             <nuxt-link class="nav-link " to="/dashboard">Дашборд</nuxt-link>
@@ -26,11 +26,19 @@
             <nuxt-link class="nav-link " to="/settings">Настройки</nuxt-link>
           </li>
           <li class="nav-item">
-            <nuxt-link class="nav-link " to="/help">Помошь</nuxt-link>
+            <nuxt-link class="nav-link " to="/help">Помощь</nuxt-link>
           </li>
         </ul>
-        </div>
+
       </div>
+      <div class="block_user">
+        <nuxt-link class="nav-link " to="/cabinet">
+          <i class="user_pic"></i>
+          <span class="user_name">Пользователь</span>
+          </nuxt-link>
+      </div>
+    </div>
+     
 </nav>  
 </template>
 

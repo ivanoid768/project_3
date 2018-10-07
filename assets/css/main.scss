@@ -22,7 +22,10 @@ body{
 .block {
   margin-bottom: 40px;
 }
-
+h1 {
+  text-align: left;
+  font-size: 20px;
+}
 
 #navigation_main.bg-light {
   background-color: #fff !important;
@@ -49,13 +52,13 @@ body{
 
   .nav-link {
     display: block;
-    padding: 28px 16px;
+    padding: 28px 10px;
     text-transform: uppercase;
     color: #bbb;
     font-family: Gotham Pro;
     font-weight: 500;
     font-style: normal;
-    font-size: 14px;
+    font-size: 13px;
     color: #7082a3;
     position: relative;
 
@@ -84,12 +87,19 @@ body{
     background: #fff !important;
     border: 1px solid transparent;
     line-height: 35px;
+    font-family: Gotham Pro;
+    font-weight: 500;
+    font-style: normal;
+    width: 100%;
+    color: #7082a3;
+    text-align: left;
   }
 
   .dropdown-menu {
     display: block;
     box-shadow: 0px 0px 5px #ccc;
-    top: 5px;
+    top: -5px; 
+    left: 10px;
     width: 100%;
     min-width: 0px;
   }
@@ -102,18 +112,18 @@ body{
   background-position: center;
   background-size: 100% 100%;
   vertical-align: middle;
-  margin-right: 15px; 
+  margin-right: 15px;
 
   &.btc {
     background-image: url('~assets/img/Bitcoin.svg');
   }
 
   &.dsh {
-    background-image: url('~assets/img/Bitcoin.svg');
+    background-image: url('~assets/img/dash-3.svg');
   }
 
   &.ltc {
-    background-image: url('~assets/img/Bitcoin.svg');
+    background-image: url('~assets/img/litecoin.png');
   }
 }
 
@@ -259,5 +269,16 @@ body{
     &:nth-child(2n) {
       background-color: #f8fbff;
     }
+  }
+}
+
+.block_user {
+
+  .user_name {
+    font-family: Gotham Pro;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 13px;
+    color: #7082a3;
   }
 }

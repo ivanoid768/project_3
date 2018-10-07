@@ -50,6 +50,9 @@
     <Content Include="components\web_components\layout.vue" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <Content Include="pages\cabinet.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="pages\help.vue" />
     <Content Include="pages\index.vue" />
     <Content Include="pages\payments.vue" />
