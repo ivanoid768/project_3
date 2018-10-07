@@ -1,7 +1,7 @@
 <template>
-  <a href="" class="navbar-brand">
+  <nuxt-link to="/" class ="navbar-brand">
       <img src="~assets/img/logo.svg" /> 
-  </a>
+  </nuxt-link>
 </template>  
   
 <style>

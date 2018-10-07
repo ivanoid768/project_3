@@ -25,7 +25,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#ea665c' },
 
   /*
   ** Global CSS
@@ -51,7 +51,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    // baseURL: process.env.BASE_URL || 'http://localhost:3000'
+    baseURL: process.env.BASE_URL || 'http://localhost:3000'
     // See https://github.com/nuxt-community/axios-module#options
   },
 

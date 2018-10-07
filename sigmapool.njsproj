@@ -20,6 +20,9 @@
     <Compile Include="pages\dashboard.vue">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="assets\fonts\fonts.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="assets\img\Bitcoin.svg" />
     <Content Include="assets\img\dash-3.svg" />
     <Content Include="assets\img\Dash-D-white_on_blue_circle.png" />
@@ -29,14 +32,30 @@
     <Content Include="assets\css\main.scss">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="components\web_components\dashboard\Table_data.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="components\web_components\dashboard\Table_graphic_bar.vue" />
+    <Content Include="components\web_components\dashboard\Table_graphic_line.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="components\web_components\footer.vue" />
     <Content Include="components\web_components\header.vue" />
+    <Content Include="components\web_components\header_components\dropdown_currency.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="components\web_components\header_components\Navigation.vue">
       <SubType>Code</SubType>
     </Content>
     <Content Include="components\web_components\layout.vue" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <Content Include="pages\help.vue" />
+    <Content Include="pages\index.vue" />
+    <Content Include="pages\payments.vue" />
+    <Content Include="pages\settings.vue" />
+    <Content Include="pages\statistics.vue" />
+    <Content Include="pages\workers.vue" />
     <Content Include="README.md" />
     <Compile Include="assets\css\_mixin.sass">
       <SubType>Code</SubType>
@@ -48,6 +67,7 @@
     <Content Include="pages\README.md" />
     <Content Include="plugins\README.md" />
     <Content Include="static\favicon.ico" />
+    <Content Include="static\fonts\fonts.css" />
     <Content Include="static\README.md" />
     <Content Include="store\README.md" />
   </ItemGroup>
@@ -55,14 +75,17 @@
     <Folder Include="assets" />
     <Folder Include="assets\img\" />
     <Folder Include="assets\css\" />
+    <Folder Include="assets\fonts\" />
     <Folder Include="components" />
     <Folder Include="components\web_components\" />
     <Folder Include="components\web_components\header_components\" />
+    <Folder Include="components\web_components\dashboard\" />
     <Folder Include="FromExistingCode1" />
     <Folder Include="middleware" />
     <Folder Include="pages" />
     <Folder Include="plugins" />
     <Folder Include="static" />
+    <Folder Include="static\fonts\" />
     <Folder Include="store" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

@@ -1,4 +1,6 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../fonts/fonts.css';
+  
 body{
   font: 100% Helvetica, sans-serif;
   color: #333;
@@ -9,21 +11,131 @@ body{
 }
 
 .wrapper_main.container {
-  min-height: 100vh!important;
+  min-height: 100vh !important;
+  align-items: flex-start;
+  padding-top: 100px;
 }
+
+.page {
+  width: 100%; 
+}
+.block {
+  margin-bottom: 40px;
+}
+
+
 #navigation_main.bg-light {
   background-color: #fff !important;
-  max-height: 70px;
   box-shadow: 0px 3px 3px #ccc;
+  padding: 0;
+
+  .brand {
+    width: 120px;
+  }
+
+  .navbar {
+    padding: 0px !important;
+  }
+
+  @media(min-width:1100px) {
+    .container {
+      justify-content: start;
+    }
+  }
+
+  .navbar-light .navbar-toggler {
+    border: transparent;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 28px 16px;
+    text-transform: uppercase;
+    color: #bbb;
+    font-family: Gotham Pro;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    color: #7082a3;
+    position: relative;
+
+    &:active, &:hover, &.nuxt-link-active {
+      color: #000;
+    }
+
+    &:active:after, &:hover:after, &.nuxt-link-active:after {
+      content: "";
+      display: block;
+      height: 3px;
+      width: 100%;
+      position: absolute;
+      background-color: #ea665c;
+      border-radius: 2px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      top: auto;
+    }
+  }
+
+
+
+  .dropdown-currency button {
+    background: #fff !important;
+    border: 1px solid transparent;
+    line-height: 35px;
+  }
+
+  .dropdown-menu {
+    display: block;
+    box-shadow: 0px 0px 5px #ccc;
+    top: 5px;
+    width: 100%;
+    min-width: 0px;
+  }
+}
+
+.currency-icon {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  background-position: center;
+  background-size: 100% 100%;
+  vertical-align: middle;
+  margin-right: 15px; 
+
+  &.btc {
+    background-image: url('~assets/img/Bitcoin.svg');
+  }
+
+  &.dsh {
+    background-image: url('~assets/img/Bitcoin.svg');
+  }
+
+  &.ltc {
+    background-image: url('~assets/img/Bitcoin.svg');
+  }
+}
+
+.main {
+  width: 100%;
+  display: block;
 }
 
 .block {
+
   .block-title {
+    font-family: Gotham Pro;
+    font-weight: 500;
+    font-style: normal;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 20px;
+    }
   }
 
   .block-body {
-
-    
   }
 }
 
@@ -31,16 +143,121 @@ body{
   background-color: #fff;
   border: 1px solid #ccc;
   min-height: 200px;
+  height: 100%;
   width: auto;
   display: block;
   padding: 20px 15px;
+  text-align: justify;
 
-  .plate-title {
+  .plate_title {
+    h3 {
+      text-align: left;
+      font-size: 20px;
+      font-family: Gotham Pro;
+      font-weight: 500;
+      font-style: normal;
+      color: #7082a3;
+    }
   }
 
   .plate-body {
   }
 
   .plate-footer {
+  }
+}
+
+.prop_container {
+  display: flex;
+  flex-direction: column;
+
+
+  .prop_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 0px;
+  }
+
+  .prop_name, .prop_value {
+    display: flex;
+  }
+
+  .prop_value {
+    font-size: 26px;
+    color: #313f61;
+    font-family: Gotham Pro;
+    font-weight: 500;
+    font-style: normal;
+
+    i {
+      font-style: normal;
+      font-size: 15px;
+      vertical-align: bottom;
+      line-height: 30px;
+      margin-left: 5px;
+    }
+  }
+
+  .prop_name {
+    font-family: Gotham Pro;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    color: #7082a3;
+    position: relative;
+  }
+}
+
+
+#block-statistics {
+  .block-statistics-title {
+    text-align: left;
+    font-size: 20px;
+  }
+
+  .block_statistics_currency_course {
+    text-align: right;
+    font-size: 17px;
+
+    i {
+      font-style: normal;
+    }
+  }
+}
+
+.table_graphic_plate{
+ 
+}
+
+.table_data {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+
+    th {
+      font-family: Gotham Pro;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 13px;
+      color: #7082a3;
+      text-align: right;
+      padding: 10px;
+
+
+      &:nth-child(1) {
+        text-align: left;
+      }
+    }
+
+    td {
+      padding: 10px;
+      min-height: 40px;
+    }
+
+    &:nth-child(2n) {
+      background-color: #f8fbff;
+    }
   }
 }

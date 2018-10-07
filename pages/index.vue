@@ -2,35 +2,15 @@
   
   <div class="wrapper_main container">
   <Navigation></Navigation>
-  <div class="main">
-    <div class="block">
-      <div class="row">
-          <div class="col-md-4">
-            <div class="plate">
-              
-            </div>  
-          </div>
-          <div class="col-md-4">
-            <div class="plate">
-              
-            </div>  
-          </div>
-          <div class="col-md-4">
-            <div class="plate">
-              
-            </div>  
-          </div>
-      </div>
-    </div>
-      <h1 class="title">
-        Sigmapool
-      </h1>  
+    <div class="container">
+      <h1>
+        Sigmapool (langing page is here)
+      </h1>
     </div>
   </div>
 </template>
 
-<script>
-  import Logo from '~/components/Logo.vue'
+<script> 
   import Navigation from '~/components/web_components/header_components/Navigation.vue'
   
   export default {
