@@ -199,20 +199,22 @@
     },
     methods:{
       getDataFromApi: function(){
-        if(typeof window =="object"){
-        axios.get('https://btc.sigmapool.com/api/v1/stats?key=6523bff0c04a55a9db2e8c1ffd332c38')
+         
+        axios.get('https://btc.sigmapool.com/api/v1/stats?key=6523bff0c04a55a9db2e8c1ffd332c38', {headers: { 'crossDomain': true }})
         .then(function (response) {
           console.log("datat", response);
         })
         .catch(function (error) {
           console.log(error);
         });
-  }
+
       }
     },
     created: function () {
-        console.log('Dashboard отрисован, загружаю данные: ',this)
-        //this.getDataFromApi();//
+        console.log('Dashboard отрисован, загружаю данные: ')
+        if(typeof window ==="object"){
+        this.getDataFromApi();
+        }
     }
   }
 </script>

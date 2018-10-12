@@ -5,7 +5,7 @@
     <div class="container">
       <h1>
         Воркеры
-      </h1>
+      </h1> 
     </div>
   </div>
 </template>
