@@ -4,7 +4,7 @@
       <th v-for="head in headers">{{head}}</th> 
     </tr>
     <tr v-for="item in data">
-      <td></td>
+      <td>{{item.name}}</td>
       <td></td>
       <td></td>
       <td></td>

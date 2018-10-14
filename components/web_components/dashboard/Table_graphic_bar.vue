@@ -14,7 +14,8 @@
            maxBarThickness: "4",
            barThickness: 4,
            responsive: true,
-           maintainAspectRatio: false
+           maintainAspectRatio: false,
+
          }
        }
 

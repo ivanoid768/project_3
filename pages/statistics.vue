@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper_main container">
     <Navigation></Navigation>
-    <div class="page">
+    <div class="page" v-if="statistics !==null">
       <div id="block-workers-title" class="block">
         <div class="block-title">
           <div class="container-fluid">
@@ -28,7 +28,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_data />
+                <Table_data v-bind:data="statistics" />
               </div>
             </div>
           </div>
@@ -93,18 +93,69 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_data />
+                <Table_data v-bind:dataset="statistics"/>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="dash_preloader" v-else>
+      <img src="~assets/img/gears-anim.gif" />
+    </div>
   </div>
 </template>
 <script>
-import Navigation from '~/components/web_components/header_components/Navigation.vue'
+    import Navigation from '~/components/web_components/header_components/Navigation.vue'
    import Table_data from '~/components/web_components/dashboard/Table_data.vue';
+   import axios from 'axios';
+   let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
+
   export default {
-  components: {   Navigation , Table_data }
+  components: {   Navigation , Table_data },
+  data: ()=>{
+    return{
+      statistics:null,
+      selectedPeriod: "PERIOD",
+      updateData: null
+    }
+  },
+  methods:{
+
+      getDataFromApi: function(){
+        let _this = this;
+        axios.get(`https://btc.sigmapool.com/api/v1/workers?limit=25&page=1&key=${apiKey}`)
+        .then(function (response) {
+
+          _this.statistics = response.data;
+          _this.$forceUpdate();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      }
+    },
+    created: function () {
+          let _this = this;
+          this.getDataFromApi();
+          if(typeof window ==="object"){
+                this.updateData= setInterval(() =>{
+                  console.log(this.statistics)
+                  _this.getDataFromApi()
+              }, 1000)
+            }
+    },
+    mounted : function() {
+
+      this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
+  },
+  beforeDestroy: function(){
+      if(typeof this.updateData !=="null"){
+        clearInterval(this.updateData)
+      }
+    }
   }</script>

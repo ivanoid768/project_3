@@ -40,32 +40,57 @@
 
         </div>
       </div>
-      <div id="block-help" class="block">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="plate">
-              <div class="plate_title">
-                  <h3></h3>
+      <div class="sub-pages">
+        <div   class="block sub_page" data-id="1">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="plate">
+                <div class="plate_title">
+                  <h3>Создание аккаунта</h3>
+                </div>
+                <div class="plate_body">
+                  <p class="help_text">
+                    -
+                  </p>
+                </div>
+                <div class="plate_title">
+                  <h3>Подключение майнеров</h3>
+                </div>
+                <div class="plate_body">
+                  <p class="help_text">
+                    -
+                  </p>
+                </div>
+                <div class="plate_title">
+                  <h3>Мониторинг</h3>
+                </div>
+                <div class="plate_body">
+                  <p class="help_text">
+                    -
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="plate">
-              <div class="plate_title filled">
-                <h3>Основной пул</h3>
+            <div class="col-md-6">
+              <div class="plate">
+                <div class="plate_title filled">
+                  <h3>Основной пул</h3>
+                </div>
+                <div class="plate_body">
+                  <p class="help_text">
+                  </p>
+                </div>
               </div>
-              <div class="plate_body">
-
-              </div>
-            </div>
-            <div class="plate">
-              <div class="plate_title filled">
-                <h3>Основной пул</h3>
+              <div class="plate">
+                <div class="plate_title filled">
+                  <h3>Backup-пул</h3>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
       </div>
     </div>
 </template>
@@ -76,6 +101,16 @@
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
   export default {
-  components: {   Navigation , FontAwesomeIcon }
+  components: {   Navigation , FontAwesomeIcon },
+  data:()=>{
+    return{ 
+      activePage: 1
+    }
+  }, 
+  methods:{
+      setActiveSubPage: (e)=>{
+            let activePage = e.currentTarget.dataset.id;
+      }
+    } 
   }
 </script>

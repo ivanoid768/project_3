@@ -187,11 +187,11 @@
 
 
   let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
-  let apiUrl
-  let api={
-      "getWorkers":"https://btc.sigmapool.com/api/v1/workers",
-      "getShares":"https://btc.sigmapool.com/api/v1/charts/shares",
-      "getEarnings":"https://btc.sigmapool.com/api/v1/earnings",
+  let apiUrl = "https://btc.sigmapool.com/api/v1/";
+  let apiSet ={
+      getWorkers:`${apiUrl}workers`,
+      getShares: `${apiUrl}charts/shares`,
+      getEarnings:"https://btc.sigmapool.com/api/v1/earnings",
   }
 
   export default {
