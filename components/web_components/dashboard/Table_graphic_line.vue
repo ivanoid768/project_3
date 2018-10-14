@@ -8,11 +8,12 @@
        }
      },
      extends: Line, 
-    mounted() {
+     mounted() {
+       console.log("this.renderChart", this.renderChart)
       // Overwriting base render method with actual data.
       this.renderChart({
         
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
         datasets: [
           {
               label: "",

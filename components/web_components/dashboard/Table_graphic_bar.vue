@@ -10,7 +10,9 @@
      data: () => {
        return {
          options: {
-           barPercentage: 4,
+           barPercentage: "4",
+           maxBarThickness: "4",
+           barThickness: 4,
            responsive: true,
            maintainAspectRatio: false
          }
@@ -20,10 +22,9 @@
      extends: Bar, 
     mounted() {
       // Overwriting base render method with actual data.
-
-      console.log("options", this)
+       
       this.renderChart({
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
         datasets: [
           {
             label: "",

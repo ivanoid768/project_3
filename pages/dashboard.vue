@@ -110,7 +110,7 @@
                         Начислено <br />за 24 часа
                       </div>
                       <div class="prop_value">
-                        <span class="prop_value_int">-<i class="prop_value_currency"></i></span>
+                        <span class="prop_value_int">{{accountInfo.rewards24}}<i class="prop_value_currency">{{selectedCurrency}}</i></span>
                         <div class="prop_preloader"></div>
                       </div>
                     </div>
@@ -119,7 +119,7 @@
                         Начислено <br />за все время
                       </div>
                       <div class="prop_value">
-                        <span class="prop_value_int">-<i class="prop_value_currency"></i></span>
+                        <span class="prop_value_int">{{accountInfo.rewards}}<i class="prop_value_currency">{{selectedCurrency}}</i></span>
                         <div class="prop_preloader"></div>
                       </div>
                     </div>
