@@ -1,10 +1,7 @@
 <template>
   <table class="table_data">
     <tr>
-      <th v-for="head in headers">{{head}}</th>
-      <th>BTC</th>
-      <th>LTC</th>
-      <th>DASH</th>
+      <th v-for="head in headers">{{head}}</th> 
     </tr>
     <tr v-for="item in data">
       <td></td>
