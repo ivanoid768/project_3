@@ -6,12 +6,12 @@
       <div class="block-title">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-8">
                   <div class="block-title-slot">
-                     <h3 class="block-statistics-title">Мой хешрейт</h3>
+                     <h3 class="block-title">Мой хешрейт</h3>
                   </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                   <div class="block-title-slot">
                     <div class="block_statistics_currency_course">
                         <span class="crypto_currency_selected">BITCOIN</span>
@@ -150,7 +150,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="block-title-slot">
-                  <h3 class="block-statistics-title text-left">Калькулятор доходности</h3>
+                  <h3 class="block-title text-left">Калькулятор доходности</h3>
                 </div>
               </div>
               <div class="col-md-6">
@@ -164,7 +164,7 @@
         </div>
         <div class="block-body">
           <div class="plate">
-              <Table_data />
+              <Table_data  />
           </div>
         </div>
       </div>

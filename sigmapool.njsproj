@@ -17,6 +17,15 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="components\web_components\edit_components\checkbox.jsx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="components\web_components\edit_components\pagination.jsx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="components\web_components\edit_components\switch.jsx">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pages\dashboard.vue">
       <SubType>Code</SubType>
     </Compile>
@@ -83,6 +92,7 @@
     <Folder Include="components\web_components\" />
     <Folder Include="components\web_components\header_components\" />
     <Folder Include="components\web_components\dashboard\" />
+    <Folder Include="components\web_components\edit_components\" />
     <Folder Include="FromExistingCode1" />
     <Folder Include="middleware" />
     <Folder Include="pages" />

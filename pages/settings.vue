@@ -69,12 +69,12 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-          <div class="plate">
-            <div class="plate_title"></div>
-          </div>
-           <div class="plate_body">
-
-           </div>
+            <div class="plate">
+              <div class="plate_title"></div>
+              <div class="plate_body">
+                <Table_data />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -87,10 +87,9 @@
 
 </template>
 
-<script> 
-  import Navigation from '~/components/web_components/header_components/Navigation.vue'
-  
+<script>import Navigation from '~/components/web_components/header_components/Navigation.vue'
+  import Table_data from '~/components/web_components/dashboard/Table_data.vue';
+
   export default {
-  components: {   Navigation  }
-  }
-</script>
+  components: {   Navigation, Table_data  }
+  }</script>
