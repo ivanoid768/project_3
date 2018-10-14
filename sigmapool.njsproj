@@ -17,13 +17,13 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
-    <Compile Include="components\web_components\edit_components\checkbox.jsx">
+    <Compile Include="components\web_components\edit_components\checkbox.vue">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="components\web_components\edit_components\pagination.jsx">
+    <Compile Include="components\web_components\edit_components\pagination.vue">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="components\web_components\edit_components\switch.jsx">
+    <Compile Include="components\web_components\edit_components\switch.vue">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pages\dashboard.vue">

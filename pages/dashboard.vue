@@ -37,7 +37,7 @@
                         Текущий хешрейт
                       </span>
                       <div class="prop_value">
-                        <span class="prop_value_int">{{accountInfo.hashrate}}</span>
+                        <span class="prop_value_int">{{parseInt(accountInfo.hashrate)}}<i class="prop_value_currency">{{selectedMeasure}}</i></span>
                       </div>
                     </div>
                     <div class="prop_row">
@@ -45,7 +45,7 @@
                         Средний хешрейт<br /> за 24 часа
                       </span>
                       <span class="prop_value">
-                        <span class="prop_value_int">{{accountInfo.avgHashrate24h}}</span>
+                        <span class="prop_value_int">{{parseInt(accountInfo.avgHashrate24h)}}<i class="prop_value_currency">{{selectedMeasure}}</i></span>
                       </span>
                     </div>
                     <div class="prop_row">
@@ -53,7 +53,7 @@
                         Средний хешрейт <br />за 1 час
                       </span>
                       <span class="prop_value">
-                        <span class="prop_value_int">{{accountInfo.avgHashrate1h}}</span>
+                        <span class="prop_value_int">{{parseInt(accountInfo.avgHashrate1h)}}<i class="prop_value_currency">{{selectedMeasure}}</i></span>
                       </span>
                     </div>
                   </div>
@@ -101,7 +101,7 @@
                         Баланс
                       </div>
                       <div class="prop_value">
-                        <span class="prop_value_int">-<i class="prop_value_currency"></i></span>
+                        <span class="prop_value_int">{{accountInfo.balance}}<i class="prop_value_currency">{{selectedCurrency}}</i></span>
                         <div class="prop_preloader"></div>
                       </div>
                     </div>
@@ -186,16 +186,24 @@
 
 
 
-  let ApiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
-
+  let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
+  let apiUrl
   let api={
-      "getWorkers":"",
-      "getShares":"",
-      "getWorkers":"",
+      "getWorkers":"https://btc.sigmapool.com/api/v1/workers",
+      "getShares":"https://btc.sigmapool.com/api/v1/charts/shares",
+      "getEarnings":"https://btc.sigmapool.com/api/v1/earnings",
   }
 
   export default {
   components: {   Navigation, Table_data, Table_graphic_bar, Table_graphic_line  },
+  props:{
+    selectedCurrency:{
+        default:"BTC"
+    },
+  selectedMeasure:{
+      default:"THS/s"
+    }
+  },
   data: function(){
   return {
       name: "Dashboard",
@@ -207,7 +215,6 @@
 
       getDataFromApi: function(){
         let _this = this;
-        var apiKey="6523bff0c04a55a9db2e8c1ffd332c38";
         axios.get(`https://btc.sigmapool.com/api/v1/stats?key=${apiKey}`)
         .then(function (response) {
 
@@ -233,7 +240,7 @@
     mounted : function() {
 
 
-   
+
       this.$nextTick(() => {
       this.$nuxt.$loading.start()
 
