@@ -8,7 +8,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="block-title-slot">
-                  <h3 class="block-statistics-title">Настройки</h3>
+                  <h3 class="block-title">Настройки</h3>
                 </div>
               </div>
               <div class="col-md-6">
@@ -56,7 +56,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="block-title-slot">
-                  <h3 class="block-statistics-title">История действий</h3>
+                  <h3 class="block-title">История действий</h3>
                 </div>
               </div>
               <div class="col-md-6">
