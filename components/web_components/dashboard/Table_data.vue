@@ -1,38 +1,55 @@
 <template>
   <table class="table_data">
     <tr>
-      <th>Период</th>
+      <th v-for="head in headers">{{head}}</th>
       <th>BTC</th>
       <th>LTC</th>
       <th>DASH</th>
     </tr>
-    <tr>
+    <tr v-for="item in data">
       <td></td>
       <td></td>
       <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-    <tr>
       <td></td>
       <td></td>
       <td></td>
       <td></td>
     </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr></table>
+  </table>
 </template> 
 
 <script>
-   
+  export default {
+    props: {
+      data: {
+        default: function () {
+          return [
+            {}, {}, {}, {}, {}, {}, {}, {}, {}
+          ]
+        }
+      },
+      headers: {
+        default: function () {
+        return  [
+            "Период",
+            "BTC",
+            "LTC",
+            "DASH"
+          ]
+        }
+      },
+      page: {
+        default: 1
+      },
+      pageSize:{
+        default: 20
+      }
+    },
+    data:function (){
+      return {
+        
+      }
+    },
+
+  }
 </script>

@@ -195,7 +195,10 @@
   data: function(){
   return {
       name: "Dashboard",
-      data: null,
+      data: {
+        accountInfo:null,
+        
+      },
     }
   },
     methods:{
@@ -203,7 +206,9 @@
         var apiKey="6523bff0c04a55a9db2e8c1ffd332c38";
         axios.get(`https://btc.sigmapool.com/api/v1/stats?key=${apiKey}`)
         .then(function (response) {
-          console.log("datat", response);
+          console.log("datat", response.data);
+          data
+
         })
         .catch(function (error) {
           console.log(error);
