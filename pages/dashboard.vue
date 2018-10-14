@@ -192,15 +192,16 @@
 
   export default {
   components: {   Navigation, Table_data, Table_graphic_bar, Table_graphic_line  },
-  data: {
+  data: function(){
+  return {
       name: "Dashboard",
       data: null,
-
-    },
+    }
+  },
     methods:{
       getDataFromApi: function(){
-         
-        axios.get('https://btc.sigmapool.com/api/v1/stats?key=6523bff0c04a55a9db2e8c1ffd332c38', {headers: { 'crossDomain': true }})
+        var apiKey="6523bff0c04a55a9db2e8c1ffd332c38";
+        axios.get(`https://btc.sigmapool.com/api/v1/stats?key=${apiKey}`)
         .then(function (response) {
           console.log("datat", response);
         })
@@ -211,11 +212,17 @@
       }
     },
     created: function () {
+      if(typeof window ==="object"){
         console.log('Dashboard отрисован, загружаю данные: ')
-        if(typeof window ==="object"){
         this.getDataFromApi();
-        }
-    }
+      }
+    },mounted () {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
+  }
   }
 </script>
 
