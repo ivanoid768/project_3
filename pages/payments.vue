@@ -8,7 +8,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="block-title-slot">
-                  <h3 class="block-title">Начисления</h3>
+                  <h3 class=" ">Начисления</h3>
                 </div>
               </div>
               <div class="col-md-6">

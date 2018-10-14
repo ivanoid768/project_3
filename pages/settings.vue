@@ -30,7 +30,15 @@
           </div>
           <div class="col-md-6">
             <div class="plate">
-              <div class="plate_title"><h3>Безопастность</h3></div>
+              <div class="plate_title">
+                  <h3>Безопастность</h3>
+                  <span class="el_question">
+                    <i class="fa fa-question"></i>
+                    <span class="el_question_body">
+                      test
+                    </span>
+                  </span>
+              </div>
             </div>
           </div>
         </div>
@@ -87,9 +95,50 @@
 
 </template>
 
-<script>import Navigation from '~/components/web_components/header_components/Navigation.vue'
+<script>
+import Navigation from '~/components/web_components/header_components/Navigation.vue'
   import Table_data from '~/components/web_components/dashboard/Table_data.vue';
 
   export default {
-  components: {   Navigation, Table_data  }
+  components: {   Navigation, Table_data  },
+  props:{
+    data:{
+      default: function (){
+        return {
+          settingsObj:{},
+          apiUrls:[
+              {
+                urlName: "",
+                link: "",
+                id: 0
+                },
+                {
+                urlName: "",
+                link: "",
+                id: 1
+                },
+               {
+                urlName: "",
+                link: "",
+                id:2
+                },
+               {
+                urlName: "",
+                link: "",
+                id: 3
+                },
+            ]
+          }
+      },
+     selectedCurrency:{
+          default: "BTC"
+      }
+    }
+  },
+  methods:{
+     setSettingValue: function(name, value){
+      let settingsObj = this.settingsObj;
+      return [];
+    },
+  },
   }</script>

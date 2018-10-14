@@ -70,10 +70,12 @@
     </div>
 </template>
 
-<script> 
+<script>
+
   import Navigation from '~/components/web_components/header_components/Navigation.vue'
-  
+  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
   export default {
-  components: {   Navigation  }
+  components: {   Navigation , FontAwesomeIcon }
   }
 </script>
