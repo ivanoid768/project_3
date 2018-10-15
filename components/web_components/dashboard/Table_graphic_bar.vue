@@ -20,17 +20,32 @@
        }
 
      },
-     extends: Bar, 
+     extends: Bar,
+     methods() {
+      
+     },
     mounted() {
       // Overwriting base render method with actual data.
-       
+      let _this = this;
+      let generate24time=() => {
+         let time = [];
+      for (let i = 0; i <= 24; ++i) {
+        if (i < 10) {
+          time.push(`0${i}.00`);
+        } else {
+          time.push(`${i}.00`);
+        }
+      }
+      return time;
+    }
+
       this.renderChart({
-        labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        labels: generate24time(),
         datasets: [
           {
             label: "",
             backgroundColor: '#ffa573',
-            data: this.dataset
+            data: _this.dataset
           }
         ]
       },

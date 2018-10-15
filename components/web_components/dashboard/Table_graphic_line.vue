@@ -9,11 +9,21 @@
      },
      extends: Line, 
      mounted() {
-       console.log("this.renderChart", this.renderChart)
+       let generate24time = () => {
+         let time = [];
+         for (let i = 0; i <= 24; ++i) {
+           if (i < 10) {
+             time.push(`0${i}.00`);
+           } else {
+             time.push(`${i}.00`);
+           }
+         }
+         return time;
+       }
       // Overwriting base render method with actual data.
       this.renderChart({
         
-        labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        labels: generate24time(),
         datasets: [
           {
               label: "",
