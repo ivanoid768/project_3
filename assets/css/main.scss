@@ -159,7 +159,7 @@ h1 {
   background-color: #fff;
   border: 1px solid #ccc;
   min-height: 200px;
-  height: 100%;
+  height: auto;
   width: auto;
   display: block;
   padding: 20px 15px;
@@ -238,7 +238,9 @@ h1 {
   font-size: 20px;
 }
 #block-statistics {
-  
+  .plate{
+    height:100%;
+  }
 
   .block_statistics_currency_course {
     text-align: right;
@@ -320,4 +322,14 @@ h1 {
       outline: none;
     }
   }
+}
+
+
+.help_text {
+  font-size: 13px;
+  font-family: Gotham Pro;
+  font-weight: 500;
+  font-style: normal;
+  margin-bottom:60px;
+  margin-top:20px;
 }
