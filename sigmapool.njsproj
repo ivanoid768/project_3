@@ -17,6 +17,16 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="api\config.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="api\db_routes.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="api\index.js" />
+    <Compile Include="api\user_routes.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="components\web_components\edit_components\checkbox.vue">
       <SubType>Code</SubType>
     </Compile>
@@ -84,6 +94,7 @@
     <Content Include="store\README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="api\" />
     <Folder Include="assets" />
     <Folder Include="assets\img\" />
     <Folder Include="assets\css\" />

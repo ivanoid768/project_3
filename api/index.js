@@ -1,10 +1,111 @@
-export default function (req, res, next) {
-  // req is the Node.js http request object
-  console.log(req.path)
-   
-  // res is the Node.js http response object
+var express = require('express');
+var app = express();
+import axios from 'axios';
+const MongoClient = require('mongodb').MongoClient; 
+const bodyParser = require('body-parser');
+const db = require('./config');
 
-  // next is a function to call to invoke the next middleware
-  // Don't forget to call next at the end if your middleware is not an endpoint!
-  next()
-}
+var apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
+var apiUrl = "https://btc.sigmapool.com/api/v1/";
+var apiUrls = {
+  getAccountInfo: `${apiUrl}stats`,
+  getWorkers: `${apiUrl}workers`,
+  getShares: `${apiUrl}charts/shares`,
+  getEarnings: `${apiUrl}earnings`
+};
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+MongoClient.connect(db.url, (err, database) => {
+  if (err) return console.log(err);
+
+  require('./db_routes')(app, database);
+
+  app.listen(port, () => {
+    console.log('We are live on ' + port);
+  });
+});
+
+
+app.get('/users', (req, res) => {
+
+  let userId = req.userId;
+  if (userId) {
+    console.log("userId", userId);
+  } else {
+    res.json({
+      error: [error.response.data, error.response.status, error.response.headers]
+    }); 
+  }
+  
+});
+
+
+
+app.get('/stats', (req, res) => { 
+  let url = `${apiUrls.getAccountInfo}?key=${apiKey}`;
+  axios.get(url).then(response => { 
+    res.json(response.data);
+    //console.log("======stats end");
+  }).catch(function (error) {
+    if (error.response) {
+      res.json({
+        error: [error.response.data, error.response.status, error.response.headers]
+      }); 
+    }
+  }); 
+});
+
+
+
+
+app.get('/workers', (req, res) => {
+  let url = `${apiUrls.getWorkers}?key=${apiKey}`;
+  axios.get(url).then(response => {
+    res.json(response.data);
+    //console.log("======stats end");
+  }).catch(function (error) {
+    if (error.response) {
+      res.json({
+        error: [error.response.data, error.response.status, error.response.headers]
+      });
+    }
+  }); 
+});
+
+
+app.get('/shares', (req, res) => {
+  let url = `${apiUrls.getShares}?key=${apiKey}`;
+  axios.get(url).then(response => {
+    res.json(response.data);
+    //console.log("======stats end");
+  }).catch(function (error) {
+    if (error.response) {
+      res.json({
+        error: [error.response.data, error.response.status, error.response.headers]
+      });
+    }
+  }); 
+});
+
+
+app.get('/earnings', (req, res) => {
+  let url = `${apiUrls.getEarnings}?key=${apiKey}`;
+  axios.get(url).then(response => {
+    res.json(response.data);
+    //console.log("======stats end");
+  }).catch(function (error) {
+    if (error.response) {
+      res.json({
+        error: [error.response.data, error.response.status, error.response.headers]
+      });
+    }
+  });
+});
+
+ 
+
+module.exports = {
+  path: "/api/",
+  handler: app
+};

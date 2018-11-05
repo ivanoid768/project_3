@@ -5,7 +5,7 @@ module.exports = {
   
   server: {
     port: 3000, // default: 3000
-    host: '0.0.0.0', // default: localhost
+    host: 'localhost', // default: localhost
   },
   /*
   ** Headers of the page
@@ -57,10 +57,9 @@ module.exports = {
     baseURL: process.env.BASE_URL || 'http://localhost:3000'
     // See https://github.com/nuxt-community/axios-module#options
   },
-  proxy: {
-    '/api/': 'https://btc.sigmapool.com/api/v1/', 
-  }
-
+  serverMiddleware: [
+    '~/api/index.js'
+  ], 
   /*
   ** Build configuration
   */

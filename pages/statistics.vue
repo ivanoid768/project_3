@@ -124,7 +124,7 @@
 
       getDataFromApi: function(){
         let _this = this;
-        axios.get(`https://btc.sigmapool.com/api/v1/workers?limit=25&page=1&key=${apiKey}`)
+        axios.get(`/api/workers`)
         .then(function (response) {
 
           _this.statistics = response.data;

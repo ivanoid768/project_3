@@ -191,7 +191,7 @@
   let apiSet ={
       getWorkers:`${apiUrl}workers`,
       getShares: `${apiUrl}charts/shares`,
-      getEarnings:"https://btc.sigmapool.com/api/v1/earnings",
+      getEarnings:`${apiUrl}earnings`,
   }
 
   export default {
@@ -212,12 +212,10 @@
     }
   },
     methods:{
-
       getDataFromApi: function(){
         let _this = this;
-        axios.get(`/api/stats?key=${apiKey}`)
+        axios.get(`/api/stats`)
         .then(function (response) {
-
           _this.accountInfo = response.data;
           _this.$forceUpdate();
         })
@@ -229,10 +227,11 @@
     },
     created: function () {
           let _this = this;
-          this.getDataFromApi();
+          //this.getDataFromApi();
           if(typeof window ==="object"){
+               //console.log("STORE", this);
                 this.updateData= setInterval(() =>{
-                  console.log(this.accountInfo)
+
                   _this.getDataFromApi()
               }, 1000)
             }
