@@ -60,7 +60,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_data />
+                <Table_graphic_line  v-bind:dataset="statistics" />
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_data v-bind:dataset="statistics"/>
+                <Table_graphic_line v-bind:dataset="statistics"/>
               </div>
             </div>
           </div>
@@ -108,11 +108,12 @@
 <script>
     import Navigation from '~/components/web_components/header_components/Navigation.vue'
    import Table_data from '~/components/web_components/dashboard/Table_data.vue';
+   import Table_graphic_line from '~/components/web_components/dashboard/Table_graphic_line.vue'; 
    import axios from 'axios';
    let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
 
   export default {
-  components: {   Navigation , Table_data },
+  components: {   Navigation , Table_data, Table_graphic_line},
   data: ()=>{
     return{
       statistics:null,
@@ -141,9 +142,9 @@
           this.getDataFromApi();
           if(typeof window ==="object"){
                 this.updateData= setInterval(() =>{
-                  console.log(this.statistics)
+                  console.log("statistics",this.statistics)
                   _this.getDataFromApi()
-              }, 1000)
+              }, 3000)
             }
     },
     mounted : function() {

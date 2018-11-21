@@ -67,6 +67,8 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="components\web_components\layout.vue" />
+    <Content Include="components\web_components\statistics\Table_statitistics.vue" />
+    <Content Include="components\web_components\workers\Table_workers.vue" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="pages\cabinet.vue">
@@ -104,6 +106,8 @@
     <Folder Include="components\web_components\header_components\" />
     <Folder Include="components\web_components\dashboard\" />
     <Folder Include="components\web_components\edit_components\" />
+    <Folder Include="components\web_components\workers\" />
+    <Folder Include="components\web_components\statistics\" />
     <Folder Include="FromExistingCode1" />
     <Folder Include="middleware" />
     <Folder Include="pages" />

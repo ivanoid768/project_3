@@ -28,7 +28,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_data />
+                <Table_workers/>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@
 </template>
 <script>
 import Navigation from '~/components/web_components/header_components/Navigation.vue'
-   import Table_data from '~/components/web_components/dashboard/Table_data.vue';
+   import Table_workers from '~/components/web_components/workers/Table_workers.vue';
   export default {
-  components: {   Navigation , Table_data }
+  components: {   Navigation , Table_workers }
   }</script>
