@@ -227,7 +227,7 @@
     },
     created: function () {
           let _this = this;
-          //this.getDataFromApi();
+          this.getDataFromApi();
           if(typeof window ==="object"){
                //console.log("STORE", this);
                 this.updateData= setInterval(() =>{

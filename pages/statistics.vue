@@ -28,7 +28,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_data v-bind:data="statistics" />
+                <Table_statistics v-bind:data="statistics" />
               </div>
             </div>
           </div>
@@ -107,13 +107,13 @@
 </template>
 <script>
     import Navigation from '~/components/web_components/header_components/Navigation.vue'
-   import Table_data from '~/components/web_components/dashboard/Table_data.vue';
-   import Table_graphic_line from '~/components/web_components/dashboard/Table_graphic_line.vue'; 
+   import Table_statistics from '~/components/web_components/statistics/Table_statistics.vue';
+   import Table_graphic_line from '~/components/web_components/dashboard/Table_graphic_line.vue';
    import axios from 'axios';
    let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
 
   export default {
-  components: {   Navigation , Table_data, Table_graphic_line},
+  components: {   Navigation , Table_statistics, Table_graphic_line},
   data: ()=>{
     return{
       statistics:null,
@@ -125,10 +125,10 @@
 
       getDataFromApi: function(){
         let _this = this;
-        axios.get(`/api/workers`)
+        axios.get(`/api/stats`)
         .then(function (response) {
 
-          _this.statistics = response.data;
+          _this.statistics = response;
           _this.$forceUpdate();
         })
         .catch(function (error) {

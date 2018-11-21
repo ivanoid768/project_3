@@ -1,14 +1,6 @@
 <template>
-  <table class="table_data">
-    <tr>
-      <th v-for="head in headers">{{head}}</th> 
-    </tr>
-    <tr v-for="item in data">
-      <td>{{item.name}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+  <table class="table_data">  
+    <tr >
       <td></td>
       <td></td>
     </tr>
@@ -28,7 +20,7 @@
       headers: {
         default: function () {
         return  [
-            "Период",
+            "Мо",
             "BTC",
             "LTC",
             "DASH"
@@ -40,6 +32,11 @@
       },
       pageSize:{
         default: 20
+      }
+    },
+    mounted: () => {
+      if (typeof window == "object") {
+        console.log("table-statistics", data)
       }
     },
     data:function (){

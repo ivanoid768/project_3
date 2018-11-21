@@ -67,7 +67,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="components\web_components\layout.vue" />
-    <Content Include="components\web_components\statistics\Table_statitistics.vue" />
+    <Content Include="components\web_components\statistics\Table_statistics.vue" />
     <Content Include="components\web_components\workers\Table_workers.vue" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
