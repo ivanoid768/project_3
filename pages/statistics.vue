@@ -13,7 +13,7 @@
               </div>
               <div class="col-md-6">
                 <div class="block-title-slot">
-
+                  
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_statistics v-bind:data="statistics" />
+              
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_graphic_line  v-bind:dataset="statistics" />
+                 
               </div>
             </div>
           </div>

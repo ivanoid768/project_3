@@ -36,14 +36,9 @@
     },
     mounted: () => {
       if (typeof window == "object") {
-        console.log("table-statistics", data)
+        console.log("table-statistics")
       }
-    },
-    data:function (){
-      return {
-        
-      }
-    },
+    }
 
   }
 </script>
