@@ -34,9 +34,9 @@
         default: 20
       }
     },
-    mounted: () => {
+    mounted: function () {
       if (typeof window == "object") {
-        console.log("table-statistics")
+        console.log("table-statistics", this.data)
       }
     }
 

@@ -28,9 +28,9 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-              
+                <Table_statistics v-bind:dataset="statistics" />
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                 
+                <Table_graphic_line v-bind:dataset="statistics" />
               </div>
             </div>
           </div>
@@ -127,8 +127,8 @@
         let _this = this;
         axios.get(`/api/stats`)
         .then(function (response) {
-
-          _this.statistics = response;
+        console.log("statistics",response)
+          _this.statistics = response.data.data;
           _this.$forceUpdate();
         })
         .catch(function (error) {
