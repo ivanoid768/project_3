@@ -34,8 +34,7 @@
                   <h3>Безопастность</h3>
                   <span class="el_question">
                     <i class="fa fa-question"></i>
-                    <span class="el_question_body">
-                      test
+                    <span class="el_question_body"> 
                     </span>
                   </span>
               </div>
