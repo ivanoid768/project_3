@@ -8,11 +8,16 @@ $glow: 0px 0px 6px #ea665c;
 $global-font:  Gotham Pro;
 $font-weight: 500;
 $gray-blue: #e9eff8;
-body{
+$light-blue:#7082a3;
+
+
+body {
   font: 100% Helvetica, sans-serif;
   color: #333;
   background-color: #f5f6fa;
   overflow-y: scroll;
+  font-family: $global-font;
+  font-weight: $font-weight;
 }
 .container{
   min-height:0px!important;
@@ -335,11 +340,12 @@ h1 {
   background-color: $red;
   box-shadow: $glow;
   color: $white;
+  text-align:center;
   display: inline-block;
   width: 30px;
   height: 30px;
   line-height: 30px;
-  font-size: 30px;
+  font-size: 25px;
   border-radius: 30px;
   vertical-align: middle;
   margin-left:15px;
@@ -358,6 +364,14 @@ h1 {
 
 
 .settings {
+  .form-sub-header {
+    font-size: 16px;
+    color: $light-blue;
+    font-family: $global-font;
+    font-weight: $font-weight;
+    margin-bottom: 30px;
+  }
+
   .option-label {
     color: $textcolor;
     font-size: 13px;
@@ -372,10 +386,11 @@ h1 {
   }
 
   .controll {
-    background: $red;
-    box-shadow: $glow;
-    border: 1px solid $red;
-    color: white;
+    font-size: 14px;
+    color: $light-blue;
+    background: $gray-blue;
+    border: 1px solid transparent;
+    color: $textcolor;
     height: 34px;
     font-family: $global-font;
     font-weight: $font-weight;
@@ -384,10 +399,14 @@ h1 {
       width: 150px;
       display: block;
       text-align: center;
+      border-radius: 20px;
+      margin-bottom: 10px;
 
-      &:active, &:focus, &.active {
-        background: $white;
+      &:active, &:hover, &:focus, &.active {
+        background: $red;
+        border: 1px solid $red;
         color: $white;
+        box-shadow: $glow;
         transition: 0.2s all;
       }
     }
@@ -401,8 +420,9 @@ h1 {
 
     &.checkbox {
       width: 50px;
-      color: $white;
       height: 50px;
+      color: $white;
+      background: $red;
     }
 
     &.switcher {
@@ -426,6 +446,10 @@ h1 {
       }
 
       &.active {
+        color: $white;
+        background: $red;
+        box-shadow: $glow;
+
         .switcher-label {
           padding-right: 20px;
           margin-right: 48px;

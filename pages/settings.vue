@@ -31,6 +31,7 @@
                   <span class="el_question">
                     <i class="fa fa-question"></i>
                     <span class="el_question_body">
+                      ?
                     </span>
                   </span>
                 </h3>
@@ -72,6 +73,7 @@
                   <span class="el_question">
                     <i class="fa fa-question"></i>
                     <span class="el_question_body">
+                      ?
                     </span>
                   </span>
                 </h3>
@@ -85,13 +87,27 @@
                     <div class="col col-form-label">
                       <label class="controll switcher active">
                         <span class="switcher-label active">ВКЛ</span>
-                        <input type="hidden" value="false"/>
+                        <input type="hidden" value="false" />
                         <span class="toggle"></span>
                       </label>
                     </div>
                   </div>
                 </div>
-
+                <hr />
+                <div class="option form-group">
+                  <div class="form-sub-header">Настройки аккаунта</div>
+                  <div class="form-row">
+                    <div class="col-md-4 col-form-label">
+                      <button class="controll btn">Новый пароль</button>
+                    </div>
+                    <div class="col-md-4 col-form-label">
+                      <button class="controll btn">Подтвердить</button>
+                    </div>
+                    <div class="col-md-4 col-form-label">
+                      <button class="controll btn active">Сменить пароль</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
