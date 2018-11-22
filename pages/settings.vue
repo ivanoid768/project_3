@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper_main container">
     <Navigation></Navigation>
-    <div class="page">
+    <div class="page settings">
       <div id="block-statistics" class="block">
         <div class="block-title">
           <div class="container-fluid">
@@ -26,6 +26,29 @@
           <div class="col-md-6">
             <div class="plate">
               <div class="plate_title"><h3>Подключение к пулу</h3></div>
+              <div class="plate_body">
+
+                <div class="url-table">
+                  <div class="url-table-row">
+                    <div class="url-cell"><span class="url-label">URL#1</span></div>
+                    <div class="url-cell"><span class="url-link">stratum+tcp://eu.ltc.sigmapool.com:3333</span></div>
+                  </div>
+                  <div class="url-table-row">
+                    <div class="url-cell"><span class="url-label">URL#2</span></div>
+                    <div class="url-cell"><span class="url-link">stratum+tcp://eu.ltc.sigmapool.com:3333</span></div>
+                  </div>
+
+                  <div class="url-table-row">
+                    <div class="url-cell"><span class="url-label">URL#3</span></div>
+                    <div class="url-cell"><span class="url-link">stratum+tcp://eu.ltc.sigmapool.com:3333</span></div>
+                  </div>
+                  <div class="url-table-row">
+                    <div class="url-cell"><span class="url-label">Майнер</span></div>
+                    <div class="url-cell"><span class="url-link">indimining.WORKER_NAME</span></div>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -95,49 +118,32 @@
 </template>
 
 <script>
-import Navigation from '~/components/web_components/header_components/Navigation.vue'
+ import Navigation from '~/components/web_components/header_components/Navigation.vue'
   import Table_data from '~/components/web_components/dashboard/Table_data.vue';
 
   export default {
-  components: {   Navigation, Table_data  },
-  props:{
-    data:{
-      default: function (){
-        return {
-          settingsObj:{},
-          apiUrls:[
-              {
-                urlName: "",
-                link: "",
-                id: 0
-                },
-                {
-                urlName: "",
-                link: "",
-                id: 1
-                },
-               {
-                urlName: "",
-                link: "",
-                id:2
-                },
-               {
-                urlName: "",
-                link: "",
-                id: 3
-                },
-            ]
-          }
-      },
-     selectedCurrency:{
-          default: "BTC"
+    components: {   Navigation, Table_data  },
+    props:{
+      data:{
+        default: function (){
+          return {
+             settings: {}
+            }
+        },
+       selectedCurrency:{
+            default: "BTC"
+        }
       }
-    }
-  },
-  methods:{
-     setSettingValue: function(name, value){
-      let settingsObj = this.settingsObj;
-      return [];
     },
-  },
-  }</script>
+    methods:{
+       setSettingValue: function(name, value){
+         
+      }
+    },
+    mounted: function(){
+
+       console.log("store", this.$store)
+
+    }
+  }
+</script>
