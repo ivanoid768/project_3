@@ -124,6 +124,69 @@
           <div class="col-md-6">
             <div class="plate">
               <div class="plate_title"><h3>Уведомления  </h3></div>
+              <div class="plate_body">
+                <div class="option form-group">
+                  <div class="form-row">
+                    <div class="col-md-1 col-form-label">
+                      <label class="controll checkbox">
+                        <input type="hidden" value="false" />
+                        <span class="checkbox-check">	&#10003;</span>
+                      </label>
+                    </div>
+                    <div class="col-md-7 col-form-label">
+                      <span class="option-label">Уведомлять при отключении воркеров</span>
+                    </div>
+                    <div class="col-md-4 col-form-label">
+                      <button class="controll btn active">Обновить</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div class="plate_title"><h3>Анонимность  </h3></div>
+              <div class="plate_body">
+                <div class="option form-group">
+                  <div class="form-row">
+                    <div class="col-md-1 col-form-label">
+                      <label class="controll checkbox">
+                        <input type="hidden" value="false" />
+                        <span class="checkbox-check">	&#10003;</span>
+                      </label>
+                    </div>
+                    <div class="col-md-7 col-form-label">
+                      <span class="option-label">Уведомлять при отключении воркеров</span>
+                    </div>
+                    <div class="col-md-4 col-form-label">
+                      <button class="controll btn active">Обновить</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="plate_title">
+                    <h3>
+                          API-доступ  <span class="el_question">
+                            <i class="fa fa-question"></i>
+                            <span class="el_question_body">
+                              ?
+                            </span>
+                          </span>
+                    </h3>
+              </div>
+              <div class="plate_body">
+                <div class="option form-group">
+                  <span class="option-label">API-ключ(нажмите, чтобы скопировать)</span>
+                  <div class="form-row">
+                    <div class="col col-form-label"> 
+                        <input type="text" value="46546546test" class="controll field-text" name="apiKey" /> 
+                    </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <a href="" class="option-link">Полная JSON API документация</a>
+                     </div> 
+                   </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

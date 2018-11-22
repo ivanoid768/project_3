@@ -387,7 +387,6 @@ h1 {
 
   .controll {
     font-size: 14px;
-    color: $light-blue;
     background: $gray-blue;
     border: 1px solid transparent;
     color: $textcolor;
@@ -411,18 +410,34 @@ h1 {
       }
     }
 
-    &.input-text {
-      width: 200px;
+    &.field-text {
+      color: $textcolor;
       background: $gray-blue;
+      width: 200px;
+      padding:0 15px;
       font-size: 16px;
       line-height: 16px;
+      border-radius: 20px;
+      display: block;
     }
 
     &.checkbox {
-      width: 50px;
-      height: 50px;
-      color: $white;
-      background: $red;
+      width: 30px;
+      height: 30px;
+      font-size: 20px;
+      border-radius: 3px;
+      vertical-align: middle;
+      text-align: center;
+      color: white;
+      cursor: pointer;
+      margin: 0px;
+      background: $gray-blue;
+      color: $gray-blue;
+
+      &.active, &:hover, &.active, &:focus {
+        color: $white;
+        background: $red;
+      }
     }
 
     &.switcher {
@@ -433,7 +448,7 @@ h1 {
       cursor: pointer;
 
       .switcher-label {
-        color: $white;
+        color: $textcolor;
         padding: 6px;
         margin: 0px;
         vertical-align: middle;
@@ -450,7 +465,14 @@ h1 {
         background: $red;
         box-shadow: $glow;
 
+        .toggle {
+          left: auto;
+          right: 2px;
+          transition: left 0.2s;
+        }
+
         .switcher-label {
+          color: $white;
           padding-right: 20px;
           margin-right: 48px;
           margin-left: auto;
@@ -465,17 +487,11 @@ h1 {
         width: 28px;
         border-radius: 30px;
         top: 2px;
-        left: auto;
-        right: 2px;
+        left: 2px;
         z-index: 1;
         bottom: 2px;
         transition: left 0.2s;
         box-shadow: 0px 0px 5px #bbb;
-
-        &.active {
-          left: 2px;
-          transition: left 0.2s;
-        }
       }
     }
   }
