@@ -394,12 +394,43 @@ h1 {
     font-family: $global-font;
     font-weight: $font-weight;
 
+    &.option-selector {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid #bbb;
+
+      .option {
+        display: inline-block;
+        background: #eee;
+        height: 100%;
+        width: 60px;
+        opacity: 0.5;
+        cursor: pointer;
+        border: 1px solid transparent;
+        color: $textcolor;
+
+
+        &:active, &:hover, &:focus, &.active {
+          opacity: 1;
+          background: $white;
+        }
+
+        .option-text {
+          vertical-align: middle;
+          font-family: $global-font;
+          font-weight: 500;
+        }
+      }
+    }
+
+
     &.btn {
       width: 150px;
       display: block;
       text-align: center;
       border-radius: 20px;
       margin-bottom: 10px;
+      line-height: 1;
 
       &:active, &:hover, &:focus, &.active {
         background: $red;
@@ -414,7 +445,7 @@ h1 {
       color: $textcolor;
       background: $gray-blue;
       width: 200px;
-      padding:0 15px;
+      padding: 0 15px;
       font-size: 16px;
       line-height: 16px;
       border-radius: 20px;

@@ -119,6 +119,21 @@
           <div class="col-md-6">
             <div class="plate">
               <div class="plate_title"><h3>Настройки выплат</h3></div>
+              <div class="plate_body">
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="col-md-4 col-form-label">
+                      <span class="url-label">Схема выплат</span>
+                    </div>
+                    <div class="col-md-8 ">
+                      <div class="controll option-selector">
+                        <button class="option" value="PPS">PPS</button>
+                        <button class="option" value="PPLNS">PPLNS</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
             </div>
           </div>
           <div class="col-md-6">
