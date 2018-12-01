@@ -210,7 +210,11 @@ h1 {
     }
   }
 
-  .plate-body {
+  .plate_body {
+
+    &.max-width {
+      margin: -20px -15px;
+    }
   }
 
   .plate-footer {
@@ -283,13 +287,11 @@ h1 {
  
 }
 
-.table_data {
-  width:auto;
-  min-width: 100%;
-  border-collapse: collapse;
-  margin: -20px -15px;
+.table_data { 
+   width: 100%;
+  border-collapse: collapse; 
 
-  &.history-notify, &.statistics {
+  &.history-notify, &.statistics, &.payments, &.accountants {
     tr {
       th {
         border-bottom: 1px solid $outerline;
@@ -312,6 +314,19 @@ h1 {
     }
   }
 
+  &.payments, &.accountants {
+    tr {
+      th {
+        border-bottom: 1px solid $outerline;
+      }
+
+      td, th {
+        padding: 20px 50px;
+        text-align: right!important;
+        color: $light-blue;
+      }
+    }
+  }
 
   tr {
 

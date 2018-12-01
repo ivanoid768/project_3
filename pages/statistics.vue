@@ -27,7 +27,7 @@
             <div class="plate">
               <div class="plate_title">
               </div>
-              <div class="plate_body">
+              <div class="plate_body max-width">
                 <Table_statistics v-bind:dataset="statistics" />
               </div>
             </div> 
@@ -59,7 +59,7 @@
             <div class="plate">
               <div class="plate_title">
               </div>
-              <div class="plate_body">
+              <div class="plate_body max-width">
                 <Table_graphic_line v-bind:dataset="statistics" />
               </div>
             </div>
@@ -92,7 +92,7 @@
             <div class="plate">
               <div class="plate_title">
               </div>
-              <div class="plate_body">
+              <div class="plate_body max-width">
                 <Table_graphic_line v-bind:dataset="statistics"/>
               </div>
             </div>

@@ -85,6 +85,12 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="components\web_components\layout.vue" />
+    <Content Include="components\web_components\payments\Table_payments.vue">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="components\web_components\payments\Table_accountants.vue">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="components\web_components\statistics\Table_statistics.vue" />
     <Content Include="components\web_components\workers\Table_workers.vue" />
     <Content Include="package-lock.json" />
@@ -125,6 +131,7 @@
     <Folder Include="components\web_components\header_components\" />
     <Folder Include="components\web_components\dashboard\" />
     <Folder Include="components\web_components\edit_components\" />
+    <Folder Include="components\web_components\payments\" />
     <Folder Include="components\web_components\settings\" />
     <Folder Include="components\web_components\workers\" />
     <Folder Include="components\web_components\statistics\" />
