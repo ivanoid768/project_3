@@ -23,6 +23,10 @@ body {
   min-height:0px!important;
 }
 
+input{
+  outline:none;
+}
+
 .wrapper_main.container {
   min-height: 100vh !important;
   align-items: flex-start;
@@ -340,16 +344,19 @@ h1 {
   background-color: $red;
   box-shadow: $glow;
   color: $white;
-  text-align:center;
+  text-align: center;
   display: inline-block;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 25px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 18px;
   border-radius: 30px;
   vertical-align: middle;
-  margin-left:15px;
+  margin-left: 15px;
+  &:hover{
+    cursor:pointer;
 
+  }
 }
 
 .help_text {
@@ -364,6 +371,9 @@ h1 {
 
 
 .settings {
+  .plate{
+    min-height:285px;
+  }
   .form-sub-header {
     font-size: 16px;
     color: $light-blue;
@@ -383,6 +393,7 @@ h1 {
     color: #7082a3;
     font-family: $global-font;
     font-weight: $font-weight;
+    font-size: 13px;
   }
 
   .controll {
@@ -395,20 +406,27 @@ h1 {
     font-weight: $font-weight;
 
     &.option-selector {
-      display: inline-block;
+      display: flex;
+      flex-direction: row;
       background: transparent;
       border: 1px solid #bbb;
+      width: 120px;
 
       .option {
-        display: inline-block;
+        display: block;
         background: #eee;
         height: 100%;
         width: 60px;
+        text-align: center;
         opacity: 0.5;
         cursor: pointer;
         border: 1px solid transparent;
         color: $textcolor;
+        outline: none;
 
+        &:nth-child(1) {
+          border-right: 1px solid #bbb
+        }
 
         &:active, &:hover, &:focus, &.active {
           opacity: 1;
@@ -431,6 +449,7 @@ h1 {
       border-radius: 20px;
       margin-bottom: 10px;
       line-height: 1;
+      height: 30px;
 
       &:active, &:hover, &:focus, &.active {
         background: $red;
@@ -525,6 +544,41 @@ h1 {
         box-shadow: 0px 0px 5px #bbb;
       }
     }
+
+    &.number-selector {
+      background: transparent;
+      display: block;
+      overflow: hidden;
+      padding: 0px;
+      border: 1px solid transparent;
+
+      input {
+        border: 1px solid transparent;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid $light-blue;
+        outline: none;
+        width: 150px;
+      }
+
+      .arrow-top {
+      }
+
+      .arrow-bottom {
+      }
+    }
   }
 }
- 
+.option-link{
+  font-size:13px;
+}
+
+.full-width{
+  width:100%!important;
+}
+
+.col-mrg{
+
+  margin-top:10px;
+  margin-bottom:10px;
+}

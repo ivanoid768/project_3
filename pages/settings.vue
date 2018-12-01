@@ -125,15 +125,47 @@
                     <div class="col-md-4 col-form-label">
                       <span class="url-label">Схема выплат</span>
                     </div>
-                    <div class="col-md-8 ">
+                    <div class="col-md-4  col-form-label">
                       <div class="controll option-selector">
-                        <button class="option" value="PPS">PPS</button>
+                        <button class="option active" value="PPS">PPS</button>
                         <button class="option" value="PPLNS">PPLNS</button>
                       </div>
                     </div>
+                    <div class="col-md-4 col-form-label">
+                      <button class="controll btn active">Обновить</button>
+                    </div>
                   </div>
                 </div>
-            </div>
+                <hr />
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="col-md-3 col-form-label">
+                      <span class="url-label">Порог выплат </br>
+                        <i class="label-measure">(>= 0.01 LTC)</i></span>
+                    </div>
+                    <div class="col-md-5  col-form-label">
+                      <div class="controll  number-selector"> 
+                            <input type="number"  step="0.01" value="0.01" />
+                            <span class="arrow-top"></span>
+                            <span class="arrow-bottom"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-form-label">
+                      <button class="controll btn active">Изменить</button>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="col col-form-label">
+                      <span class="url-label col-mrg">Адрес выплат</span>
+                      <input type="text" value="Адрес выплат" class="controll field-text full-width col-mrg" name="paymentAddress" />
+                      <button class="controll btn active">Обновить</button>
+                    </div> 
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -228,7 +260,7 @@
             <div class="plate">
               <div class="plate_title"></div>
               <div class="plate_body">
-                <Table_data />
+                <Table_history_notify />
               </div>
             </div>
           </div>
@@ -245,10 +277,10 @@
 
 <script>
  import Navigation from '~/components/web_components/header_components/Navigation.vue'
-  import Table_data from '~/components/web_components/dashboard/Table_data.vue';
+ import Table_history_notify from '~/components/web_components/settings/Table_history_notify.vue';
 
   export default {
-    components: {   Navigation, Table_data  },
+    components: {   Navigation, Table_history_notify  },
     props:{
       data:{
         default: function (){
@@ -263,7 +295,7 @@
     },
     methods:{
        setSettingValue: function(name, value){
-         
+
       }
     },
     mounted: function(){
