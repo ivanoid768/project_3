@@ -27,6 +27,9 @@ input{
   outline:none;
 }
 
+.navbar-brand  img{
+  max-width:100px;
+}
 .wrapper_main.container {
   min-height: 100vh !important;
   align-items: flex-start;
