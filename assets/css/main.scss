@@ -9,7 +9,7 @@ $global-font:  Gotham Pro;
 $font-weight: 500;
 $gray-blue: #e9eff8;
 $light-blue:#7082a3;
-
+$outerline: #eef2f7;
 
 body {
   font: 100% Helvetica, sans-serif;
@@ -173,7 +173,7 @@ h1 {
 
 .plate {
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid $outerline;
   min-height: 200px;
   height: auto;
   width: auto;
@@ -275,6 +275,21 @@ h1 {
 .table_data {
   width: 100%;
   border-collapse: collapse;
+
+  &.history-notify {
+    tr {
+      th{
+        border-bottom:1px solid $outerline;
+      }
+      td,th{
+        padding: 20px 50px;
+      }
+    }
+  }
+
+
+
+
 
   tr {
 

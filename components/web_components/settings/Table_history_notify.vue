@@ -1,16 +1,12 @@
 <template>
-  <table class="table_data">
+  <table class="table_data history-notify">
     <tr>
       <th v-for="head in headers">{{head}}</th>
     </tr>
     <tr v-for="item in data">
       <td>{{item.name}}</td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td></td> 
     </tr>
   </table>
 </template>

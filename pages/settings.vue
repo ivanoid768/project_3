@@ -220,10 +220,10 @@
                     </h3>
               </div>
               <div class="plate_body">
-                <div class="option form-group">
-                  <span class="option-label">API-ключ(нажмите, чтобы скопировать)</span>
+                <div class="option form-group  col-mrg">
+                  <span class="option-label ">API-ключ(нажмите, чтобы скопировать)</span>
                   <div class="form-row">
-                    <div class="col col-form-label"> 
+                    <div class="col col-form-label col-mrg"> 
                         <input type="text" value="46546546test" class="controll field-text" name="apiKey" /> 
                     </div>
                     </div>
