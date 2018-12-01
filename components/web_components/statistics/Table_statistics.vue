@@ -1,7 +1,7 @@
 <template>
-  <table class="table_data">  
-    <tr >
-      <td></td>
+  <table class="table_data statistics">  
+    <tr v-for="head in headers">
+      <td>{{head.label}}  </td>
       <td></td>
     </tr>
   </table>
@@ -20,10 +20,14 @@
       headers: {
         default: function () {
         return  [
-            "Мо",
-            "BTC",
-            "LTC",
-            "DASH"
+          { label: "Монета", name: "currency" } ,
+          { label: "Доходность за 24 часа", name: "24hprofit" } ,
+          { label: "Схема выплат", name: "paymentscheme" },
+          { label: "Процент комиссии", name: "Comission" },
+          { label: "Подключенные майнеры", name: "Miners" },
+          { label: "Хэшрейт пула", name: "HashratePool" },
+          { label: "Хешрейт сети", name: "HashrateNet" },
+          { label: "Высота блока", name: "BlockHeight" }
           ]
         }
       },

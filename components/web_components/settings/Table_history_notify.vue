@@ -5,8 +5,8 @@
     </tr>
     <tr v-for="item in data">
       <td>{{item.name}}</td>
-      <td></td>
-      <td></td> 
+      <td>{{item.date}}</td>
+      <td>{{item.ipAddress}}</td> 
     </tr>
   </table>
 </template>

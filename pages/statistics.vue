@@ -127,7 +127,7 @@
         let _this = this;
         axios.get(`/api/stats`)
         .then(function (response) {
-        console.log("statistics",response)
+        //console.log("statistics",response)
           _this.statistics = response.data.data;
           _this.$forceUpdate();
         })

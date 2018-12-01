@@ -98,11 +98,15 @@ h1 {
     }
   }
 
-  .dropdown-currency{
-    min-width:146px;
+  .dropdown-currency {
+    min-width: 146px;
+
+    & > button > .currency-icon {
+      margin-right: 8px;
+    }
   }
 
-    .dropdown-currency button {
+  .dropdown-currency button {
     background: #fff !important;
     border: 1px solid transparent;
     line-height: 35px;
@@ -116,14 +120,21 @@ h1 {
 
   .dropdown-menu {
     display: block;
-    box-shadow: 0px 0px 5px #ccc;
-    top: -5px;
+    box-shadow: 0px 3px 5px #ccc;
+    top: 100%;
     width: 100%;
     min-width: 0px;
     border: none;
+    padding: 0px;
 
     button {
       padding: 0.375rem 0.75rem;
+      outline: none;
+
+      &:hover {
+        background: #eee !important;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -273,22 +284,33 @@ h1 {
 }
 
 .table_data {
-  width: 100%;
+  width:auto;
+  min-width: 100%;
   border-collapse: collapse;
+  margin: -20px -15px;
 
-  &.history-notify {
+  &.history-notify, &.statistics {
     tr {
-      th{
-        border-bottom:1px solid $outerline;
+      th {
+        border-bottom: 1px solid $outerline;
       }
-      td,th{
+
+      td, th {
         padding: 20px 50px;
       }
     }
   }
 
-
-
+  &.statistics {
+    tr {
+      td:nth-child(1) {
+        border-right: 1px solid $outerline;
+        width: 30%;
+        text-align: right;
+        color: $light-blue;
+      }
+    }
+  }
 
 
   tr {
