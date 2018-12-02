@@ -29,6 +29,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body max-width">
+                <Pagination />
                 <Table_accountants />
               </div>
             </div>
@@ -61,6 +62,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body max-width">
+                <Pagination />
                 <Table_payments />
               </div>
             </div>
@@ -72,9 +74,11 @@
 </template>
 
 <script>
-import Navigation from '~/components/web_components/header_components/Navigation.vue'
-   import Table_payments from '~/components/web_components/payments/Table_payments.vue';
-   import Table_accountants from '~/components/web_components/payments/Table_accountants.vue';
+  import Navigation from '~/components/web_components/header_components/Navigation.vue'
+  import Table_payments from '~/components/web_components/payments/Table_payments.vue';
+  import Table_accountants from '~/components/web_components/payments/Table_accountants.vue';
+  import Pagination from '~/components/web_components/edit_components/pagination.vue';
+
   export default {
-  components: {   Navigation , Table_payments, Table_accountants }
+  components: {   Navigation , Table_payments, Table_accountants, Pagination }
   }</script>

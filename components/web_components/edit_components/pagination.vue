@@ -1,9 +1,9 @@
 <template>
-  <div class="plate block_pagination">
+  <div class="plate pg-plate">
     <div class="pagination-filter">
-
+      
     </div>
-    <ul class="pagination-items">
+    <ul class="pagination ">
       <li class="pagination-item active"><button class="pg-btn">1</button></li>
       <li class="pagination-item "><button class="pg-btn">2</button></li>
       <li class="pagination-item "><button class="pg-btn">3</button></li>
@@ -19,8 +19,8 @@
   props:{
     setParentMethodPage:{
         default: ()=>{}
-    }
-  }
+    },
+  },
   data:()=>{
     return{
       selectedPageSize: 20,

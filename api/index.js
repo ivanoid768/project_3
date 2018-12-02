@@ -11,7 +11,9 @@ var apiUrls = {
   getAccountInfo: `${apiUrl}stats`,
   getWorkers: `${apiUrl}workers`,
   getShares: `${apiUrl}charts/shares`,
-  getEarnings: `${apiUrl}earnings`
+  getEarnings: `${apiUrl}earnings`,
+  getPayments: `${apiUrl}payments`,
+  getCharts: `${apiUrl}charts`,
 };
 
 
@@ -103,7 +105,61 @@ app.get('/earnings', (req, res) => {
   });
 });
 
- 
+app.get('/payments', (req, res) => {
+  let url = `${apiUrls.getPayments}?key=${apiKey}`;
+  axios.get(url).then(response => {
+    res.json(response.data);
+    //console.log("======stats end");
+  }).catch(function (error) {
+    if (error.response) {
+      res.json({
+        error: [error.response.data, error.response.status, error.response.headers]
+      });
+    }
+  });
+});
+
+app.get('/charts/hashrate', (req, res) => {
+  let url = `${apiUrls.getCharts}/hashrate?key=${apiKey}`;
+  axios.get(url).then(response => {
+    res.json(response.data);
+    //console.log("======stats end");
+  }).catch(function (error) {
+    if (error.response) {
+      res.json({
+        error: [error.response.data, error.response.status, error.response.headers]
+      });
+    }
+  });
+});
+
+app.get('/charts/sma', (req, res) => {
+  let url = `${apiUrls.getCharts}/sma?key=${apiKey}`;
+  axios.get(url).then(response => {
+    res.json(response.data);
+    //console.log("======stats end");
+  }).catch(function (error) {
+    if (error.response) {
+      res.json({
+        error: [error.response.data, error.response.status, error.response.headers]
+      });
+    }
+  });
+});
+
+app.get('/charts/shares', (req, res) => {
+  let url = `${apiUrls.getCharts}/shares?key=${apiKey}`;
+  axios.get(url).then(response => {
+    res.json(response.data);
+    //console.log("======stats end");
+  }).catch(function (error) {
+    if (error.response) {
+      res.json({
+        error: [error.response.data, error.response.status, error.response.headers]
+      });
+    }
+  });
+});
 
 module.exports = {
   path: "/api/",
