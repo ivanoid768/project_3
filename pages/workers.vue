@@ -47,7 +47,9 @@
   export default {
     components: {   Navigation , Table_workers },
     data:()=>{
-       workersData:[]
+       return {
+           workersData:[]
+       }
     },
   methods:{
       getWorkersFromApi: function(){
@@ -55,6 +57,7 @@
         axios.get(`/api/workers`)
         .then(function (response) {
           _this.workersData = response.data;
+      console.log("WORKERS RECIEVED", _this.workersData)
           _this.$forceUpdate();
         })
         .catch(function (error) {

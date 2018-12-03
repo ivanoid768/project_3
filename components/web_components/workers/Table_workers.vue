@@ -68,7 +68,7 @@
     <tr>
       <th v-for="head in headers">{{head}}</th> 
     </tr>
-    <tr v-for="item in data">
+    <tr v-for="item in dataset">
       <td>{{item.name}}</td>
       <td>{{item.lastShareTime}}</td>
       <td>{{item.hashrate}}</td>
@@ -82,7 +82,7 @@
 <script>
   export default {
     props: {
-      data: {
+      dataset: {
         default: function () { 
           return [
             {}, {}, {}, {}, {}, {}, {}, {}, {}
@@ -107,11 +107,8 @@
         default: 20
       }
     },
-    data:function (){
-      return {
-        
-      }
-    },
-
+    mounted: function() {
+     
+    }
   }
 </script>
