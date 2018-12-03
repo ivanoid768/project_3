@@ -327,7 +327,6 @@ h1 {
       td, th {
         padding: 20px 30px;
         text-align: right !important;
-        color: $light-blue;
       }
     }
   }
@@ -342,7 +341,7 @@ h1 {
       color: #7082a3;
       text-align: right;
       padding: 10px;
-
+      color: $light-blue;
 
       &:nth-child(1) {
         text-align: left;
@@ -353,7 +352,7 @@ h1 {
       padding: 10px;
       min-height: 40px;
       font-size: 13px;
-      text-align:center;
+      text-align: center;
     }
 
     td, th {
