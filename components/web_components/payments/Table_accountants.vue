@@ -1,24 +1,27 @@
 <template>
-  <table class="table_data accountants">
+  <table class="table_data accountants" v-if="dataset !==null">
     <tr>
       <th v-for="head in headers">{{head}}</th>
     </tr>
-    <tr v-for="item in data">
-      <td>{{item.name}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+    <tr v-for="item in dataset">
+      <td>{{moment(item.created).format("DD.MM.YYYY HH:mm:ss")}}</td>
+      <td>{{item.amount}} {{currency}}</td>
+      <td>{{item.usage}}</td>
+      <td>{{item.bonus}}</td>
     </tr>
   </table>
+  <div class="dash_preloader" v-else>
+    <img src="~assets/img/gears-anim.gif" />
+  </div>
 </template>
 
 <script>
+
+  import moment from 'moment';
+
   export default {
     props: {
-      data: {
+      dataset: {
         default: function () {
           return [
             {}, {}, {}, {}, {}, {}, {}, {}, {}
@@ -28,10 +31,10 @@
       headers: {
         default: function () {
         return  [
-            "Период",
-            "BTC",
-            "LTC",
-            "DASH"
+            "Дата ",
+            "Сумма",
+            "Информация",
+            "Бонус"
           ]
         }
       },
@@ -44,9 +47,14 @@
     },
     data:function (){
       return {
-
+        currency:"BTC"//this.$store.settings.currentCurrency
       }
     },
+    methods:{
+      moment: function () {
+        return moment()
+      }
+    }
 
   }
 </script>

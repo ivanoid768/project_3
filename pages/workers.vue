@@ -48,7 +48,7 @@
     components: {   Navigation , Table_workers },
     data:()=>{
        return {
-           workersData:[]
+           workersData:null
        }
     },
   methods:{

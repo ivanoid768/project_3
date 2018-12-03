@@ -30,7 +30,7 @@
               </div>
               <div class="plate_body max-width">
                 <Pagination />
-                <Table_accountants />
+                <Table_accountants v-bind:dataset="earningsData" />
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
               </div>
               <div class="plate_body max-width">
                 <Pagination />
-                <Table_payments />
+                <Table_payments v-bind:dataset="paymentsData" />
               </div>
             </div>
           </div>
@@ -78,7 +78,55 @@
   import Table_payments from '~/components/web_components/payments/Table_payments.vue';
   import Table_accountants from '~/components/web_components/payments/Table_accountants.vue';
   import Pagination from '~/components/web_components/edit_components/pagination.vue';
-
+  import axios from 'axios';
   export default {
-  components: {   Navigation , Table_payments, Table_accountants, Pagination }
+  components: {   Navigation , Table_payments, Table_accountants, Pagination },
+  data:()=>{
+       return {
+           paymentsData:null,
+           earningsData:null
+       }
+    },
+  methods:{
+      getPaymentsFromApi: function(params){
+        let _this = this;
+        axios.get(`/api/payments`)
+        .then(function (response) {
+          _this.paymentsData = response.data;
+         console.log("PAYMENTS RECIEVED", _this.paymentsData)
+          _this.$forceUpdate();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      },
+     getEarningsFromApi: function(params){
+        let _this = this;
+        axios.get(`/api/earnings`)
+        .then(function (response) {
+          _this.earningsData = response.data;
+         console.log("EARNINGS RECEIVED", _this.earningsData)
+          _this.$forceUpdate();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      }
+    },
+    created: function () {
+          let _this = this;
+          this.getPaymentsFromApi();
+          this.getEarningsFromApi();
+    },
+    mounted : function() {
+      this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
+  },
+  beforeDestroy: function(){
+
+    }
   }</script>

@@ -298,12 +298,11 @@ h1 {
     tr {
       th {
         border-bottom: 1px solid $outerline;
-        font-size:16px;
-        }
+        font-size: 16px;
+      }
 
       td, th {
         padding: 20px 30px;
-       
       }
     }
   }
@@ -326,7 +325,7 @@ h1 {
       }
 
       td, th {
-        padding: 20px 50px;
+        padding: 20px 30px;
         text-align: right !important;
         color: $light-blue;
       }
@@ -339,7 +338,7 @@ h1 {
       font-family: Gotham Pro;
       font-weight: 500;
       font-style: normal;
-      font-size: 16 px;
+      font-size: 16px;
       color: #7082a3;
       text-align: right;
       padding: 10px;
@@ -353,6 +352,8 @@ h1 {
     td {
       padding: 10px;
       min-height: 40px;
+      font-size: 13px;
+      text-align:center;
     }
 
     td, th {
@@ -754,4 +755,9 @@ h1 {
       display:block;
     }
   }
+}
+
+
+.dash_preloader{
+  text-align:center;
 }
