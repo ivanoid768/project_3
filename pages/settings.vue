@@ -261,6 +261,7 @@
               <div class="plate_title"></div>
               <div class="plate_body max-width">
                 <Table_history_notify />
+                <Pagination />
               </div>
             </div>
           </div>
@@ -278,9 +279,9 @@
 <script>
  import Navigation from '~/components/web_components/header_components/Navigation.vue'
  import Table_history_notify from '~/components/web_components/settings/Table_history_notify.vue';
-
+  import Pagination from '~/components/web_components/edit_components/pagination.vue';
   export default {
-    components: {   Navigation, Table_history_notify  },
+    components: {   Navigation, Table_history_notify,   Pagination},
     props:{
       data:{
         default: function (){

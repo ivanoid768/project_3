@@ -11,9 +11,9 @@
        return {
          options: {
            legend: { display: false },
-           barPercentage: "4",
-           maxBarThickness: "4",
-           barThickness: 4,
+           barPercentage: 0.12,
+           maxBarThickness: 0.1,
+           barThickness: 0.1,
            responsive: true,
            maintainAspectRatio: false,
 
@@ -46,7 +46,8 @@
           {
             label: "",
             backgroundColor: '#ffa573',
-            data: _this.dataset
+            data: _this.dataset,
+            barPercentage: 0.12,
           }
         ]
       },
