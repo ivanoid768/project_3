@@ -28,7 +28,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_workers/>
+                <Table_workers v-bind:dataset="workersData" />
               </div>
             </div>
           </div>
@@ -40,8 +40,45 @@
   </div>
 </template>
 <script>
-import Navigation from '~/components/web_components/header_components/Navigation.vue'
-   import Table_workers from '~/components/web_components/workers/Table_workers.vue';
+  import Navigation from '~/components/web_components/header_components/Navigation.vue'
+  import Table_workers from '~/components/web_components/workers/Table_workers.vue';
+  import axios from 'axios';
+
   export default {
-  components: {   Navigation , Table_workers }
+    components: {   Navigation , Table_workers },
+    data:()=>{
+       workersData:[]
+    },
+  methods:{
+      getWorkersFromApi: function(){
+        let _this = this;
+        axios.get(`/api/workers`)
+        .then(function (response) {
+          _this.workersData = response.data;
+          _this.$forceUpdate();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      }
+    },
+    created: function () {
+          let _this = this;
+          this.getWorkersFromApi();
+    },
+    mounted : function() {
+
+
+
+      this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+
+
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
+  },
+  beforeDestroy: function(){
+
+    }
   }</script>

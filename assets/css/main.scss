@@ -298,10 +298,12 @@ h1 {
     tr {
       th {
         border-bottom: 1px solid $outerline;
-      }
+        font-size:16px;
+        }
 
       td, th {
-        padding: 20px 50px;
+        padding: 20px 30px;
+       
       }
     }
   }
@@ -337,7 +339,7 @@ h1 {
       font-family: Gotham Pro;
       font-weight: 500;
       font-style: normal;
-      font-size: 13px;
+      font-size: 16 px;
       color: #7082a3;
       text-align: right;
       padding: 10px;
@@ -354,7 +356,7 @@ h1 {
     }
 
     td, th {
-      padding: 20px 50px;
+      padding: 20px 30px;
     }
 
     &:nth-child(2n) {
@@ -699,4 +701,57 @@ h1 {
       }
     }
   }
-} 
+}
+
+.filter {
+  .filter-text {
+    font-size: 13px;
+    font-weight: normal;
+  }
+
+
+  button {
+    border: 1px solid transparent;
+    background-color: #fff;
+    outline: none;
+    padding: 0px;
+    margin-bottom:10px;
+    font-weight: $font-weight;
+    font-family: $global-font;
+    font-size: 16px;
+
+    .filter-indicator {
+      display: inline-block;
+      width: 30px;
+      text-align: center;
+      background: #eee;
+      border-radius: 15px;
+    }
+
+    &:hover, &:active, &:focus, &.active {
+      color: $light-blue;
+      cursor: pointer;
+    }
+  }
+}
+
+.dropdown-block {
+  position:relative;
+  height:100%;
+
+
+  .dropdown-list {
+    display: none;
+    position:absolute;
+    top:100%;
+    background-color:$white;
+    padding:10px 15px;
+
+  }
+
+  &.open {
+    .dropdown-list{
+      display:block;
+    }
+  }
+}

@@ -1,54 +1,68 @@
 <template>
   <div class="table_workers">
   <div class="block_table_filter">
-      <div class="row">
-        <div class="col">
-          <div class="col">
-            <div class="filter" id="item-pagesize">
-              <button><span class="filter-button-label">Онлайн</span>  <span class="filter-indicator">0</span></button>
-              <button><span class="filter-button-label">Оффлайн</span>  <span class="filter-indicator">0</span></button>
-              <button><span class="filter-button-label">Общее</span>  <span class="filter-indicator">0</span></button>
-              <div class="filter-text">
-                Отображаются только <b>online</b> воркеры
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="filter" id="item-pagesize">
-            <span class="filter-label">
-              Макс на странице:
-            </span>
-
-            <div class="dropdown-block">
-              <span class="dropdown-active"></span>
-              <ul class="dropdown-list">
-                <li><button> 25</button></li>
-                <li><button> 50 </button></li>
-                <li><button> 100</button></li> 
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="filter" id="item-name">
-              <span class="filter-label">
-                Сортировать по :
-              </span>
-             
-               <div class="dropdown-block">
-                 <span class="dropdown-active"></span>
-                 <ul class="dropdown-list">
-                   <li><button> Имя</button></li>
-                   <li><button> Последняя шара</button></li>
-                   <li><button> Текущий хешрейт</button></li>
-                   <li><button> Средний хешрейт за час</button></li>
-                   <li><button> Средний хешрейт за 24ч</button></li>
-                 </ul>
-               </div> 
+    <div class="row">
+      <div class="col-md-4">
+        <div class="filter" id="item-pagesize">
+          <button><span class="filter-button-label">Онлайн</span>  <span class="filter-indicator">0</span></button>
+          <button><span class="filter-button-label">Оффлайн</span>  <span class="filter-indicator">0</span></button>
+          <button><span class="filter-button-label">Общее</span>  <span class="filter-indicator">0</span></button>
+          <div class="filter-text">
+            Отображаются только <b>online</b> воркеры
           </div>
         </div>
       </div>
+      <div class="col-md-3">
+        <div class="filter" id="item-pagesize">
+          <span class="filter-label">
+            Поиск
+          </span>
+
+          <div class="dropdown-block">
+            <span class="dropdown-active"></span>
+            <ul class="dropdown-list">
+              <li><button> 25</button></li>
+              <li><button> 50 </button></li>
+              <li><button> 100</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="filter" id="item-pagesize">
+          <span class="filter-label">
+            Макс на странице:
+          </span>
+
+          <div class="dropdown-block">
+            <span class="dropdown-active"></span>
+            <ul class="dropdown-list">
+              <li><button> 25</button></li>
+              <li><button> 50 </button></li>
+              <li><button> 100</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="filter" id="item-name">
+          <span class="filter-label">
+            Сортировать по :
+          </span>
+
+          <div class="dropdown-block">
+            <span class="dropdown-active"></span>
+            <ul class="dropdown-list">
+              <li><button> Имя</button></li>
+              <li><button> Последняя шара</button></li>
+              <li><button> Текущий хешрейт</button></li>
+              <li><button> Средний хешрейт за час</button></li>
+              <li><button> Средний хешрейт за 24ч</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <table class="table_data workers">
     <tr>
@@ -56,12 +70,10 @@
     </tr>
     <tr v-for="item in data">
       <td>{{item.name}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{item.lastShareTime}}</td>
+      <td>{{item.hashrate}}</td>
+      <td>{{item.avg1Hashrate}}</td>
+      <td>{{item.avg24Hashrate}}</td> 
     </tr>
   </table>
     </div>
