@@ -26,7 +26,7 @@
         labels: generate24time(),
         datasets: [
           {
-              label: "",
+            label: false,
             backgroundColor: ['rgba(234, 102, 92, 0.2' ],
             borderColor: "#ea665c",
             borderWidth: 3,
@@ -36,7 +36,7 @@
         
         },
         {
-
+          legend: { display: false },
           responsive: true,
           maintainAspectRatio: false
         }

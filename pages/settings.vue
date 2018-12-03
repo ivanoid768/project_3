@@ -259,7 +259,7 @@
           <div class="col-md-12">
             <div class="plate">
               <div class="plate_title"></div>
-              <div class="plate_body">
+              <div class="plate_body max-width">
                 <Table_history_notify />
               </div>
             </div>

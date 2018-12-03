@@ -10,6 +10,7 @@
      data: () => {
        return {
          options: {
+           legend: { display: false },
            barPercentage: "4",
            maxBarThickness: "4",
            barThickness: 4,

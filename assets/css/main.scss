@@ -290,9 +290,9 @@ h1 {
  
 }
 
-.table_data { 
-   width: 100%;
-  border-collapse: collapse; 
+.table_data {
+  width: 100%;
+  border-collapse: collapse;
 
   &.history-notify, &.statistics, &.payments, &.accountants {
     tr {
@@ -325,7 +325,7 @@ h1 {
 
       td, th {
         padding: 20px 50px;
-        text-align: right!important;
+        text-align: right !important;
         color: $light-blue;
       }
     }
@@ -351,6 +351,10 @@ h1 {
     td {
       padding: 10px;
       min-height: 40px;
+    }
+
+    td, th {
+      padding: 20px 50px;
     }
 
     &:nth-child(2n) {

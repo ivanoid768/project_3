@@ -164,8 +164,10 @@
 
           </div>
           <div class="block-body">
-            <div class="plate">
-              <Table_data />
+            <div class="plate ">
+              <div class="plate_body max-width">
+                <Table_data />
+              </div>
             </div>
           </div>
         </div>
