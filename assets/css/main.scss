@@ -642,6 +642,30 @@ h1 {
 .pg-plate {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  min-height: 0;
+
+  .pagination {
+    margin: 0px;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .pagination-next, .pagination-last {
+    display: block;
+    height: 30px;
+    background: $white;
+    color: $light-blue;
+    font-family: $global-font;
+    font-weight: $font-weight;
+    border: 1px solid transparent;
+
+    &:hover, &:active, &:focus, &.active {
+      cursor: pointer;
+      color: $red;
+      transition: color 0.2s;
+    }
+  }
 
   .pagination-item {
 
@@ -650,20 +674,24 @@ h1 {
       font-weight: $font-weight;
       background-color: transparent;
       border: 1px solid transparent;
+      width: 25px;
+      height: 25px;
+      margin-right:10px;
+      margin-left:10px;
+      color: $light-blue;
+      outline: none;
 
       &:hover, &:active, &:focus, &.active {
         background-color: $red;
         box-shadow: $glow;
+        cursor: pointer;
         color: $white;
         text-align: center;
         display: inline-block;
-        width: 25px;
-        height: 25px;
-        line-height: 25px;
-        font-size: 18px;
+        line-height: 16px;
+        font-size: 16px;
         border-radius: 30px;
         vertical-align: middle;
-        margin-left: 15px;
       }
     }
   }

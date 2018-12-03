@@ -228,13 +228,6 @@
     created: function () {
           let _this = this;
           this.getDataFromApi();
-          if(typeof window ==="object"){
-               //console.log("STORE", this);
-                this.updateData= setInterval(() =>{
-
-                  _this.getDataFromApi()
-              }, 1000)
-            }
     },
     mounted : function() {
 
@@ -248,9 +241,7 @@
     })
   },
   beforeDestroy: function(){
-      if(typeof this.updateData !=="null"){
-        clearInterval(this.updateData)
-      }
+       
     }
   }
 </script>
