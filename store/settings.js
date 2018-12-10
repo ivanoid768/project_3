@@ -2,7 +2,6 @@
 export const settings = () =>({ 
       currency:"BTC",
       defaultCurrency: "BTC",
-
       security: {
         doubleFactorAuth: false,
         passwordReset: false,
@@ -20,11 +19,17 @@ export const settings = () =>({
         currency: "BTC",
         targetCurrency: "USD",
         value: "54.50"
-      }],  
+      }]  
 }) 
 
 export const mutations = {
-  increment(state) {
-    state.counter++
+  setUser(state, user) {
+    state.user = user;
+  },
+  setCurrency(state, currency) {
+    state.currency = currency
+  },
+  setSettingParam(state, paramName, value) {
+    state[paramName] = value
   }
 }
