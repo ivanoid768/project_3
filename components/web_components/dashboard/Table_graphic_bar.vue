@@ -1,6 +1,10 @@
  <script>
   import { Bar} from 'vue-chartjs'
 
+
+
+
+
    export default {
      props: {
        dataset: {
@@ -11,9 +15,11 @@
        return {
          options: {
            legend: { display: false },
-           barPercentage: 0.12,
-           maxBarThickness: 0.1,
-           barThickness: 0.1,
+           scales: {
+             xAxes: [{
+               barPercentage: 0.2
+             }]
+           }, 
            responsive: true,
            maintainAspectRatio: false,
 

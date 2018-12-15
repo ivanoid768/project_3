@@ -26,10 +26,11 @@
       )
     },
     computed: {
-      ...mapState({
-        storeCurrency() { return this.$store.state.settings.currency },
-        currencyIcon() { return this.$store.state.settings.currency }
-      }) 
+      storeCurrency() {
+        console.log("state recieved:::")
+        return this.$store.state.settings.currency
+      },
+      currencyIcon() { return this.$store.state.settings.currency }
     },
     methods: {
       

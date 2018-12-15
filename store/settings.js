@@ -23,13 +23,21 @@ export const settings = () =>({
 }) 
 
 export const mutations = {
-  setUser(state, user) {
-    state.user = user;
+  setUser(settings, user) {
+    
+    settings.user = user;
   },
   setCurrency(state, currency) {
+    console.log("state:::::", state)
     state.currency = currency
   },
   setSettingParam(state, paramName, value) {
     state[paramName] = value
   }
+}
+
+export const getters = {
+  currency(state) {
+    return state.currency;
+  },
 }

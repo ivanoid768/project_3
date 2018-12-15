@@ -13,18 +13,9 @@
           </div>
         </div>
         <div class="col-md-3">
-          <div class="filter" id="item-pagesize">
-            <span class="filter-label">
-              Поиск
-            </span>
-
-            <div class="dropdown-block">
-              <span class="dropdown-active"></span>
-              <ul class="dropdown-list">
-                <li><button> 25</button></li>
-                <li><button> 50 </button></li>
-                <li><button> 100</button></li>
-              </ul>
+          <div class="filter search" id="item-search">
+            <div class="search inner">
+              <input type="text" value="Поиск" />
             </div>
           </div>
         </div>
