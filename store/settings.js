@@ -1,6 +1,7 @@
  
 export const state = () =>({ 
-      currency:"BTC",
+      apiKey:"6523bff0c04a55a9db2e8c1ffd332c38",
+      currency: "BTC",
       defaultCurrency: "BTC",
       security: {
         doubleFactorAuth: false,
@@ -19,7 +20,8 @@ export const state = () =>({
         currency: "BTC",
         targetCurrency: "USD",
         value: "54.50"
-      }]  
+      }],
+      
 }) 
 
 export const mutations = {
@@ -32,12 +34,18 @@ export const mutations = {
   },
   setSettingParam(state, paramName, value) {
     state[paramName] = value
-  }
+  },
+  setApiKey(state, apiKey) {
+    state.apiKey = apiKey
+  },
 }
 
 export const getters = {
   currency(state) {
     return state.currency;
   },
+  apiKey(state){
+    return state.apiKey;
+  }
 
 }

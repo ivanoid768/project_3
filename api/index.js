@@ -6,7 +6,16 @@ const bodyParser = require('body-parser');
 const db = require('./config');
 
 var apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
+
 var apiUrl = "https://btc.sigmapool.com/api/v1/";
+
+var ltcApiUrl = "";
+
+var dashApiUrl = "";
+
+
+var courseWidgetApi = "https://blockchain.info/ru/ticker";
+
 var apiUrls = {
   getAccountInfo: `${apiUrl}stats`,
   getWorkers: `${apiUrl}workers`,
@@ -14,6 +23,8 @@ var apiUrls = {
   getEarnings: `${apiUrl}earnings`,
   getPayments: `${apiUrl}payments`,
   getCharts: `${apiUrl}charts`,
+  //ltc//
+ 
 };
 
 
