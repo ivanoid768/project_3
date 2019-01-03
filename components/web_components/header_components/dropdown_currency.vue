@@ -57,7 +57,7 @@
     methods: {
       selectCurrency: function (e) {
         let currency = e.currentTarget.dataset.currency;
-        this.currency = currency;
+        //this.currency = currency;
         //this.currencyIcon = currency.toLowerCase();
         this.showDrop = false;
         this.$store.commit('settings/setCurrency', currency)
