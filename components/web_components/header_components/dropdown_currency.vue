@@ -1,13 +1,15 @@
 <template>
-   <div class="btn-group dropdown-currency">
-     <button type="button" class="btn btn-light dropdown-toggle " @click="dropToggle">
-       <i class="currency-icon " v-bind:class="storeCurrency"></i>  {{storeCurrency}}
-     </button>
-  <div class="dropdown-menu" v-if="showDrop">
-    <button class="dropdown-btn" @click="selectCurrency" data-currency="BTC"><i class="currency-icon btc"></i>BTC</button>
-    <button class="dropdown-btn" @click="selectCurrency" data-currency="LTC" ><i class="currency-icon ltc"></i>LTC</button>
-    <button class="dropdown-btn" @click="selectCurrency" data-currency="DASH"><i class="currency-icon dash"></i>DASH</button>
-  </div>
+  <div class="btn-group dropdown-currency">
+   
+  <button type="button" class="btn btn-light dropdown-toggle " @click="dropToggle">
+    <i class="currency-icon" v-bind:class="currencyIcon"></i>  {{currency}}
+  </button> 
+    <!--<button type="button" class="btn btn-light dropdown-toggle"   @click="$store.commit('increment')">{{ //$store.state.counter }}</button>-->
+    <div class="dropdown-menu" v-if="showDrop">
+      <button class="dropdown-btn" @click="selectCurrency" data-currency="BTC"><i class="currency-icon btc"></i>BTC</button>
+      <button class="dropdown-btn" @click="selectCurrency" data-currency="LTC"><i class="currency-icon  ltc"></i>LTC</button>
+      <button class="dropdown-btn" @click="selectCurrency" data-currency="DASH"><i class="currency-icon dash"></i>DASH</button>
+    </div>
   </div>
 </template>
 
@@ -20,20 +22,39 @@
       return (
         {
           //currencyIcon: "btc",
-          currency: "BTC",
+          //currency: "BTC",
           showDrop: false,
         }
       )
     },
     computed: {
-      storeCurrency() {
-        console.log("state recieved:::")
+      currency() {
         return this.$store.state.settings.currency
       },
-      currencyIcon() { return this.$store.state.settings.currency }
+      currencyIcon() {
+        return this.$store.state.settings.currency.toLowerCase();
+      }
     },
+    //computed: mapState({
+    //  // arrow functions can make the code very succinct!
+    //  count: state => state.count,
+
+    //  // passing the string value 'count' is same as `state => state.count`
+    //  countAlias: 'count',
+
+    //  // to access local state with `this`, a normal function must be used
+    //  countPlusLocalState(state) {
+    //    return state.count + this.localCount
+
+    //  },
+    //  storeCurrency() {
+    //      return this.$store.state.settings.currency;
+    //  },
+    //  currencyIcon() {
+    //      return this.$store.state.settings.currency.toLowerCase();
+    //  }
+    //}),
     methods: {
-      
       selectCurrency: function (e) {
         let currency = e.currentTarget.dataset.currency;
         this.currency = currency;
@@ -44,12 +65,15 @@
       dropToggle: function () {
         this.showDrop = !this.showDrop;
       },
+      increaseCount: function () {
+        this.$store.commit('settings/increment')
+      },
       ...mapMutations({
         settings: 'settings/setCurrency'
       }),
     },
     mounted: function () {
-       console.log("!!!!===", this.$store)
+
     }
     
   }

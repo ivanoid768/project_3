@@ -1,5 +1,5 @@
  
-export const settings = () =>({ 
+export const state = () =>({ 
       currency:"BTC",
       defaultCurrency: "BTC",
       security: {
@@ -27,8 +27,7 @@ export const mutations = {
     
     settings.user = user;
   },
-  setCurrency(state, currency) {
-    console.log("state:::::", state)
+  setCurrency(state, currency) { 
     state.currency = currency
   },
   setSettingParam(state, paramName, value) {
@@ -40,4 +39,5 @@ export const getters = {
   currency(state) {
     return state.currency;
   },
+
 }

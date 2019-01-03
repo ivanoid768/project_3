@@ -48,10 +48,16 @@
     <Compile Include="store\dashboard.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FromExistingCode1\index.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="store\settings.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="store\statistics.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\todos.js">
       <SubType>Code</SubType>
     </Compile>
     <Content Include="assets\fonts\fonts.css">

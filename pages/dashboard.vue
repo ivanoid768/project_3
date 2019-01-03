@@ -232,13 +232,10 @@
           this.getDataFromApi();
     },
     mounted : function() {
-
-
+      
 
       this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-
-
+        this.$nuxt.$loading.start();
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
     })
   },
