@@ -29,10 +29,10 @@
                 Почта:
               </p>
             </div>
-            <div class="col-md-5  col-form-label">
+            <div class="col-md-7  col-form-label">
               <input type="text" @oninput="handleInput" v-bind:value="userName" class="controll field-text" name="userName" />
             </div>
-            <div class="col-md-4 col-form-label">
+            <div class="col-md-2 col-form-label">
               <button class="controll btn " @click="allowChangeHandle" v-if="allowChange">Сохранить</button>
               <button class="controll btn " @click="saveChangeHandle" v-else>Изменить</button>
             </div>
@@ -45,10 +45,10 @@
                   Ключ текущего пользователья:
                 </p>
               </div>
-              <div class="col-md-5  col-form-label">
+              <div class="col-md-7  col-form-label">
                 <input type="text" @oninput="handleInput" v-bind:value="apiKey" class="controll field-text" name="apiKey" />
               </div>
-              <div class="col-md-4 col-form-label">
+              <div class="col-md-2 col-form-label">
                 <button class="controll btn " @click="allowChangeHandle" v-if="allowChange">Сохранить</button>
                 <button class="controll btn " @click="saveChangeHandle" v-else>Изменить</button>
               </div>

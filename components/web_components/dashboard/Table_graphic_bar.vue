@@ -143,7 +143,7 @@
       let _this = this;
       let generate24time=() => {
          let time = [];
-      for (let i = 0; i <= 11; ++i) {
+        for (let i = 0; i <= 23; ++i) {
         if (i < 10) {
           time.push(`0${i}.00`);
         } else {
