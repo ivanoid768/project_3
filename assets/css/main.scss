@@ -295,7 +295,14 @@ h1 {
 .table_data {
   width: 100%;
   border-collapse: collapse;
-
+  &.calc{
+    th{
+      text-align:right;
+    }
+    td:nth-child(1){
+      text-align:left;
+    }
+  }
   &.history-notify, &.statistics, &.payments, &.accountants {
     tr {
       th {

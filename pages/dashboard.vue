@@ -209,7 +209,7 @@
           <div class="block-body">
             <div class="plate ">
               <div class="plate_body max-width">
-                <Table_data />
+                <Table_calc />
               </div>
             </div>
           </div>
@@ -225,6 +225,7 @@
 
   import Navigation from '~/components/web_components/header_components/Navigation.vue';
   import Table_data from '~/components/web_components/dashboard/Table_data.vue';
+  import Table_calc from '~/components/web_components/dashboard/Table_calc.vue';
   import Table_graphic_bar from '~/components/web_components/dashboard/Table_graphic_bar.vue';
   import Table_graphic_line from '~/components/web_components/dashboard/Table_graphic_line.vue';
   import axios from 'axios';
@@ -240,7 +241,7 @@
   }
 
   export default {
-  components: {   Navigation, Table_data, Table_graphic_bar, Table_graphic_line  },
+  components: {   Navigation, Table_data, Table_graphic_bar, Table_graphic_line, Table_calc  },
   props:{
     selectedCurrency:{
         default:"BTC"

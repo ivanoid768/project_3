@@ -105,6 +105,7 @@
     <Content Include="components\authorisation\authorisation-form.vue">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="components\web_components\dashboard\Table_calc.vue" />
     <Content Include="components\web_components\dashboard\Table_data.vue">
       <SubType>Code</SubType>
     </Content>
