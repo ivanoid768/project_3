@@ -100,7 +100,7 @@
                       <div class="prop_name">
                         Баланс
                       </div>
-                      <div class="prop_value">
+                      <div class="prop_value flex-disable">
                         <span class="prop_value_int">{{accountInfo.balance}}<i class="prop_value_currency">{{selectedCurrency}}</i></span>
                         <div class="prop_preloader"></div>
                       </div>
@@ -109,18 +109,18 @@
                       <div class="prop_name">
                         Начислено <br />за 24 часа
                       </div>
-                      <div class="prop_value">
+                      <div class="prop_value flex-disable">
                         <span class="prop_value_int">{{accountInfo.rewards24}}<i class="prop_value_currency">{{selectedCurrency}}</i></span>
-                        <div class="prop_preloader"></div>
+                        
                       </div>
                     </div>
                     <div class="prop_row">
                       <div class="prop_name">
                         Начислено <br />за все время
                       </div>
-                      <div class="prop_value">
+                      <div class="prop_value flex-disable">
                         <span class="prop_value_int">{{accountInfo.rewards}}<i class="prop_value_currency">{{selectedCurrency}}</i></span>
-                        <div class="prop_preloader"></div>
+                        
                       </div>
                     </div>
                   </div>
@@ -209,7 +209,7 @@
           <div class="block-body">
             <div class="plate ">
               <div class="plate_body max-width">
-                <Table_calc />
+                <Table_calc  />
               </div>
             </div>
           </div>

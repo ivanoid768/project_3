@@ -829,3 +829,28 @@ h1 {
     }
   }
 }
+
+.flex-disable{
+  display:block!important;
+}
+.prop_preloader { 
+  height: 3px;
+  background: #eee;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 5px;
+  display: block;
+}
+.prop_preloader:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  background: $red;
+  z-index: 1000;
+  height: 3px;
+  border-radius: 5px;
+  display: block;
+}
