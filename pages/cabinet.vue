@@ -5,17 +5,50 @@
       <h1>Личный кабинет</h1>
       <div class="plate">
         <div class="plate-header">
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-3 col-form-label">
+              <p class="url-label text-left">
+                Имя пользователья:
+              </p>
+            </div>
+            <div class="col-md-7  col-form-label">
+              <input type="text" @oninput="handleInput" v-bind:value="userName" class="controll field-text" name="userName" />
+            </div>
+            <div class="col-md-2 col-form-label">
+              <button class="controll btn " @click="allowChangeHandle" v-if="allowChange">Сохранить</button>
+              <button class="controll btn " @click="saveChangeHandle" v-else>Изменить</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-3 col-form-label">
+              <p class="url-label text-left">
+                Почта:
+              </p>
+            </div>
+            <div class="col-md-5  col-form-label">
+              <input type="text" @oninput="handleInput" v-bind:value="userName" class="controll field-text" name="userName" />
+            </div>
+            <div class="col-md-4 col-form-label">
+              <button class="controll btn " @click="allowChangeHandle" v-if="allowChange">Сохранить</button>
+              <button class="controll btn " @click="saveChangeHandle" v-else>Изменить</button>
+            </div>
+          </div>
+          </div>
           <div class="form-group">
             <div class="form-row">
-              <div class="col-md-4 col-form-label">
+              <div class="col-md-3 col-form-label">
                 <p class="url-label text-left">
-                  Ключ текущего пользователья
+                  Ключ текущего пользователья:
                 </p>
               </div>
-              <div class="col-md-8  col-form-label">
+              <div class="col-md-5  col-form-label">
                 <input type="text" @oninput="handleInput" v-bind:value="apiKey" class="controll field-text" name="apiKey" />
               </div>
-              <div class="col-md-5 col-form-label">
+              <div class="col-md-4 col-form-label">
                 <button class="controll btn " @click="allowChangeHandle" v-if="allowChange">Сохранить</button>
                 <button class="controll btn " @click="saveChangeHandle" v-else>Изменить</button>
               </div>
@@ -41,6 +74,9 @@
     computed: {
       apiKey(){
        return this.$store.state.settings.apiKey
+      },
+      userName() {
+        return this.$store.state.settings.userName
       }
     },
     methods: {

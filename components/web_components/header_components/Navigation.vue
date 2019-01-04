@@ -31,8 +31,7 @@
       </div>
       <div class="block_user">
         <nuxt-link class="nav-link " to="/cabinet">
-          <i class="user_pic"></i>
-          <span class="user_name">Пользователь</span>
+          <i class="user_name icon-user"></i> 
         </nuxt-link>
       </div>
     </div>

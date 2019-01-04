@@ -60,9 +60,39 @@
     <Compile Include="store\todos.js">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="assets\css\_style.scss" />
+    <Content Include="assets\css\_variables.scss" />
     <Content Include="assets\fonts\fonts.css">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="assets\fonts\GothamPro-Black.woff" />
+    <Content Include="assets\fonts\GothamPro-Black.woff2" />
+    <Content Include="assets\fonts\GothamPro-BlackItalic.woff" />
+    <Content Include="assets\fonts\GothamPro-BlackItalic.woff2" />
+    <Content Include="assets\fonts\GothamPro-Bold.woff" />
+    <Content Include="assets\fonts\GothamPro-Bold.woff2" />
+    <Content Include="assets\fonts\GothamPro-BoldItalic.woff" />
+    <Content Include="assets\fonts\GothamPro-BoldItalic.woff2" />
+    <Content Include="assets\fonts\GothamPro-Italic.woff" />
+    <Content Include="assets\fonts\GothamPro-Italic.woff2" />
+    <Content Include="assets\fonts\GothamPro-Light.woff" />
+    <Content Include="assets\fonts\GothamPro-Light.woff2" />
+    <Content Include="assets\fonts\GothamPro-LightItalic.woff" />
+    <Content Include="assets\fonts\GothamPro-LightItalic.woff2" />
+    <Content Include="assets\fonts\GothamPro-Medium.woff" />
+    <Content Include="assets\fonts\GothamPro-Medium.woff2" />
+    <Content Include="assets\fonts\GothamPro-MediumItalic.woff" />
+    <Content Include="assets\fonts\GothamPro-MediumItalic.woff2" />
+    <Content Include="assets\fonts\GothamPro.woff" />
+    <Content Include="assets\fonts\GothamPro.woff2" />
+    <Content Include="assets\fonts\GothamProNarrow-Bold.woff" />
+    <Content Include="assets\fonts\GothamProNarrow-Bold.woff2" />
+    <Content Include="assets\fonts\GothamProNarrow-Medium.woff" />
+    <Content Include="assets\fonts\GothamProNarrow-Medium.woff2" />
+    <Content Include="assets\fonts\icomoon.eot" />
+    <Content Include="assets\fonts\icomoon.svg" />
+    <Content Include="assets\fonts\icomoon.ttf" />
+    <Content Include="assets\fonts\icomoon.woff" />
     <Content Include="assets\img\Bitcoin.svg" />
     <Content Include="assets\img\dash-3.svg" />
     <Content Include="assets\img\Dash-D-white_on_blue_circle.png" />

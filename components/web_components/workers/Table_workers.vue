@@ -16,6 +16,7 @@
           <div class="filter search" id="item-search">
             <div class="search inner">
               <input type="text" value="Поиск" />
+              <i class="icon-search"></i>
             </div>
           </div>
         </div>

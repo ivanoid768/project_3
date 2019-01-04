@@ -1,5 +1,7 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 @import '../fonts/fonts.css';
+@import '_variables.scss';
+@import '_style.scss';
 
 $textcolor: #313f61;
 $red: #ea665c;
@@ -664,6 +666,7 @@ h1 {
     line-height: 16px;
     border-radius: 20px;
     display: block;
+    height:30px;
   }
 
   &.checkbox {
