@@ -140,8 +140,10 @@
           </div>
           <div class="block-body">
             <div class="plate table_graphic_plate">
-              <Table_graphic_line :height="200" :dataset="charts" />
-              <Table_graphic_bar :height="200" :dataset="charts"/>
+              <b>Хешрейт</b><br /><br />
+              <Table_graphic_line :height="200" :dataset="chartHashrate" />
+              <b>Шары</b><br/><br />
+              <Table_graphic_bar :height="200" :dataset="chartShares" />
             </div>
           </div>
         </div>
@@ -211,7 +213,8 @@
       name: "Dashboard",
       accountInfo:null,
       updateData: null,
-      charts:  null
+      chartShares:  null,
+      chartHashrate:null
     }
   },
     methods:{
@@ -227,11 +230,23 @@
         });
 
       },
-      getChartsData: function () {
+      getChartShares: function () {
         let _this = this;
         axios.get(`/api/charts/shares`)
           .then(function (response) {
-            _this.charts = response.data;
+            _this.chartShares = response.data;
+            _this.$forceUpdate();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+      },
+      getChartHashrate: function () {
+        let _this = this;
+        axios.get(`/api/charts/hashrate`)
+          .then(function (response) {
+            _this.chartHashrate = response.data;
             _this.$forceUpdate();
           })
           .catch(function (error) {
@@ -240,18 +255,18 @@
 
       },
 
-
     },
     created: function () {
-          let _this = this;
-      this.getDataFromApi();
-      this.getChartsData();
+        let _this = this;
+        this.getDataFromApi();
+        this.getChartShares();
+        this.getChartHashrate();
     },
     mounted : function() {
       
 
       this.$nextTick(() => {
-        this.$nuxt.$loading.start();
+      this.$nuxt.$loading.start();
       setTimeout(() => this.$nuxt.$loading.finish(), 500)
     })
   },

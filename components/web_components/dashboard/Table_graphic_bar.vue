@@ -160,7 +160,7 @@
             label: "",
             backgroundColor: '#ffa573',
             data: _this.dataset,
-            barPercentage: 0.3,
+            barThickness: 5,
           }
         ]
       },
