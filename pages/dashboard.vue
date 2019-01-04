@@ -140,8 +140,8 @@
           </div>
           <div class="block-body">
             <div class="plate table_graphic_plate">
-              <Table_graphic_line :height="200" />
-              <Table_graphic_bar :height="200" />
+              <Table_graphic_line :height="200" :dataset="charts" />
+              <Table_graphic_bar :height="200" :dataset="charts"/>
             </div>
           </div>
         </div>
@@ -210,7 +210,8 @@
   return {
       name: "Dashboard",
       accountInfo:null,
-      updateData: null
+      updateData: null,
+      charts:  null
     }
   },
     methods:{
@@ -225,11 +226,26 @@
           console.log(error);
         });
 
-      }
+      },
+      getChartsData: function () {
+        let _this = this;
+        axios.get(`/api/charts/shares`)
+          .then(function (response) {
+            _this.charts = response.data;
+            _this.$forceUpdate();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+      },
+
+
     },
     created: function () {
           let _this = this;
-          this.getDataFromApi();
+      this.getDataFromApi();
+      this.getChartsData();
     },
     mounted : function() {
       
