@@ -37,27 +37,33 @@
               <button class="controll btn " @click="saveChangeHandle" v-else>Изменить</button>
             </div>
           </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-3 col-form-label">
-                <p class="url-label text-left">
-                  Ключ текущего пользователья:
-                </p>
-              </div>
-              <div class="col-md-7  col-form-label">
-                <input type="text" @oninput="handleInput" v-bind:value="apiKey" class="controll field-text" name="apiKey" />
-              </div>
-              <div class="col-md-2 col-form-label">
-                <button class="controll btn " @click="allowChangeHandle" v-if="allowChange">Сохранить</button>
-                <button class="controll btn " @click="saveChangeHandle" v-else>Изменить</button>
-              </div>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-3 col-form-label">
+              <p class="url-label text-left">
+                Ключ текущего пользователья:
+              </p>
+            </div>
+            <div class="col-md-7  col-form-label">
+              <input type="text" @oninput="handleInput" v-bind:value="apiKey" class="controll field-text" name="apiKey" />
+            </div>
+            <div class="col-md-2 col-form-label">
+              <button class="controll btn " @click="allowChangeHandle" v-if="allowChange">Сохранить</button>
+              <button class="controll btn " @click="saveChangeHandle" v-else>Изменить</button>
             </div>
           </div>
-
-          <br />
-
         </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-3 col-form-label">
+              <br />
+              <br /> 
+              <button class="controll btn " @click="allowChangeHandle">Выйти</button>
+             
+          </div>
+        </div> 
+      </div>
       </div>
     </div> 
     </div>

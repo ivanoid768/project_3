@@ -2,10 +2,12 @@
   <div>
     <form class="login" @submit.prevent="login">
       <h1>Sign in</h1>
-      <label>User name</label>
+      <label>Имя пользователя</label>
       <input required v-model="username" type="text" placeholder="Snoopy" />
-      <label>Password</label>
+      <label>Пароль</label>
       <input required v-model="password" type="password" placeholder="Password" />
+      <label>API-ключ</label>
+      <input required v-model="api" type="password" placeholder="Password" />
       <hr />
       <button type="submit">Login</button>
     </form>

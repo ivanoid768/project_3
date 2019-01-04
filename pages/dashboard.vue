@@ -309,7 +309,12 @@
 
       this.$nextTick(() => {
       this.$nuxt.$loading.start();
-      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+        setTimeout(() => this.$nuxt.$loading.finish(), 500)
+
+        setInterval(() => {
+          //this.getChartShares();
+          //this.getChartHashrate();
+        }, 500)
     })
   },
   beforeDestroy: function(){
