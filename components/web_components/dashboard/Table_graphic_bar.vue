@@ -143,7 +143,7 @@
       let _this = this;
       let generate24time=() => {
          let time = [];
-      for (let i = 0; i <= 24; ++i) {
+      for (let i = 0; i <= 11; ++i) {
         if (i < 10) {
           time.push(`0${i}.00`);
         } else {
@@ -160,7 +160,7 @@
             label: "",
             backgroundColor: '#ffa573',
             data: _this.dataset,
-            barPercentage: 0.12,
+            barPercentage: 0.3,
           }
         ]
       },
