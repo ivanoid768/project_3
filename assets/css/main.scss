@@ -778,3 +778,47 @@ h1 {
     }
   }
 }
+
+.component-inline{
+  display:inline-block;
+}
+
+
+.scale {
+  .component-inner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .label {
+    margin-right: 20px;
+  }
+
+  .scale-buttons-list {
+    list-style: none;
+    padding: 3px;
+    background: #fff;
+    border: 1px solid #bbb;
+    margin: 0px;
+    display: flex;
+  }
+
+  .scale-button {
+    background: #fff;
+    border: 1px solid transparent;
+    transition: 0.2s all;
+    outline: none;
+    height:40px;
+    border-radius:3px;
+    font-size:14px;
+    width:50px;
+    &.active, &:active, &:hover {
+      transition: 0.2s all;
+      cursor: pointer;
+      outline: none;
+      background: $red;
+      color: $white;
+    }
+  }
+}

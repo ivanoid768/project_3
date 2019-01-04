@@ -140,9 +140,50 @@
           </div>
           <div class="block-body">
             <div class="plate table_graphic_plate">
-              <b>Хешрейт</b><br /><br />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6">
+                  
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <div class="component-inline scale">
+                      <div class="component-inner">
+                        <div class="label">
+                          Масштаб
+                        </div>
+                        <div class="scale-buttons">
+                          <ul class="scale-buttons-list">
+                            <li class="scale-list-item"><button class="scale-button">12 ч</button></li>
+                            <li class="scale-list-item "><button class="scale-button active">24 ч</button></li>
+                            <li class="scale-list-item"><button class="scale-button">3 д </button></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6">
+                    <b>Хешрейт</b><br /><br />
+                  </div>
+                  <div class="col-md-6 text-right">
+                 
+                  </div>
+                </div>
+              </div>
               <Table_graphic_line :height="200" :dataset="chartHashrate" />
-              <b>Шары</b><br/><br />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6">
+                    <b>Шары</b><br /><br />
+                  </div>
+                  <div class="col-md-6 text-right">
+
+                  </div>
+                </div>
+              </div>
               <Table_graphic_bar :height="200" :dataset="chartShares" />
             </div>
           </div>
