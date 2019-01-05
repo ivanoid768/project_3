@@ -59,7 +59,7 @@
             <div class="col-md-3 col-form-label">
               <br />
               <br /> 
-              <button class="controll btn " @click="allowChangeHandle">Выйти</button>
+              <button class="controll btn " @click="logOut">Выйти</button>
              
           </div>
         </div> 
@@ -96,7 +96,11 @@
       saveChangeHandle() {
         this.allowChange = false
         this.$store.commit('settings/setApiKey',this.apiKey)
+      },
+      logOut() {
+        this.$auth.$storage.setState('loggedIn', false);
       }
+
 
     }
 

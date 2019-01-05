@@ -35,7 +35,7 @@
         </nuxt-link>
         <div class="quick-panel" >
         <div class="quick-panel-username">Кирилл</div>
-        <button class="exit-button">Выйти</button>
+        <button class="exit-button"  @click="logOut">Выйти</button>
     </div>
       </div>
     </div>
@@ -49,7 +49,12 @@
   import DropdownCurrency from "./dropdown_currency.vue";
 
   export default {
-      components: {   Logo, DropdownCurrency   }
+    components: { Logo, DropdownCurrency },
+    methods: {
+      logOut() {
+        this.$auth.$storage.setState('loggedIn', false);
+      }
+      },
   }
 
 </script>

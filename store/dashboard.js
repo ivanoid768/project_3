@@ -28,3 +28,10 @@ export const mutations = {
     state.counter++
   }
 }
+ 
+
+export const getters = {
+  selectedMeasure(state) {
+    return state.selectedMeasure;
+  } 
+}

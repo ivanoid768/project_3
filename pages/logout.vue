@@ -4,7 +4,7 @@
   <Navigation></Navigation>
     <div class="container">
       <h1>
-        Sigmapool (langing page is here)
+        Вы вышли из системы
       </h1>
     </div>
   </div>
@@ -13,7 +13,8 @@
 <script> 
   import Navigation from '~/components/web_components/header_components/Navigation.vue'
   
-  export default { 
+  export default {
+  auth: false,
   components: {   Navigation  }
   }
 </script>

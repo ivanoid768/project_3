@@ -254,14 +254,7 @@
 
   export default {
     components: {   Navigation, Table_data, Table_graphic_bar, Table_graphic_line, Table_calc  },
-    props:{
-      selectedCurrency:{
-          default:"BTC"
-      },
-    selectedMeasure:{
-        default:"THS/s"
-      }
-    },
+    
     data: function(){
     return {
         name: "Dashboard",
@@ -272,6 +265,9 @@
       }
       },
     computed: {
+      selectedCurrency() {
+        return this.$store.state.settings.selectedCurrency;
+      },
       selectedMeasure() {
         return this.$store.state.dashboard.selectedMeasure;
       },
@@ -329,10 +325,10 @@
       this.$nuxt.$loading.start();
         setTimeout(() => this.$nuxt.$loading.finish(), 500)
 
-        setInterval(() => {
-          //this.getChartShares();
-          //this.getChartHashrate();
-        }, 500)
+        //setInterval(() => {
+        //  //this.getChartShares();
+        //  //this.getChartHashrate();
+        //}, 500)
     })
   },
   beforeDestroy: function(){

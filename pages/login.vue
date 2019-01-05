@@ -41,17 +41,12 @@
     },
     methods: {
       login: function () {
-        //const { username, password, apiKey } = this
-        //this.$store.dispatch(, { username, password, apiKey }).then(() => {
-        //  this.$router.push('/')
-        //}).catch(() => {
-        //  this.$router.push('/')
-        //}
-        //add USER TO DB//
-
-
-        this.$router.push('/dashboard')
-        
+        /*
+        this.$auth.login(/* .... *//*)
+          .then(() => this.$toast.success('Logged In!'))
+        */
+        //this.$router.push('/dashboard')
+        this.$auth.$storage.setState('loggedIn', true)    
       }
     }
   }

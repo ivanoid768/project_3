@@ -45,10 +45,21 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios',
-
+    '@nuxtjs/axios',  
+    '@nuxtjs/auth' 
 
   ],
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/logout',
+      callback: '/login',
+      home: '/dashboard'
+    },
+    token: {
+      prefix: '_token.'
+    }
+  },
   /*
   ** Axios module configuration
   */
@@ -63,6 +74,9 @@ module.exports = {
   /*
   ** Build configuration
   */
+  router: {
+    middleware: ['auth']
+  },
   build: {
     /*
     ** You can extend webpack config here
