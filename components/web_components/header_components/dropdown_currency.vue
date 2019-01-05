@@ -60,7 +60,8 @@
         //this.currency = currency;
         //this.currencyIcon = currency.toLowerCase();
         this.showDrop = false;
-        this.$store.commit('settings/setCurrency', currency)
+        this.$store.commit('settings/setCurrency', currency);
+        this.$forceUpdate();
       },
       dropToggle: function () {
         this.showDrop = !this.showDrop;

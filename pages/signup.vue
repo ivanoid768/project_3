@@ -5,7 +5,7 @@
         <div class="logo-contrast">
           <Logo />
         </div>
-        <h1>ВОЙТИ</h1> 
+        <h1>ЗАРЕГИСТРИРОВАТЬСЯ</h1>
         <br />
         <div class="form-group">
           <input required v-model="username" type="text" placeholder="Имя пользователя*" />
@@ -13,10 +13,13 @@
         <div class="form-group">
           <input required v-model="password" type="password" placeholder="Пароль*" />
         </div>
+        <div class="form-group">
+          <input required v-model="apiKey" type="text" placeholder="API-ключ*" />
+        </div>
         <hr />
-        <nuxt-link to="/signup">Зарегистрироваться</nuxt-link>
+        <nuxt-link to="/login">Войти</nuxt-link>
         <hr />
-        <button type="submit" class="btn-enter">Войти</button>
+        <button type="submit" class="btn-enter">Зарегистрироваться</button>
       </form>
     </div>
   </div>
@@ -25,11 +28,13 @@
 <script>
   import Logo from "../../sigmapool/components/Logo.vue";
   export default {
+    auth: false,
     components: { Logo },
     data: function () {
       return {
         username: "",
-        password: "", 
+        password: "",
+        apiKey: ""
       }
     },
     computed: {
