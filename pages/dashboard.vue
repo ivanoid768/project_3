@@ -266,7 +266,7 @@
       },
     computed: {
       selectedCurrency() {
-        return this.$store.state.settings.currency;
+        return this.$store.state.settings.currency.toLowerCase();
       },
       apiKey() {
         return this.$store.state.settings.apiKey;
@@ -274,12 +274,11 @@
       selectedMeasure() {
         return this.$store.state.dashboard.selectedMeasure;
       },
-
     },
     methods:{
       getDataFromApi: function(){
         let _this = this;
-        axios.get(`/api/stats?key=${this.apiKey}`)
+        axios.get(`/api/${this.selectedCurrency}/stats?key=${this.apiKey}`)
         .then(function (response) {
           _this.accountInfo = response.data;
           _this.$forceUpdate();
@@ -291,7 +290,7 @@
       },
       getChartShares: function () {
         let _this = this;
-        axios.get(`/api/charts/shares?key=${this.apiKey}`)
+        axios.get(`/api/${this.selectedCurrency}/charts/shares?key=${this.apiKey}`)
           .then(function (response) {
             _this.chartShares = response.data;
             _this.$forceUpdate();
@@ -303,7 +302,7 @@
       },
       getChartHashrate: function () {
         let _this = this;
-        axios.get(`/api/charts/hashrate?key=${this.apiKey}`)
+        axios.get(`/api/${this.selectedCurrency}/charts/hashrate?key=${this.apiKey}`)
           .then(function (response) {
             _this.chartHashrate = response.data;
             _this.$forceUpdate();

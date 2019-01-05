@@ -31,10 +31,10 @@
       </div>
       <div class="block_user">
         <nuxt-link class="nav-link user-cabinet-link" to="/cabinet">
-          <i class="user_name icon-user"></i> 
+          <i class="user_name icon-user"></i>  {{userName}}
         </nuxt-link>
         <div class="quick-panel" >
-        <div class="quick-panel-username">Кирилл</div>
+          <div class="quick-panel-username">  {{userName}}</div>
         <button class="exit-button"  @click="logOut">Выйти</button>
     </div>
       </div>
@@ -50,6 +50,11 @@
 
   export default {
     components: { Logo, DropdownCurrency },
+    computed: {
+      userName() {
+        return this.$store.state.settings.userName;
+      }
+    },
     methods: {
       logOut() {
         this.$auth.$storage.setState('loggedIn', false);

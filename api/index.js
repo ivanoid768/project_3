@@ -5,8 +5,8 @@ const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const db = require('./config');
 
- 
-var apiUrl = "https://btc.sigmapool.com/api/v1/";
+var protocol = "https://";
+var apiUrl = ".sigmapool.com/api/v1/";
 
 var ltcApiUrl = "";
 
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
 
-  require('./db_routes')(app, database);
+  require('./db_routes')(app, database); 
 
   app.listen(port, () => {
     console.log('We are live on ' + port);
@@ -52,13 +52,15 @@ app.get('/users', (req, res) => {
   
 });
 
+ 
 
-
-app.get('btc/stats', (req, res) => { 
-  let url = `${apiUrls.getAccountInfo}?key=${apiKey}`;
+app.get('/:currency/stats', (req, res) => {
+  let currency = req.params.currency;
+  let apiKey = req.query.key;
+  let url = `${protocol}${currency}${apiUrls.getAccountInfo}?key=${apiKey}`;
+ 
   axios.get(url).then(response => { 
-    res.json(response.data);
-    //console.log("======stats end");
+    res.json(response.data); 
   }).catch(function (error) {
     if (error.response) {
       res.json({
@@ -71,9 +73,11 @@ app.get('btc/stats', (req, res) => {
 
 
 
-app.get('btc/workers', (req, res) => {
+app.get('/:currency/workers', (req, res) => {
   let params = req.params;
-  let url = `${apiUrls.getWorkers}?key=${params.key}`;
+  let currency = req.params.currency;
+  let apiKey = req.query.key;
+  let url = `${protocol}${currency}${apiUrls.getWorkers}?key=${params.key}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -87,8 +91,11 @@ app.get('btc/workers', (req, res) => {
 });
 
 
-app.get('btc/shares', (req, res) => {
-  let url = `${apiUrls.getShares}?key=${apiKey}`;
+app.get('/:currency/shares', (req, res) => {
+  let currency = req.params.currency;
+  let apiKey = req.query.key;
+  let url = `${protocol}${currency}${apiUrls.getShares}?key=${apiKey}`;
+  console.log("URL>>>", url)
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -102,8 +109,10 @@ app.get('btc/shares', (req, res) => {
 });
 
 
-app.get('btc/earnings', (req, res) => {
-  let url = `${apiUrls.getEarnings}?key=${apiKey}`;
+app.get('/:currency/earnings', (req, res) => {
+  let currency = req.params.currency;
+  let apiKey = req.query.key;
+  let url = `${protocol}${currency}${apiUrls.getEarnings}?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -116,8 +125,10 @@ app.get('btc/earnings', (req, res) => {
   });
 });
 
-app.get('btc/payments', (req, res) => {
-  let url = `${apiUrls.getPayments}?key=${apiKey}`;
+app.get('/:currency/payments', (req, res) => {
+  let currency = req.params.currency;
+  let apiKey = req.query.key;
+  let url = `${protocol}${currency}${apiUrls.getPayments}?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -130,8 +141,10 @@ app.get('btc/payments', (req, res) => {
   });
 });
 
-app.get('btc/charts/hashrate', (req, res) => {
-  let url = `${apiUrls.getCharts}/hashrate?key=${apiKey}`;
+app.get('/:currency/charts/hashrate', (req, res) => {
+  let currency = req.params.currency;
+  let apiKey = req.query.key;
+  let url = `${protocol}${currency}${apiUrls.getCharts}/hashrate?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -144,8 +157,10 @@ app.get('btc/charts/hashrate', (req, res) => {
   });
 });
 
-app.get('btc/charts/sma', (req, res) => {
-  let url = `${apiUrls.getCharts}/sma?key=${apiKey}`;
+app.get('/:currency/charts/sma', (req, res) => {
+  let currency = req.params.currency;
+  let apiKey = req.query.key;
+  let url = `${protocol}${currency}${apiUrls.getCharts}/sma?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -158,8 +173,10 @@ app.get('btc/charts/sma', (req, res) => {
   });
 });
 
-app.get('btc/charts/shares', (req, res) => {
-  let url = `${apiUrls.getCharts}/shares?key=${apiKey}`;
+app.get('/:currency/charts/shares', (req, res) => {
+  let currency = req.params.currency;
+  let apiKey = req.query.key;
+  let url = `${protocol}${currency}${apiUrls.getCharts}/shares?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");

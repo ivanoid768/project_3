@@ -891,10 +891,15 @@ h1 {
     color: #fff;
   }
 
-  .block_user:hover {
-    .quick-panel {
-      display: block!important;
-    }
+  
+}
+.block_user{
+  position:relative;
+}
+.block_user:hover {
+  .quick-panel {
+    width: 100%;
+    display: block !important;
   }
 }
 .plate-legend {
@@ -909,7 +914,7 @@ h1 {
 
     &.red {
       background: #ea665c;
-    }
+    } 
 
     &.yellow {
       background: #ffa573;

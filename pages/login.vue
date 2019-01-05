@@ -43,6 +43,7 @@
           .then(() => this.$toast.success('Logged In!'))
         */
         //this.$router.push('/dashboard')
+        this.$store.commit("settings/setUserName", this.username);
         this.$auth.$storage.setState('loggedIn', true)    
       }
     }
