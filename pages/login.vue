@@ -6,17 +6,14 @@
           <Logo />
         </div>
         <h1>ВОЙТИ</h1>
-        <div class="form-group">
-          <label>Имя пользователя</label>
-          <input required v-model="username" type="text" placeholder="Snoopy" />
+        <div class="form-group"> 
+          <input required v-model="username" type="text" placeholder="Имя пользователя*" />
         </div>
-        <div class="form-group">
-          <label>Пароль</label>
-          <input required v-model="password" type="password" placeholder="Password" />
+        <div class="form-group"> 
+          <input required v-model="password" type="password" placeholder="Пароль*" />
         </div>
-        <div class="form-group">
-          <label>API-ключ</label>
-          <input required v-model="apiKey" type="text" placeholder="" />
+        <div class="form-group"> 
+          <input required v-model="apiKey" type="text" placeholder="API-ключ*" />
         </div>
         <hr />
         <button type="submit" class="btn-enter">Войти</button>
@@ -64,7 +61,7 @@
     margin-bottom: 10px;
   }
 
-  input{
+  .authorisation input {
     height: 41px;
     max-width: 100%;
     width: 100%;

@@ -5,8 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const db = require('./config');
 
-var apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
-
+ 
 var apiUrl = "https://btc.sigmapool.com/api/v1/";
 
 var ltcApiUrl = "";
@@ -55,7 +54,7 @@ app.get('/users', (req, res) => {
 
 
 
-app.get('/stats', (req, res) => { 
+app.get('btc/stats', (req, res) => { 
   let url = `${apiUrls.getAccountInfo}?key=${apiKey}`;
   axios.get(url).then(response => { 
     res.json(response.data);
@@ -72,8 +71,9 @@ app.get('/stats', (req, res) => {
 
 
 
-app.get('/workers', (req, res) => {
-  let url = `${apiUrls.getWorkers}?key=${apiKey}`;
+app.get('btc/workers', (req, res) => {
+  let params = req.params;
+  let url = `${apiUrls.getWorkers}?key=${params.key}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -87,7 +87,7 @@ app.get('/workers', (req, res) => {
 });
 
 
-app.get('/shares', (req, res) => {
+app.get('btc/shares', (req, res) => {
   let url = `${apiUrls.getShares}?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
@@ -102,7 +102,7 @@ app.get('/shares', (req, res) => {
 });
 
 
-app.get('/earnings', (req, res) => {
+app.get('btc/earnings', (req, res) => {
   let url = `${apiUrls.getEarnings}?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
@@ -116,7 +116,7 @@ app.get('/earnings', (req, res) => {
   });
 });
 
-app.get('/payments', (req, res) => {
+app.get('btc/payments', (req, res) => {
   let url = `${apiUrls.getPayments}?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
@@ -130,7 +130,7 @@ app.get('/payments', (req, res) => {
   });
 });
 
-app.get('/charts/hashrate', (req, res) => {
+app.get('btc/charts/hashrate', (req, res) => {
   let url = `${apiUrls.getCharts}/hashrate?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
@@ -144,7 +144,7 @@ app.get('/charts/hashrate', (req, res) => {
   });
 });
 
-app.get('/charts/sma', (req, res) => {
+app.get('btc/charts/sma', (req, res) => {
   let url = `${apiUrls.getCharts}/sma?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
@@ -158,7 +158,7 @@ app.get('/charts/sma', (req, res) => {
   });
 });
 
-app.get('/charts/shares', (req, res) => {
+app.get('btc/charts/shares', (req, res) => {
   let url = `${apiUrls.getCharts}/shares?key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
