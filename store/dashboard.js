@@ -1,6 +1,6 @@
 
 export const dashboard = () => ({
-  currency: "BTC",
+  selectedMeasure: "THS/s",
   defaultCurrency: "BTC",
 
   security: {

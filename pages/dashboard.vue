@@ -185,6 +185,18 @@
                 </div>
               </div>
               <Table_graphic_bar :height="200" :dataset="chartShares" />
+              <div class="plate-legend container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <span class="legend-marker red"></span>
+                    Рассчетный хэшрейт -  2-х часовое SMA
+                  </div>
+                  <div class="col">
+                    <span class="legend-marker yellow"></span>
+                    Принятые шары
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -241,24 +253,30 @@
   }
 
   export default {
-  components: {   Navigation, Table_data, Table_graphic_bar, Table_graphic_line, Table_calc  },
-  props:{
-    selectedCurrency:{
-        default:"BTC"
+    components: {   Navigation, Table_data, Table_graphic_bar, Table_graphic_line, Table_calc  },
+    props:{
+      selectedCurrency:{
+          default:"BTC"
+      },
+    selectedMeasure:{
+        default:"THS/s"
+      }
     },
-  selectedMeasure:{
-      default:"THS/s"
-    }
-  },
-  data: function(){
-  return {
-      name: "Dashboard",
-      accountInfo:null,
-      updateData: null,
-      chartShares:  null,
-      chartHashrate:null
-    }
-  },
+    data: function(){
+    return {
+        name: "Dashboard",
+        accountInfo:null,
+        updateData: null,
+        chartShares:  null,
+        chartHashrate:null
+      }
+      },
+    computed: {
+      selectedMeasure() {
+        return this.$store.state.dashboard.selectedMeasure;
+      },
+
+    },
     methods:{
       getDataFromApi: function(){
         let _this = this;

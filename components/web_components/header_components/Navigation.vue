@@ -30,9 +30,13 @@
 
       </div>
       <div class="block_user">
-        <nuxt-link class="nav-link " to="/cabinet">
+        <nuxt-link class="nav-link user-cabinet-link" to="/cabinet">
           <i class="user_name icon-user"></i> 
         </nuxt-link>
+        <div class="quick-panel" >
+        <div class="quick-panel-username">Кирилл</div>
+        <button class="exit-button">Выйти</button>
+    </div>
       </div>
     </div>
      

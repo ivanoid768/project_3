@@ -867,3 +867,52 @@ h1 {
   width: 300px;
   height: 400px;
 }
+
+.quick-panel {
+  position: absolute;
+  min-width: 110px;
+  background: #fff;
+  top: 100%;
+  box-shadow: 1px 1px 3px #bbb;
+  display: none;
+
+  .quick-panel-username {
+    padding: 20px;
+    font-size: 17px;
+  }
+
+  .exit-button {
+    width: 100%;
+    padding: 8px 20px;
+    border: 1px solid transparent;
+    background: #eee;
+    background: #4b37a1;
+    border: 1px solid #4b37a1;
+    color: #fff;
+  }
+
+  .block_user:hover {
+    .quick-panel {
+      display: block!important;
+    }
+  }
+}
+.plate-legend {
+  margin-top: 15px;
+  font-size: 13px;
+
+  .legend-marker {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 30px;
+
+    &.red {
+      background: #ea665c;
+    }
+
+    &.yellow {
+      background: #ffa573;
+    }
+  }
+}
