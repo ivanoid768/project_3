@@ -1,7 +1,7 @@
 <template> 
   <div class="wrapper_main container">
     <Navigation></Navigation> 
-    <div class="page" v-if="accountInfo !==undefined">
+    <div class="page" v-if="accountInfo !==null">
 
       <div class="block" id="block-statistics">
         <div class="block-title">
@@ -173,7 +173,10 @@
                 </div>
               </div>
             </div>
-            <Table_graphic_line :height="200" :dataset="chartHashrate" />
+            <Table_graphic_line :height="200" :dataset="chartHashrate"  v-if="chartHashrate !==null" />
+            <div class="dash_preloader" v-else>
+              <img src="~assets/img/gears-anim.gif" />
+            </div>
             <div class="container-fluid">
               <div class="row">
                 <div class="col-md-6">
@@ -184,7 +187,10 @@
                 </div>
               </div>
             </div>
-            <Table_graphic_bar :height="200" :dataset="chartShares" />
+            <Table_graphic_bar :height="200" :dataset="chartShares" v-if="chartShares !==null" />
+            <div class="dash_preloader" v-else>
+              <img src="~assets/img/gears-anim.gif" />
+            </div>
             <div class="plate-legend container-fluid">
               <div class="row">
                 <div class="col">
@@ -265,6 +271,9 @@
       }
       },
     computed: {
+      accountInfo() {
+        return this.$store.state.dashboard.accountInfo;
+      },
       selectedCurrency() {
         return this.$store.state.settings.currency.toLowerCase();
       },
@@ -280,16 +289,15 @@
       chartHashrate() {
         return this.$store.state.dashboard.charts.hashrate;
       },
-      accountInfo () {
-        return this.$store.state.dashboard.accountInfo;
-      }
+      
     },
     methods:{
       getDataFromApi: function(){
         let _this = this;
         axios.get(`/api/${this.selectedCurrency}/stats?key=${this.apiKey}`)
-        .then(function (response) {
-          _this.$store.commit("dashboard/accountInfo", response.data);
+          .then(function (response) {
+            console.log("response", response)
+          _this.$store.commit("dashboard/setAccountInfo", response.data);
           //_this.$forceUpdate();
         })
         .catch(function (error) {
@@ -314,6 +322,7 @@
         let _this = this;
         axios.get(`/api/${this.selectedCurrency}/charts/hashrate?key=${this.apiKey}`)
           .then(function (response) {
+           
             _this.$store.commit("dashboard/setChart", "hashrate", response.data);
             //_this.chartHashrate = response.data;
             //_this.$forceUpdate();

@@ -1,17 +1,17 @@
 
-export const dashboard = () => ({
+export const state = () => ({
   selectedMeasure: "THS/s",
-  defaultCurrency: "BTC",
-  accountInfo: {}, 
+  defaultCurrency: "BTC", 
   charts: { 
     shares: [],
     hashrate: []
-  }
+  },
+  accountInfo: null, 
 
 });
 
 export const mutations = {
-  accountInfo(state, data) {
+  setAccountInfo(state, data) {
     state.accountInfo = data;
   },
   setChart(state, chart, data) {
@@ -25,13 +25,15 @@ export const getters = {
   selectedMeasure(state) {
     return state.selectedMeasure;
   },
+  accountInfo(state) { 
+
+    return state.accountInfo;
+  },
   chartShares(state) {
     return state.charts.shares;
   },
   chartHashrate(state) {
     return state.charts.hashrate;
   },
-  accountInfo(state) {
-    return state.accountInfo;
-  }
+  
 }
