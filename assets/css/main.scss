@@ -929,3 +929,17 @@ h1 {
   width: 100%;
   left: 0;
 }
+
+.search {
+  .inner {
+    border: 1px solid #bbb;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      border: 1px solid transparent;
+    }
+  }
+}
