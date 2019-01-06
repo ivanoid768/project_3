@@ -3,10 +3,10 @@
     <div class="container">
       <Logo />
       <DropdownCurrency />
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" @click="menuToggle" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse"  v-bind:class="show ? 'show' : ''" id="navbarNavDropdown">
         <ul class="navbar nav">
           <li class="nav-item">
             <nuxt-link class="nav-link " to="/dashboard">Дашборд</nuxt-link>
@@ -49,6 +49,9 @@
   import DropdownCurrency from "./dropdown_currency.vue";
 
   export default {
+    data: () => {
+     return  { show: false }
+    },
     components: { Logo, DropdownCurrency },
     computed: {
       userName() {
@@ -58,8 +61,11 @@
     methods: {
       logOut() {
         this.$auth.$storage.setState('loggedIn', false);
-      }
       },
+      menuToggle() {
+        this.show = !this.show;
+      }
+    },
   }
 
 </script>

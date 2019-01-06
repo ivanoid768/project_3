@@ -2,36 +2,36 @@
 export const dashboard = () => ({
   selectedMeasure: "THS/s",
   defaultCurrency: "BTC",
+  accountInfo: {}, 
+  charts: { 
+    shares: [],
+    hashrate: []
+  }
 
-  security: {
-    doubleFactorAuth: false,
-    passwordReset: false,
-  },
-  notifications: {
-    workersTurnOff: false
-  },
-  payments: {
-    paymentScheme: "PPS",
-    paymentLimit: [{ currency: "BTC", value: "0,1" }],
-    paymentAddress: "example@gmail.com",
-  },
-  actionsHistory: null,
-  exchangeRate: [{
-    currency: "BTC",
-    targetCurrency: "USD",
-    value: "54.50"
-  }],
-})
+});
 
 export const mutations = {
-  increment(state) {
-    state.counter++
-  }
+  accountInfo(state, data) {
+    state.accountInfo = data;
+  },
+  setChart(state, chart, data) {
+    state[chart] = data;
+  } 
+ 
 }
  
 
 export const getters = {
   selectedMeasure(state) {
     return state.selectedMeasure;
-  } 
+  },
+  chartShares(state) {
+    return state.charts.shares;
+  },
+  chartHashrate(state) {
+    return state.charts.hashrate;
+  },
+  accountInfo(state) {
+    return state.accountInfo;
+  }
 }

@@ -29,7 +29,7 @@
     },
     computed: {
       currency() {
-        return this.$store.state.settings.currency
+        return this.$store.state.settings.currency;
       },
       currencyIcon() {
         return this.$store.state.settings.currency.toLowerCase();
@@ -65,10 +65,7 @@
       },
       dropToggle: function () {
         this.showDrop = !this.showDrop;
-      },
-      increaseCount: function () {
-        this.$store.commit('settings/increment')
-      },
+      }, 
       ...mapMutations({
         settings: 'settings/setCurrency'
       }),

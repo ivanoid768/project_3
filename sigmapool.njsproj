@@ -137,6 +137,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="pages\help.vue" />
+    <Content Include="pages\restoremail.vue" />
     <Content Include="pages\signup.vue" />
     <Content Include="pages\logout.vue" />
     <Content Include="pages\index.vue" />

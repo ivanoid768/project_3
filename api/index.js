@@ -28,6 +28,7 @@ var apiUrls = {
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
 MongoClient.connect(db.url, (err, database) => {
   if (err) return console.log(err);
 
@@ -52,7 +53,20 @@ app.get('/users', (req, res) => {
   
 });
 
- 
+app.get('/users/add', (req, res) => {
+
+  let userId = req.userId;
+  if (userId) {
+    console.log("userId", userId);
+  } else {
+    res.json({
+      error: [error.response.data, error.response.status, error.response.headers]
+    });
+  }
+
+});
+
+
 
 app.get('/:currency/stats', (req, res) => {
   let currency = req.params.currency;
@@ -189,6 +203,7 @@ app.get('/:currency/charts/shares', (req, res) => {
   });
 });
 
+ 
 module.exports = {
   path: "/api/",
   handler: app

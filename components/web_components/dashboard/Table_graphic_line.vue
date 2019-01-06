@@ -1,13 +1,14 @@
  <script>
-  import { Line } from 'vue-chartjs'
-
+   import { Line, mixins  } from 'vue-chartjs'
+   const { reactiveProp } = mixins;
    export default {
      props: {
        dataset: {
          default: () => { return [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11] }
        }
      },
-     extends: Line, 
+     extends: Line,
+     mixins: [reactiveProp],
      mounted() {
        let generate24time = () => {
          let time = [];

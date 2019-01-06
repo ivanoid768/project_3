@@ -921,3 +921,11 @@ h1 {
     }
   }
 }
+
+.collapse.show { 
+  position: absolute;
+  top: 100%;
+  background: #fff;
+  width: 100%;
+  left: 0;
+}
