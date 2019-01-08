@@ -34,26 +34,7 @@
       currencyIcon() {
         return this.$store.state.settings.currency.toLowerCase();
       }
-    },
-    //computed: mapState({
-    //  // arrow functions can make the code very succinct!
-    //  count: state => state.count,
-
-    //  // passing the string value 'count' is same as `state => state.count`
-    //  countAlias: 'count',
-
-    //  // to access local state with `this`, a normal function must be used
-    //  countPlusLocalState(state) {
-    //    return state.count + this.localCount
-
-    //  },
-    //  storeCurrency() {
-    //      return this.$store.state.settings.currency;
-    //  },
-    //  currencyIcon() {
-    //      return this.$store.state.settings.currency.toLowerCase();
-    //  }
-    //}),
+    }, 
     methods: {
       selectCurrency: function (e) {
         let currency = e.currentTarget.dataset.currency;
@@ -69,7 +50,9 @@
       ...mapMutations({
         settings: 'settings/setCurrency'
       }),
+
     },
+
     mounted: function () {
 
     }

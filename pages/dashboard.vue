@@ -269,7 +269,7 @@
         //chartShares:  null,
         //chartHashrate:null
       }
-      },
+    },
     computed: {
       accountInfo() {
         return this.$store.state.dashboard.accountInfo;
@@ -291,7 +291,18 @@
       },
       
     },
-    methods:{
+    watch:{
+      selectedCurrency(newCount, oldCount) {
+        this.clearAll();
+        this.getDataFromApi();
+        this.getChartShares();
+        this.getChartHashrate(); 
+      }
+    },
+    methods: {
+      clearAll: function () {
+         this.$store.commit("dashboard/setAccountInfo", null); 
+      },
       getDataFromApi: function(){
         let _this = this;
         axios.get(`/api/${this.selectedCurrency}/stats?key=${this.apiKey}`)
