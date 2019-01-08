@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-md-4">
           <div class="filter" id="item-pagesize">
-            <button><span class="filter-button-label">Онлайн</span>  <span class="filter-indicator">0</span></button>
-            <button><span class="filter-button-label">Оффлайн</span>  <span class="filter-indicator">0</span></button>
-            <button><span class="filter-button-label">Общее</span>  <span class="filter-indicator">0</span></button>
+            <button><span class="filter-button-label">Онлайн</span>  <span class="filter-indicator">{{dataset instanceof Array && dataset.hashrate !== 0 ? dataset.length : 0}}</span></button>
+            <button><span class="filter-button-label">Оффлайн</span>  <span class="filter-indicator">{{dataset instanceof Array && dataset.hashrate === 0 ? dataset.length : 0}}</span></button>
+            <button><span class="filter-button-label">Общее</span>  <span class="filter-indicator">{{dataset instanceof Array ? dataset.length : 0}}</span></button>
             <div class="filter-text">
               Отображаются только <b>online</b> воркеры
             </div>
@@ -23,7 +23,7 @@
         <div class="col-md-3">
           <div class="filter" id="item-pagesize">
             <span class="filter-label">
-              Макс на странице:
+              Макс на странице:{{limit}}
             </span>
 
             <div class="dropdown-block">
@@ -39,7 +39,7 @@
         <div class="col-md-2">
           <div class="filter" id="item-name">
             <span class="filter-label">
-              Сортировать по :
+              Сортировать по : {{sort}}
             </span>
 
             <div class="dropdown-block">
@@ -100,6 +100,12 @@
       },
       pageSize:{
         default: 20
+      }
+    },
+    data: function () {
+      return {
+        limit: 25,
+        sort: "имени"
       }
     },
     mounted: function() {
