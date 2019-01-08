@@ -51,10 +51,19 @@
            workersData:null
        }
     },
+
+    computed: {
+      selectedCurrency() {
+        return this.$store.state.settings.currency.toLowerCase();
+      },
+      apiKey() {
+        return this.$store.state.settings.apiKey;
+      }
+    },
   methods:{
       getWorkersFromApi: function(){
         let _this = this;
-        axios.get(`/api/workers`)
+        axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`)
         .then(function (response) {
           _this.workersData = response.data;
       console.log("WORKERS RECIEVED", _this.workersData)

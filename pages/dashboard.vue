@@ -153,9 +153,9 @@
                       </div>
                       <div class="scale-buttons">
                         <ul class="scale-buttons-list">
-                          <li class="scale-list-item"><button class="scale-button">12 ч</button></li>
-                          <li class="scale-list-item "><button class="scale-button active">24 ч</button></li>
-                          <li class="scale-list-item"><button class="scale-button">3 д </button></li>
+                          <li class="scale-list-item"><button class="scale-button" v-bind:class="chartsPeriod === '12h'? 'active': ''" data-period="12h" @click="setChartsPeriod">12 ч</button></li>
+                          <li class="scale-list-item "><button class="scale-button " v-bind:class="chartsPeriod === '24h'? 'active': ''" data-period="24h" @click="setChartsPeriod">24 ч</button></li>
+                          <li class="scale-list-item"><button class="scale-button" v-bind:class="chartsPeriod === '3d'? 'active': ''" data-period="3d" @click="setChartsPeriod">3 д </button></li>
                         </ul>
                       </div>
                     </div>
@@ -266,6 +266,7 @@
         name: "Dashboard",
         //accountInfo:null,
         updateData: null,
+        chartsPeriod: "24h",
         //chartShares:  null,
         //chartHashrate:null
       }
@@ -289,6 +290,9 @@
       chartHashrate() {
         return this.$store.state.dashboard.charts.hashrate;
       },
+      workersInfo() {
+        return this.$store.state.dashboard.workersInfo;
+      }
       
     },
     watch:{
@@ -300,8 +304,20 @@
       }
     },
     methods: {
+      setChartsPeriod(e) {
+        let period = e.currentTarget.dataset.period;
+        this.chartsPeriod = period;
+        this.getChartShares();
+        this.getChartHashrate();
+      },
       clearAll: function () {
-         this.$store.commit("dashboard/setAccountInfo", null); 
+        this.$store.commit("dashboard/setAccountInfo", null);
+        this.$store.commit("dashboard/setChartShares", null);
+        this.$store.commit("dashboard/setChartHashrate", null);
+      },
+      clearCharts: function () {
+        this.$store.commit("dashboard/setChartShares", null);
+        this.$store.commit("dashboard/setChartHashrate", null);
       },
       getDataFromApi: function(){
         let _this = this;
@@ -316,9 +332,21 @@
         });
 
       },
+      getWorkersFromApi: function () {
+        let _this = this;
+        axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`)
+          .then(function (response) { 
+            _this.$store.commit("dashboard/setWokersInfo", response.data);
+        
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+      },
       getChartShares: function () {
         let _this = this;
-        axios.get(`/api/${this.selectedCurrency}/charts/shares?key=${this.apiKey}`)
+        axios.get(`/api/${this.selectedCurrency}/charts/shares?period=${this.chartsPeriod}&key=${this.apiKey}`)
           .then(function (response) {
             _this.$store.commit("dashboard/setChartShares",  response.data);
             // _this.chartShares = response.data;
@@ -331,7 +359,7 @@
       },
       getChartHashrate: function () {
         let _this = this;
-        axios.get(`/api/${this.selectedCurrency}/charts/hashrate?key=${this.apiKey}`)
+        axios.get(`/api/${this.selectedCurrency}/charts/hashrate?period=${this.chartsPeriod}&key=${this.apiKey}`)
           .then(function (response) {
            
             _this.$store.commit("dashboard/setChartHashrate",   response.data);

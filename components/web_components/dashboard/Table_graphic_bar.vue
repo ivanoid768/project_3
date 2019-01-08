@@ -2,8 +2,8 @@
    import Chart from 'chart.js'
    // 2. Import the `generateChart()` method to create the vue component.
    import { generateChart } from 'vue-chartjs'
-   import { Bar } from 'vue-chartjs'
-
+   import { Bar, mixins } from 'vue-chartjs'
+   const { reactiveProp } = mixins;
    Chart.helpers.drawRoundedTopRectangle = function (ctx, x, y, width, height, radius) {
      ctx.beginPath();
      ctx.moveTo(x + radius, y);
@@ -134,7 +134,8 @@
      extends: CustomBar,
      methods: () => {
       
-     },  
+     },
+     mixins: [reactiveProp],
     mounted() {
       // Overwriting base render method with actual data.
 

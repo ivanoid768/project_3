@@ -1,7 +1,8 @@
 
 export const state = () => ({
   selectedMeasure: "THS/s",
-  defaultCurrency: "BTC", 
+  defaultCurrency: "BTC",
+  workersInfo: null,
   charts: { 
     shares: [],
     hashrate: []
@@ -19,7 +20,10 @@ export const mutations = {
   },
   setChartShares(state, data) {
     state.charts.shares = data;
-  } 
+  },
+  setWokersInfo(state, data) {
+    state.workersInfo = data;
+  }
  
 }
  
