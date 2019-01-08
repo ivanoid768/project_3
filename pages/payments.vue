@@ -101,17 +101,23 @@
   },
   watch: {
     selectedCurrency(newCount, oldCount) {
+      this.clearAll();
       this.getPaymentsFromApi();
+      this.getEarningsFromApi();
     },
 
   },
-  methods:{
+    methods: {
+      clearAll: function () {
+        this.paymentsData = null; 
+        this.earningsData = null;
+      },
       getPaymentsFromApi: function(params){
         let _this = this;
         axios.get(`/api/${this.selectedCurrency}/payments?page=${this.pPage}&limit=${this.pLimit}&key=${this.apiKey}`)
         .then(function (response) {
           _this.paymentsData = response.data; 
-          _this.$forceUpdate();
+       
         })
         .catch(function (error) {
           console.log(error);
