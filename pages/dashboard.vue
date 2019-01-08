@@ -174,7 +174,7 @@
               </div>
             </div>
               <div v-if="chartHashrate !==null">
-                <Table_graphic_line :height="200" :chartData="chartHashrate"  />
+                <Table_graphic_line :height="200" :chartData="chartHashrate"  :period="chartsPeriod"/>
               </div>
               <div class="dash_preloader" v-else>
                 <img src="~assets/img/gears-anim.gif" />
@@ -190,7 +190,7 @@
                 </div>
               </div>
               <div v-if="chartShares !==null">
-                <Table_graphic_bar :height="200" :chartData="chartShares" />
+                <Table_graphic_bar :height="200" :chartData="chartShares" :period="chartsPeriod"/>
               </div>
               <div class="dash_preloader" v-else>
                 <img src="~assets/img/gears-anim.gif" />

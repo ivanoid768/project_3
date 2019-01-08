@@ -89,11 +89,11 @@ app.get('/:currency/stats', (req, res) => {
 
 app.get('/:currency/workers', (req, res) => {
   let params = req.params;
-  let page = req.params.page;
-  let limit = req.params.limit;
+  let page = req.query.page;
+  let limit = req.query.limit;
   let currency = req.params.currency;
   let apiKey = req.query.key;
-  let url = `${protocol}${currency}${apiUrls.getWorkers}?page=${page}&limit=${limit}key=${params.key}`;
+  let url = `${protocol}${currency}${apiUrls.getWorkers}?page=${page}&limit=${limit}&key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -110,7 +110,9 @@ app.get('/:currency/workers', (req, res) => {
 app.get('/:currency/shares', (req, res) => {
   let currency = req.params.currency;
   let apiKey = req.query.key;
-  let url = `${protocol}${currency}${apiUrls.getShares}?key=${apiKey}`;
+  let page = req.query.page;
+  let limit = req.query.limit;
+  let url = `${protocol}${currency}${apiUrls.getShares}?page=${page}&limit=${limit}&key=${apiKey}`;
  
   axios.get(url).then(response => {
     res.json(response.data);
@@ -128,7 +130,9 @@ app.get('/:currency/shares', (req, res) => {
 app.get('/:currency/earnings', (req, res) => {
   let currency = req.params.currency;
   let apiKey = req.query.key;
-  let url = `${protocol}${currency}${apiUrls.getEarnings}?key=${apiKey}`;
+  let page = req.query.page;
+  let limit = req.query.limit;
+  let url = `${protocol}${currency}${apiUrls.getEarnings}?page=${page}&limit=${limit}&key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -145,7 +149,9 @@ app.get('/:currency/payments', (req, res) => {
   let currency = req.params.currency;
   let apiKey = req.query.key;
   let period = req.query.period;
-  let url = `${protocol}${currency}${apiUrls.getPayments}?period=${period}&key=${apiKey}`;
+  let page = req.query.page;
+  let limit = req.query.limit;
+  let url = `${protocol}${currency}${apiUrls.getPayments}?period=${period}&page=${page}&limit=${limit}&key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");

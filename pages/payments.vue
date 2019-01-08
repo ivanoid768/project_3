@@ -92,8 +92,7 @@
         let _this = this;
         axios.get(`/api/payments`)
         .then(function (response) {
-          _this.paymentsData = response.data;
-         console.log("PAYMENTS RECIEVED", _this.paymentsData)
+          _this.paymentsData = response.data; 
           _this.$forceUpdate();
         })
         .catch(function (error) {
@@ -105,8 +104,7 @@
         let _this = this;
         axios.get(`/api/earnings`)
         .then(function (response) {
-          _this.earningsData = response.data;
-         console.log("EARNINGS RECEIVED", _this.earningsData)
+          _this.earningsData = response.data; 
           _this.$forceUpdate();
         })
         .catch(function (error) {

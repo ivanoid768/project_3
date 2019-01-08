@@ -111,6 +111,7 @@
 
    export default {
      props: {
+       period: {},
        chartData: {
          default: () => { return [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11] }
        }
@@ -122,7 +123,7 @@
            legend: { display: false },
            scales: {
              xAxes: [{
-               barPercentage: 0.3
+               barThickness:5
              }]
            }, 
            responsive: true,
@@ -141,20 +142,54 @@
   
 
       let _this = this;
-      let generate24time=() => {
-         let time = [];
-        for (let i = 0; i <= 23; ++i) {
-        if (i < 10) {
-          time.push(`0${i}.00`);
-        } else {
-          time.push(`${i}.00`);
+      let generate12time = () => {
+        let time = [];
+        for (let i = 1; i <= 12; ++i) {
+          if (i < 10) {
+            time.push(`0${i}.00`);
+          } else {
+            time.push(`${i}.00`);
+          }
         }
+
+        return time;
+      };
+      let generate3dtime = () => {
+        let time = [];
+        for (let d = 1; d < 3; ++d) {
+          for (let i = 0; i <= 24; ++i) {
+            if (i < 10) {
+              time.push(`0${i}.00`);
+            } else {
+              time.push(`${i}.00`);
+            }
+          }
+        }
+          return time;
+      };
+      let generate24time = () => {
+        let time = [];
+        for (let i = 0; i <= 23; ++i) {
+          if (i < 10) {
+            time.push(`0${i}.00`);
+          } else {
+            time.push(`${i}.00`);
+          }
+        }
+        return time;
+      };
+
+      let labels ="";
+      if (this.period ==="12h") {
+        labels = generate12time();
+      } else if (this.period === "24h") {
+        labels = generate24time();
+      } else {
+        labels = generate3dtime();
       }
-      return time;
-    }
 
       this.renderChart({
-        labels: generate24time(),
+        labels: labels,
         datasets: [
           { 
             backgroundColor: '#ffa573',

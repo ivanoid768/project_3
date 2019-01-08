@@ -54,6 +54,7 @@
     <Compile Include="store\settings.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="store\payments.js" />
     <Compile Include="store\statistics.js">
       <SubType>Code</SubType>
     </Compile>

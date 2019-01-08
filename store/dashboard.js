@@ -36,6 +36,9 @@ export const getters = {
 
     return state.accountInfo;
   },
+  workersInfo(state) {
+    return state.workersInfo;
+  },
   chartShares(state) {
     return state.charts.shares;
   },

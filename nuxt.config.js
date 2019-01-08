@@ -58,6 +58,9 @@ module.exports = {
     },
     token: {
       prefix: '_token.'
+    },
+    localStorage: {
+      prefix: 'auth.'
     }
   },
   /*
