@@ -14,8 +14,11 @@ export const mutations = {
   setAccountInfo(state, data) {
     state.accountInfo = data;
   },
-  setChart(state, chart, data) {
-    state[chart] = data;
+  setChartHashrate(state,  data) {
+    state.charts.hashrate = data;
+  },
+  setChartShares(state, data) {
+    state.charts.shares = data;
   } 
  
 }

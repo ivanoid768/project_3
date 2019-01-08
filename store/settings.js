@@ -26,8 +26,7 @@ export const state = () =>({
 }) 
 
 export const mutations = {
-  setUser(settings, user) {
-    
+  setUser(settings, user) { 
     settings.user = user;
   },
   setUserName(state, userName) {
@@ -50,6 +49,9 @@ export const getters = {
   },
   apiKey(state){
     return state.apiKey;
+  },
+  user(state) {
+    return state.user;
   }
 
 }

@@ -309,7 +309,7 @@
         let _this = this;
         axios.get(`/api/${this.selectedCurrency}/charts/shares?key=${this.apiKey}`)
           .then(function (response) {
-            _this.$store.commit("dashboard/setChart", "shares", response.data);
+            _this.$store.commit("dashboard/setChartShares",  response.data);
             // _this.chartShares = response.data;
             //_this.$forceUpdate();
           })
@@ -323,7 +323,7 @@
         axios.get(`/api/${this.selectedCurrency}/charts/hashrate?key=${this.apiKey}`)
           .then(function (response) {
            
-            _this.$store.commit("dashboard/setChart", "hashrate", response.data);
+            _this.$store.commit("dashboard/setChartHashrate",   response.data);
             //_this.chartHashrate = response.data;
             //_this.$forceUpdate();
           })

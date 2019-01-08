@@ -3,6 +3,7 @@
    const { reactiveProp } = mixins;
    export default {
      props: {
+       chartData: {},
        dataset: {
          default: () => { return [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11] }
        }
