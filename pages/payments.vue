@@ -84,13 +84,31 @@
   data:()=>{
        return {
            paymentsData:null,
-           earningsData:null
+           earningsData: null,
+           ePage: 1,
+           eLimit: 5,
+           pPage:1,
+           pLimit:5,
        }
     },
+    computed: {
+      apiKey() {
+        return this.$store.state.settings.apiKey;
+      },
+      selectedCurrency() {
+        return this.$store.state.settings.currency.toLowerCase();
+      },
+  },
+  watch: {
+    selectedCurrency(newCount, oldCount) {
+      this.getPaymentsFromApi();
+    },
+
+  },
   methods:{
       getPaymentsFromApi: function(params){
         let _this = this;
-        axios.get(`/api/payments`)
+        axios.get(`/api/${this.selectedCurrency}/payments?page=${this.pPage}&limit=${this.pLimit}&key=${this.apiKey}`)
         .then(function (response) {
           _this.paymentsData = response.data; 
           _this.$forceUpdate();
@@ -102,7 +120,7 @@
       },
      getEarningsFromApi: function(params){
         let _this = this;
-        axios.get(`/api/earnings`)
+       axios.get(`/api/${this.selectedCurrency}/earnings?page=${this.ePage}&limit=${this.eLimit}&key=${this.apiKey}`)
         .then(function (response) {
           _this.earningsData = response.data; 
           _this.$forceUpdate();
