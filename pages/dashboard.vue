@@ -173,38 +173,42 @@
                 </div>
               </div>
             </div>
-            <Table_graphic_line :height="200" :dataset="chartHashrate"  v-if="chartHashrate !==null" />
-            <div class="dash_preloader" v-else>
-              <img src="~assets/img/gears-anim.gif" />
-            </div>
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-6">
-                  <b>Шары</b><br /><br />
-                </div>
-                <div class="col-md-6 text-right">
+              <div v-if="chartHashrate !==null">
+                <Table_graphic_line :height="200" :chartData="chartHashrate"  />
+              </div>
+              <div class="dash_preloader" v-else>
+                <img src="~assets/img/gears-anim.gif" />
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6">
+                    <b>Шары</b><br /><br />
+                  </div>
+                  <div class="col-md-6 text-right">
 
+                  </div>
                 </div>
               </div>
-            </div>
-            <Table_graphic_bar :height="200" :dataset="chartShares" v-if="chartShares !==null" />
-            <div class="dash_preloader" v-else>
-              <img src="~assets/img/gears-anim.gif" />
-            </div>
-            <div class="plate-legend container-fluid">
-              <div class="row">
-                <div class="col">
-                  <span class="legend-marker red"></span>
-                  Рассчетный хэшрейт -  2-х часовое SMA
-                </div>
-                <div class="col">
-                  <span class="legend-marker yellow"></span>
-                  Принятые шары
+              <div v-if="chartShares !==null">
+                <Table_graphic_bar :height="200" :chartData="chartShares" />
+              </div>
+              <div class="dash_preloader" v-else>
+                <img src="~assets/img/gears-anim.gif" />
+              </div>
+              <div class="plate-legend container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <span class="legend-marker red"></span>
+                    Рассчетный хэшрейт -  2-х часовое SMA
+                  </div>
+                  <div class="col">
+                    <span class="legend-marker yellow"></span>
+                    Принятые шары
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
       <div class="block" id="remuniration_calc">
         <div class="block-title">
@@ -307,6 +311,7 @@
       setChartsPeriod(e) {
         let period = e.currentTarget.dataset.period;
         this.chartsPeriod = period;
+        this.clearCharts();
         this.getChartShares();
         this.getChartHashrate();
       },

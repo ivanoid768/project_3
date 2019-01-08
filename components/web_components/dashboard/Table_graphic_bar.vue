@@ -111,7 +111,7 @@
 
    export default {
      props: {
-       dataset: {
+       chartData: {
          default: () => { return [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11] }
        }
      },
@@ -134,8 +134,7 @@
      extends: CustomBar,
      methods: () => {
       
-     },
-     mixins: [reactiveProp],
+     }, 
     mounted() {
       // Overwriting base render method with actual data.
 
@@ -157,10 +156,9 @@
       this.renderChart({
         labels: generate24time(),
         datasets: [
-          {
-            label: "",
+          { 
             backgroundColor: '#ffa573',
-            data: _this.dataset,
+            data: _this.chartData,
             barThickness: 5,
           }
         ]
