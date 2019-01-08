@@ -60,6 +60,12 @@
         return this.$store.state.settings.apiKey;
       }
     },
+    watch: {
+      selectedCurrency(newCount, oldCount) {
+         this.workersData = null;
+        this.getWorkersFromApi();
+      }
+    },
   methods:{
       getWorkersFromApi: function(){
         let _this = this;
