@@ -10,19 +10,19 @@
                 <div class="block-title-slot">
                   <ul class="navbar nav helppage_subnav">
                     <li class="nav-item">
-                      <button>Подключение к пулу</button>
+                      <button v-bind:class="activePage==0 ? 'active': ''" @click="setActivePage" data-id="0">Подключение к пулу</button>
                     </li>
                     <li class="nav_item">
-                      <button class="active">НАчало работы</button>
+                      <button v-bind:class="activePage==1 ? 'active': ''" @click="setActivePage" data-id="1">Начало работы</button>
                     </li>
                     <li class="nav_item">
-                      <button>ЧЗВ</button>
+                      <button v-bind:class="activePage==2 ? 'active': ''" @click="setActivePage" data-id="2">ЧЗВ</button>
                     </li>
                     <li class="nav_item">
-                      <button>API документация</button>
+                      <button v-bind:class="activePage==3 ? 'active': ''" @click="setActivePage" data-id="3">API документация</button>
                     </li>
                     <li class="nav_item">
-                      <button>Поддержка</button>
+                      <button v-bind:class="activePage==4 ? 'active': ''" @click="setActivePage" data-id="4">Поддержка</button>
                     </li>
                   </ul>
                 </div>
@@ -38,7 +38,10 @@
         </div>
       </div>
       <div class="sub-pages">
-        <div   class="block sub_page" data-id="1">
+        <div class="block sub_page" v-bind:class="activePage==0 ? 'active':''" data-id="1">
+                <div class="plate"></div>
+        </div>
+        <div class="block sub_page" v-bind:class="activePage==1 ? 'active':''" data-id="1">
           <div class="row">
             <div class="col-md-6">
               <div class="plate">
@@ -103,9 +106,18 @@
                   </p>
                   </p>
                 </div>
-              </div> 
+              </div>
             </div>
           </div>
+        </div>
+        <div class="block sub_page" v-bind:class="activePage==2 ? 'active':''" data-id="1">
+          <div class="plate"></div>
+        </div>
+        <div class="block sub_page" v-bind:class="activePage==3 ? 'active':''">
+          <div class="plate"></div>
+        </div>
+        <div class="block sub_page" v-bind:class="activePage==4 ? 'active':''">
+          <div class="plate"></div>
         </div>
       </div>
       
@@ -126,8 +138,9 @@
     }
   }, 
   methods:{
-      setActiveSubPage: (e)=>{
-            let activePage = e.currentTarget.dataset.id;
+    setActivePage: function (e){
+        let act = e.currentTarget.dataset.id;
+        this.activePage = act;
       }
     } 
   }
