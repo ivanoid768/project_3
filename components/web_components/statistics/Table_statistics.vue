@@ -1,8 +1,8 @@
 <template>
   <table class="table_data statistics">  
-    <tr v-for="head in headers">
+    <tr v-for="head in dataset">
       <td>{{head.label}}  </td>
-      <td></td>
+      <td>{{head.value}}</td>
     </tr>
   </table>
 </template> 
@@ -17,10 +17,10 @@
           ]
         }
       },
-      headers: {
+      dataset: {
         default: function () {
         return  [
-          { label: "Монета", name: "currency" } ,
+          { label: "Монета", name: "currency" , value: "BTC"} ,
           { label: "Доходность за 24 часа", name: "24hprofit" } ,
           { label: "Схема выплат", name: "paymentscheme" },
           { label: "Процент комиссии", name: "Comission" },

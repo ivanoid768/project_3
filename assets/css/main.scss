@@ -295,14 +295,17 @@ h1 {
 .table_data {
   width: 100%;
   border-collapse: collapse;
-  &.calc{
-    th{
-      text-align:right;
+
+  &.calc {
+    th {
+      text-align: right;
     }
-    td:nth-child(1){
-      text-align:left;
+
+    td:nth-child(1) {
+      text-align: left;
     }
   }
+
   &.history-notify, &.statistics, &.payments, &.accountants {
     tr {
       th {
@@ -323,6 +326,10 @@ h1 {
         width: 30%;
         text-align: right;
         color: $light-blue;
+      }
+       
+      td:nth-child(2) {
+        text-align: left;
       }
     }
   }
@@ -627,7 +634,7 @@ h1 {
       border: 1px solid transparent;
       color: $textcolor;
       outline: none;
-
+     line-height:28px;
       &:nth-child(1) {
         border-right: 1px solid #bbb
       }

@@ -307,14 +307,15 @@
       ...mapState('settings', ['paymentType', 'paymentLimit', 'paymentAddress', 'doubleFactorAuth'])
     },
     methods:{
-       setSettingValue: function(name, value){
-
+      setSettingValue: function (e) {
+        let name = e.currentTarget.dataset.name;
+        let value = e.currentTarget.dataset.value;
+         this.$store.commit(`settings/setSettingParam`, { name: name, value:value })
       }
     },
     mounted: function(){
 
-       console.log("store", this.$store)
-
+      
     }
   }
 </script>

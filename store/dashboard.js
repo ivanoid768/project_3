@@ -5,13 +5,17 @@ export const state = () => ({
   workersInfo: null,
   charts: { 
     shares: [],
-    hashrate: []
+    hashrate: [],
+    sma: []
   },
   accountInfo: null, 
 
 });
 
 export const mutations = {
+  setChartSMAHashrate(state, data) {
+    state.charts.sma = data;
+  },
   setAccountInfo(state, data) {
     state.accountInfo = data;
   },

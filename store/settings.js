@@ -29,8 +29,8 @@ export const mutations = {
   setCurrency(state, currency) { 
     state.currency = currency
   },
-  setSettingParam(state, paramName, value) {
-    state[paramName] = value
+  setSettingParam(state, obj) {
+    state[obj.name] = obj.value
   },
   setApiKey(state, apiKey) {
     state.apiKey = apiKey
