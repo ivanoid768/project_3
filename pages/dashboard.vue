@@ -283,11 +283,11 @@
         return this.$store.state.settings.currency.toLowerCase();
       },
       activeWorkers() {
-        return this.$store.state.payments.currency.toLowerCase();
-
+        return 1
       },
       notActiveWorkers() {
-        return this.$store.state.payments.currency.toLowerCase();
+        //return this.$store.state.payments.currency.toLowerCase();
+        return 0
       },
       apiKey() {
         return this.$store.state.settings.apiKey;
