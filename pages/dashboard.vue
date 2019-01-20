@@ -231,7 +231,7 @@
         <div class="block-body">
           <div class="plate ">
             <div class="plate_body max-width">
-              <Table_calc />
+              <Table_calc :btc="accountInfo.profit" :dash="accountInfo.profit" :ltc="accountInfo.profit"/>
             </div>
           </div>
         </div>

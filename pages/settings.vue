@@ -34,6 +34,9 @@
                     <span class="el_question_body">
                       ?
                     </span>
+                    <span class="tooltip">
+
+                    </span>
                   </span>
                 </h3>
               </div>
@@ -75,6 +78,8 @@
                     <i class="fa fa-question"></i>
                     <span class="el_question_body">
                       ?
+                    </span>
+                    <span class="tooltip">
                     </span>
                   </span>
                 </h3>
@@ -147,14 +152,14 @@
                 <div class="form-group">
                   <div class="form-row">
                     <div class="col-md-3 col-form-label">
-                      <span class="url-label">Порог выплат </br>
-                        <i class="label-measure">(>= 0.01 LTC)</i></span>
+                      <span class="url-label">Порог выплат <br/>
+                        <i class="label-measure" style="font-style:normal">(>= 0.01 LTC)</i></span>
                     </div>
                     <div class="col-md-5  col-form-label">
                       <div class="controll  number-selector"> 
                             <input type="number"  step="0.01" value="0.01" />
                             <span class="arrow-top"></span>
-                            <span class="arrow-bottom"></span>
+                            <span class="arrow-bottom"></span>  
                       </div>
                     </div>
                     <div class="col-md-4 col-form-label">

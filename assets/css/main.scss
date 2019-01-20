@@ -304,6 +304,10 @@ h1 {
     td:nth-child(1) {
       text-align: left;
     }
+
+    td {
+      text-align: right;
+    }
   }
 
   &.history-notify, &.statistics, &.payments, &.accountants {
@@ -327,7 +331,7 @@ h1 {
         text-align: right;
         color: $light-blue;
       }
-       
+
       td:nth-child(2) {
         text-align: left;
       }
@@ -427,12 +431,34 @@ h1 {
   height: 25px;
   line-height: 25px;
   font-size: 18px;
+  position: relative;
   border-radius: 30px;
   vertical-align: middle;
   margin-left: 15px;
-  &:hover{
-    cursor:pointer;
 
+  .tooltip {
+    position: absolute;
+    z-index: 1;
+    background: $white;
+    width: 200px;
+    height:100px;
+    bottom: 0px;
+
+    &:after {
+      content: "";
+      border-left: 0px solid transparent;
+      border-right: 20px solid $white;
+      border-bottom: 20px solid $white;
+      border-top: 20px solid $white;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .tooltip {
+      display: block;
+    }
   }
 }
 
