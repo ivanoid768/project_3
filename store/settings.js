@@ -4,18 +4,12 @@ export const state = () =>({
       currency: "BTC",
       user: null, 
       defaultCurrency: "BTC",
-      security: {
-        doubleFactorAuth: false,
-        passwordReset: false,
-      },
-      notifications: {
-        workersTurnOff: false
-      },
-      payments: {
-        paymentScheme: "PPS",
-        paymentLimit: [{ currency: "BTC", value: "0,1" }],
-        paymentAddress: "example@gmail.com",
-      },
+      doubleFactorAuth: false,
+      passwordReset: false,
+      workersTurnOff: false,
+       paymentType: "PPS",
+      paymentLimit: [{ currency: "BTC", value: "0,1" }],
+      paymentAddress: "example@gmail.com",
       actionsHistory:null,
       exchangeRate: [{
         currency: "BTC",

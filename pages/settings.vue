@@ -88,7 +88,7 @@
                     <div class="col col-form-label">
                       <label class="controll switcher active">
                         <span class="switcher-label active">ВКЛ</span>
-                        <input v-model="twoAuthorAuth" type="hidden" value="false" />
+                        <input v-model="doubleFactorAuth" type="hidden" value="false" />
                         <span class="toggle"></span>
                       </label>
                     </div>
@@ -288,6 +288,8 @@
  import Navigation from '~/components/web_components/header_components/Navigation.vue'
  import Table_history_notify from '~/components/web_components/settings/Table_history_notify.vue';
   import Pagination from '~/components/web_components/edit_components/pagination.vue';
+
+  import { mapState } from 'vuex';
   export default {
     components: {   Navigation, Table_history_notify,   Pagination},
     props:{
@@ -298,10 +300,11 @@
             paymentType: "PPS"
             }
         },
-       selectedCurrency:{
-            default: "BTC"
-        }
+       
       }
+    },
+    computed: {
+      ...mapState('settings', ['paymentType', 'paymentLimit', 'paymentAddress', 'doubleFactorAuth'])
     },
     methods:{
        setSettingValue: function(name, value){
