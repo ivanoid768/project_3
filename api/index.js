@@ -7,7 +7,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
  
 var MongoClient = require('mongodb').MongoClient;
-let url = process.env.DBURL !== undefined ? process.env.DBURL : "mongodb://127.0.0.1:27017";
+let DBUSERNAME = process.env.DBUSERNAME !== undefined ? process.env.DBUSERNAME: "sigmapool";
+let DBPASSWORD = process.env.DBPASSWORD !== undefined ? process.env.DBPASSWORD : "sigmapool";
+let url = process.env.DBURL !== undefined ? process.env.DBURL : `mongodb://${DBUSERNAME}:${DBPASSWORD}127.0.0.1:27017`;
  
 // Connect to the db
 MongoClient.connect(url, function (err, client) {
