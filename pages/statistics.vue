@@ -121,11 +121,19 @@
       updateData: null
     }
   },
+  computed: {
+    apiKey() {
+      return this.$store.state.settings.apiKey;
+    },
+    selectedCurrency() {
+      return this.$store.state.settings.currency.toLowerCase();
+    },
+  },
   methods:{
 
       getDataFromApi: function(){
         let _this = this;
-        axios.get(`/api/stats`)
+        axios.get(`/api/${this.selectedCurrency}/stats?key=${this.apiKey}`)
         .then(function (response) {
         //console.log("statistics",response)
           _this.statistics = response.data.data;

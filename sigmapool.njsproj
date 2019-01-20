@@ -20,11 +20,11 @@
     <Compile Include="api\config.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="api\db_routes.js">
+    <Compile Include="api\routes.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="api\index.js" />
-    <Compile Include="api\user_routes.js">
+    <Compile Include="api\models\users-model.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="components\web_components\edit_components\checkbox.vue">
@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="api\" />
+    <Folder Include="api\models\" />
     <Folder Include="assets" />
     <Folder Include="assets\img\" />
     <Folder Include="assets\css\" />

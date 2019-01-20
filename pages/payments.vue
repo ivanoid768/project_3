@@ -29,7 +29,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body max-width">
-                <Pagination />
+                <Pagination :pages="ePagesTotal"  :page="ePage"  :setPage="setePage"  />
                 <Table_accountants v-bind:dataset="earningsData" />
               </div>
             </div>
@@ -62,7 +62,7 @@
               <div class="plate_title">
               </div>
               <div class="plate_body max-width">
-                <Pagination />
+                <Pagination :pages="pPagesTotal" :page="pPage"  :setPage="setpPage" />
                 <Table_payments v-bind:dataset="paymentsData" />
               </div>
             </div>
@@ -136,6 +136,18 @@
         });
 
       }
+    },
+    setpPage(e) {
+      let page = e.currentTarget.value;
+      this.pPage = page;
+      this.paymentsData = null;
+      this.getPaymentsFromApi();
+    },
+    setePage() {
+      let page = e.currentTarget.value;
+      this.pPage = page;
+      this.paymentsData = null;
+      this.getEarningsFromApi();
     },
     created: function () {
           let _this = this;

@@ -1,5 +1,5 @@
 module.exports = {
-  url: 'localhost',
-  user: 'sigmapool',
-  password: '00000'
+    url: 'mongodb://localhost:27017',
+    user: 'admin',
+    password: 'admin'
 };

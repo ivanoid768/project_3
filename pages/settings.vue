@@ -2,6 +2,7 @@
   <div class="wrapper_main container">
     <Navigation></Navigation>
     <div class="page settings ">
+      <form > 
       <div id="block-statistics" class="block">
         <div class="block-title">
           <div class="container-fluid">
@@ -87,7 +88,7 @@
                     <div class="col col-form-label">
                       <label class="controll switcher active">
                         <span class="switcher-label active">ВКЛ</span>
-                        <input type="hidden" value="false" />
+                        <input v-model="twoAuthorAuth" type="hidden" value="false" />
                         <span class="toggle"></span>
                       </label>
                     </div>
@@ -127,8 +128,14 @@
                     </div>
                     <div class="col-md-4  col-form-label">
                       <div class="controll option-selector">
-                        <button class="option active" value="PPS">PPS</button>
-                        <button class="option" value="PPLNS">PPLNS</button>
+                        <label class="option ">
+                          PPS
+                          <input type="radio" id="PPS" name="pps" value="PPS" v-model="paymentType" style='visibility:hidden; display:none;' />
+                        </label>
+                        <label for="PPLNS" class="option">
+                          PPLNS
+                          <input type="radio" id="PPLNS" name="PPLNS"  value="PPLNS"  v-model="paymentType" style='visibility:hidden; display:none;' />
+                        </label>
                       </div>
                     </div>
                     <div class="col-md-4 col-form-label">
@@ -269,6 +276,7 @@
       </div>
 
       <!---END PAGE-->
+        </form>
     </div>
     <!--END WRAPPER-->
   </div>
@@ -286,7 +294,8 @@
       data:{
         default: function (){
           return {
-             settings: {}
+            twoAuthorAuth: false,
+            paymentType: "PPS"
             }
         },
        selectedCurrency:{

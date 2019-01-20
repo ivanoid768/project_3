@@ -1,9 +1,28 @@
+import axios from 'axios';
 var express = require('express');
 var app = express();
-import axios from 'axios';
-const MongoClient = require('mongodb').MongoClient; 
 const bodyParser = require('body-parser');
-const db = require('./config');
+ 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+ 
+var MongoClient = require('mongodb').MongoClient;
+
+// Connect to the db
+MongoClient.connect("mongodb://127.0.0.1:27017", function (err, client) {
+  var db = client.db('users');
+
+  if (err) return console.log(err)
+  console.log('MONGO IS CONNECTED', Object.keys(db)); 
+
+  require('./routes')(app, db);
+
+});
+
+
+
+
+
 
 var protocol = "https://";
 var apiUrl = ".sigmapool.com/api/v1/";
@@ -27,44 +46,8 @@ var apiUrls = {
 };
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
 
-MongoClient.connect(db.url, (err, database) => {
-  if (err) return console.log(err);
-
-  require('./db_routes')(app, database); 
-
-  app.listen(port, () => {
-    console.log('We are live on ' + port);
-  });
-});
-
-
-app.get('/users', (req, res) => {
-
-  let userId = req.userId;
-  if (userId) {
-    console.log("userId", userId);
-  } else {
-    res.json({
-      error: [error.response.data, error.response.status, error.response.headers]
-    }); 
-  }
-  
-});
-
-app.get('/users/add', (req, res) => {
-
-  let userId = req.userId;
-  if (userId) {
-    console.log("userId", userId);
-  } else {
-    res.json({
-      error: [error.response.data, error.response.status, error.response.headers]
-    });
-  }
-
-});
+ 
 
 
 
