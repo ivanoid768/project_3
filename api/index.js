@@ -10,9 +10,8 @@ var MongoClient = require('mongodb').MongoClient;
 
 // Connect to the db
 MongoClient.connect("mongodb://127.0.0.1:27017", function (err, client) {
-  var db = client.db('users');
-
   if (err) return console.log(err)
+  var db = client.db('users');
   console.log('MONGO IS CONNECTED', Object.keys(db)); 
 
   require('./routes')(app, db);
