@@ -45,6 +45,7 @@
     <Compile Include="store\authorisation.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="store\workers.js" />
     <Compile Include="store\dashboard.js">
       <SubType>Code</SubType>
     </Compile>

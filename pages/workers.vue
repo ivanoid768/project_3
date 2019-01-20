@@ -72,7 +72,7 @@
         axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`)
         .then(function (response) {
           _this.workersData = response.data;
-      console.log("WORKERS RECIEVED", _this.workersData)
+    
           _this.$forceUpdate();
         })
         .catch(function (error) {

@@ -73,7 +73,7 @@
                       Активные
                     </span>
                     <span class="prop_value">
-                      <span class="prop_value_int">356</span>
+                      <span class="prop_value_int">{{activeWorkers}}</span>
                     </span>
                   </div>
                   <div class="prop_row">
@@ -81,7 +81,7 @@
                       Неактивные
                     </span>
                     <span class="prop_value">
-                      <span class="prop_value_int">259</span>
+                      <span class="prop_value_int">{{notActiveWorkers}}</span>
                     </span>
                   </div>
                 </div>
@@ -281,6 +281,13 @@
       },
       selectedCurrency() {
         return this.$store.state.settings.currency.toLowerCase();
+      },
+      activeWorkers() {
+        return this.$store.state.payments.currency.toLowerCase();
+
+      },
+      notActiveWorkers() {
+        return this.$store.state.payments.currency.toLowerCase();
       },
       apiKey() {
         return this.$store.state.settings.apiKey;
