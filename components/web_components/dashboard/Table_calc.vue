@@ -1,7 +1,7 @@
 <template>
   <table class="table_data calc">
     <tr>
-      <th v-for="head in headers">{{head}}</th>
+      <th :key="i" v-for="(head, i) in headers">{{head}}</th>
     </tr>
     <tr>
       <td>Минута</td>
@@ -39,15 +39,9 @@
 <script>
   export default {
     props: {   
-        ltc: function () {
-          return {}
-        },
-        dash: function () {
-          return {}
-        },
-        btc: function () {
-          return {}
-        } ,
+      ltc: {},
+      dash: {},
+      btc: {},
       headers: {
         default: function () {
         return  [

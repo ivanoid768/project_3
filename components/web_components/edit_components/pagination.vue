@@ -1,7 +1,7 @@
 <template>
   <div class="plate pg-plate">
     <div class="pagination-filter">
-      
+
     </div>
     <ul class="pagination ">
       <li class="pagination-item "><button class="pg-btn active">1</button></li>
@@ -27,11 +27,6 @@
       selectedPage:1
     }
   },
-  methods: function(){
-    setPage:{
-      
-    }
-  }
-
+  methods: {}
   }
 </script>
