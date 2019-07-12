@@ -2,20 +2,20 @@ import axios from 'axios';
 var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
- 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
- 
+
 var MongoClient = require('mongodb').MongoClient;
-let DBUSERNAME = process.env.DBUSERNAME !== undefined ? process.env.DBUSERNAME: "sigmapool";
+let DBUSERNAME = process.env.DBUSERNAME !== undefined ? process.env.DBUSERNAME : "sigmapool";
 let DBPASSWORD = process.env.DBPASSWORD !== undefined ? process.env.DBPASSWORD : "sigmapool";
 let url = process.env.DBURL !== undefined ? process.env.DBURL : `mongodb://${DBUSERNAME}:${DBPASSWORD}127.0.0.1:27017`;
- 
+
 // Connect to the db
 MongoClient.connect(url, function (err, client) {
   if (err) return console.log(err)
   var db = client.db('users');
-  console.log('MONGO IS CONNECTED'); 
+  console.log('MONGO IS CONNECTED');
 
   require('./routes')(app, db);
 
@@ -44,12 +44,12 @@ var apiUrls = {
   getPayments: `${apiUrl}payments`,
   getCharts: `${apiUrl}charts`,
   //ltc//
- 
+
 };
 
 
 
- 
+
 
 
 
@@ -57,16 +57,16 @@ app.get('/:currency/stats', (req, res) => {
   let currency = req.params.currency;
   let apiKey = req.query.key;
   let url = `${protocol}${currency}${apiUrls.getAccountInfo}?key=${apiKey}`;
- 
-  axios.get(url).then(response => { 
-    res.json(response.data); 
+
+  axios.get(url).then(response => {
+    res.json(response.data);
   }).catch(function (error) {
     if (error.response) {
       res.json({
         error: [error.response.data, error.response.status, error.response.headers]
-      }); 
+      });
     }
-  }); 
+  });
 });
 
 
@@ -88,7 +88,7 @@ app.get('/:currency/workers', (req, res) => {
         error: [error.response.data, error.response.status, error.response.headers]
       });
     }
-  }); 
+  });
 });
 
 
@@ -98,7 +98,7 @@ app.get('/:currency/shares', (req, res) => {
   let page = req.query.page;
   let limit = req.query.limit;
   let url = `${protocol}${currency}${apiUrls.getShares}?page=${page}&limit=${limit}&key=${apiKey}`;
- 
+
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -108,7 +108,7 @@ app.get('/:currency/shares', (req, res) => {
         error: [error.response.data, error.response.status, error.response.headers]
       });
     }
-  }); 
+  });
 });
 
 
@@ -153,7 +153,7 @@ app.get('/:currency/charts/hashrate', (req, res) => {
   let currency = req.params.currency;
   let apiKey = req.query.key;
   let period = req.query.period;
-    let url = `${protocol}${currency}${apiUrls.getCharts}/hashrate?period=${period}&key=${apiKey}`;
+  let url = `${protocol}${currency}${apiUrls.getCharts}/hashrate?period=${period}&key=${apiKey}`;
   axios.get(url).then(response => {
     res.json(response.data);
     //console.log("======stats end");
@@ -197,8 +197,8 @@ app.get('/:currency/charts/shares', (req, res) => {
     }
   });
 });
- 
- 
+
+
 module.exports = {
   path: "/api/",
   handler: app

@@ -2,7 +2,7 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
-  
+
   server: {
     port: 3000, // default: 3000
     host: 'localhost', // default: localhost
@@ -18,7 +18,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' } 
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -45,8 +45,8 @@ module.exports = {
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios',  
-    '@nuxtjs/auth' 
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
 
   ],
   auth: {
@@ -61,6 +61,18 @@ module.exports = {
     },
     localStorage: {
       prefix: 'auth.'
+    },
+    auth: {
+      strategies: {
+        local: {
+          endpoints: {
+            login: { url: '/api/auth/login', method: 'post', propertyName: 'token' },
+            // logout: { url: '/api/auth/logout', method: 'post' },
+            logout: false,
+            user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+          }
+        }
+      }
     }
   },
   /*
@@ -73,7 +85,7 @@ module.exports = {
   },
   serverMiddleware: [
     '~/api/index.js'
-  ], 
+  ],
   /*
   ** Build configuration
   */
@@ -85,7 +97,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
     }
   }
 }
