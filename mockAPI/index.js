@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 
-let prefix = '';
+let apiPrefix = '';
 
 if (!module.parent) {
 	apiPrefix = '/mockapi'

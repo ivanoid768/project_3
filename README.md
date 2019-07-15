@@ -21,4 +21,9 @@ $ npm run generate
 
 BASE_URL = http://0.0.0.0:3000
 
+# Mock API
+To use mock API run: node mockAPI/index.js.
+To set mock API host set MOCKAPI env varible: MOCKAPI=http://localhost:8080/mockapi npm run dev
+Mock API pretend to be real sigmapool API. That is helpful while development. 
+
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).

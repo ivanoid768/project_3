@@ -86,7 +86,6 @@ module.exports = {
   serverMiddleware: [
     { path: '/api/auth', handler: '~/api/app.js' },
     { path: '/api', handler: '~/api/index.js' },
-    // { path: '/mockapi', handler: '~/mockAPI/index.js' }
   ],
   /*
   ** Build configuration

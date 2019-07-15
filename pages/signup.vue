@@ -66,7 +66,6 @@
     methods: {
       registration: function () {
         if (this.password != this.confirmPass) {
-          // this.$toast.error('Пароль и подтверждение пароля должны быть одинаковы!')
           this.formError = 'Пароль и подтверждение пароля должны быть одинаковы!';
           return false;
         } else {
@@ -84,10 +83,8 @@
 
             if (resp.data.status == 'success') {
 
-              console.log('Регистрация прошла успешно!')
               this.$router.push('/login')
             } else if (data.status == 'input_error') {
-              console.log(resp, resp.data);
 
               let tempErrors = '';
               let i = 1;
@@ -114,27 +111,11 @@
                 }
               }
 
-            } else {
-              console.log(resp, resp.data);
             }
           })
-          .catch(console.log)
-
-
-        // this.$auth.loginWith('local', {
-        //   data: {
-        //     username: this.username,
-        //     email: this.email,
-        //     password: this.password,
-        //     BTCAddress: this.BTCAddress
-        //   }
-        // })
-        //   .then(() => this.$toast.success('Logged In!'))
-        //   .then(() => {
-        //     this.$store.commit("settings/setUserName", this.username);
-        //     this.$auth.$storage.setState('loggedIn', true)
-        //     this.$router.push('/login')
-        //   })
+          .catch(err => {
+            this.formError = 'Ошибка сети. Проверьте ваше подключение к интернету.';
+          })
 
       },
       checkLogin() {

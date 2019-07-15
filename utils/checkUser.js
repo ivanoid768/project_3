@@ -22,7 +22,7 @@ function isPassword(password) {
 	if (password.match(/^\S{8,}$/ig)) {
 		return true;
 	} else {
-		return new Error('Пароль должен быть больше 8 символов и соделжать латинские буквы, цифры и другие символы кроме пробелов')
+		return new Error('Пароль должен быть больше 8 символов и может соделжать латинские буквы, цифры и другие символы кроме пробелов')
 	}
 
 }
@@ -31,17 +31,10 @@ function isLogin(login) {
 	if (login.match(/^[a-zA-Z0-9_]{3,}$/gi)) {
 		return true;
 	} else {
-		return new Error('Логин должен содержать только латинские буквы, цифры, и _')
+		return new Error('Имя пользователя должно содержать только латинские буквы, цифры, и _')
 	}
 
 }
-
-// module.exports = {
-// 	isEmail,
-// 	isBTCAddress,
-// 	isPassword,
-// 	isLogin
-// }
 
 export default {
 	isEmail,
