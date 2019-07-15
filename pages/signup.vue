@@ -7,21 +7,30 @@
         </div>
         <h1>ЗАРЕГИСТРИРОВАТЬСЯ</h1>
         <br />
-        <div class="form-group">
-          <input required v-model="username" type="text" placeholder="Имя пользователя*" />
+        <div v-if="formError" class="error">
+          {{formError}}
         </div>
         <div class="form-group">
-          <input required v-model="email" type="text" placeholder="Е-мэйл*" />
+          <label v-if="usernameError" class="error">{{usernameError}}</label>
+          <input @blur="checkLogin" required v-model="username" type="text" placeholder="Логин*" />
         </div>
         <div class="form-group">
-          <input required v-model="password" type="password" placeholder="Пароль*" />
+          <label v-if="emailError" class="error">{{emailError}}</label>
+          <input @blur="checkEmail" required v-model="email" type="text" placeholder="Е-мэйл*" />
+        </div>
+        <div class="form-group">
+          <label v-if="passError" class="error">{{passError}}</label>
+          <input @blur="checkPassword" required v-model="password" type="password"
+            placeholder="Пароль*" />
         </div>
         <div class="form-group">
           <input required v-model="confirmPass" type="password"
             placeholder="Подтверждение пароля*" />
         </div>
         <div class="form-group">
-          <input required v-model="BTCAddress" type="text" placeholder="BTC адресс*" />
+          <label v-if="BTCAddressError" class="error">{{BTCAddressError}}</label>
+          <input @blur="checkBTCAddress" required v-model="BTCAddress" type="text"
+            placeholder="BTC адресс*" />
         </div>
         <hr />
         <button type="submit" class="btn-enter">Зарегистрироваться</button>
@@ -32,6 +41,8 @@
 
 <script>
   import Logo from "~/components/Logo.vue";
+  import checkUser from '~/utils/checkUser';
+
   export default {
     auth: false,
     components: { Logo },
@@ -41,7 +52,12 @@
         email: "",
         password: "",
         confirmPass: "",
-        BTCAddress: ""
+        BTCAddress: "",
+        formError: '',
+        usernameError: '',
+        emailError: '',
+        passError: '',
+        BTCAddressError: ''
       }
     },
     computed: {
@@ -50,20 +66,60 @@
     methods: {
       registration: function () {
         if (this.password != this.confirmPass) {
-          this.$toast.error('Пароль и подтверждение пароля должны быть одинаковы!')
+          // this.$toast.error('Пароль и подтверждение пароля должны быть одинаковы!')
+          this.formError = 'Пароль и подтверждение пароля должны быть одинаковы!';
           return false;
+        } else {
+          this.formError = null;
         }
 
-        this.$axios.post('/auth/registration', {
+        this.$axios.post('/api/auth/registration', {
           username: this.username,
           email: this.email,
           password: this.password,
           BTCAddress: this.BTCAddress
         })
-          .then(console.log('Регистрация прошла успешно!'))
-          .then(() => {
-            this.$router.push('/login')
+          .then(resp => {
+            let data = resp.data;
+
+            if (resp.data.status == 'success') {
+
+              console.log('Регистрация прошла успешно!')
+              this.$router.push('/login')
+            } else if (data.status == 'input_error') {
+              console.log(resp, resp.data);
+
+              let tempErrors = '';
+              let i = 1;
+              for (let error in data.errors) {
+                tempErrors += `${i}.${data.errors[error]}\n`
+                i++
+              }
+
+              this.formError = tempErrors;
+
+            } else if (data.status == "server_error") {
+              this.formError = 'Внутренняя ошибка сервера. Попробуйте зарегистрироваться позже.';
+            } else if (data.status == "db_error") {
+
+              let dberr = data.DBError;
+
+              if (dberr.errmsg && dberr.code == '11000') {
+                if (dberr.errmsg.indexOf('userName') != -1) {
+                  this.usernameError = 'Такое Имя пользователя уже занято, попробуйте другое.'
+                } else if (dberr.errmsg.indexOf('email') != -1) {
+                  this.emailError = 'Кто то уже зарегистрировался с такие е-мэйлом, попробуйте другой.'
+                } else if (dberr.errmsg.indexOf('BTCAddress') != -1) {
+                  this.BTCAddressError = 'Такой BTC адресс уже используется, введите другой.'
+                }
+              }
+
+            } else {
+              console.log(resp, resp.data);
+            }
           })
+          .catch(console.log)
+
 
         // this.$auth.loginWith('local', {
         //   data: {
@@ -80,14 +136,50 @@
         //     this.$router.push('/login')
         //   })
 
+      },
+      checkLogin() {
+        let isLogin = checkUser.isLogin(this.username)
+
+        if (isLogin != true) {
+          this.usernameError = isLogin.message;
+        } else {
+          this.usernameError = null;
+        }      },
+      checkEmail() {
+        let isEmail = checkUser.isEmail(this.email)
+
+        if (isEmail != true) {
+          this.emailError = isEmail.message;
+        } else {
+          this.emailError = null;
+        }
+      },
+      checkPassword() {
+        let isPass = checkUser.isPassword(this.password)
+
+        if (isPass != true) {
+          this.passError = isPass.message;
+        } else {
+          this.passError = null;
+        }
+      },
+      checkBTCAddress() {
+        let isBTCAddress = checkUser.isBTCAddress(this.BTCAddress)
+
+        if (isBTCAddress != true) {
+          this.BTCAddressError = isBTCAddress.message;
+        } else {
+          this.BTCAddressError = null;
+        }
       }
+
     }
   }
 
 
 </script>
 
-<style>
+<style scoped>
   h2 {
     text-transform: uppercase;
     text-align: left;
@@ -152,5 +244,9 @@
     width: 150px;
     max-width: 1000px;
     margin-bottom: 21px;
+  }
+
+  form .error {
+    color: red;
   }
 </style>

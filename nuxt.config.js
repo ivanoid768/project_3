@@ -84,7 +84,9 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
   serverMiddleware: [
-    '~/api/index.js'
+    { path: '/api/auth', handler: '~/api/app.js' },
+    { path: '/api', handler: '~/api/index.js' },
+    // { path: '/mockapi', handler: '~/mockAPI/index.js' }
   ],
   /*
   ** Build configuration
