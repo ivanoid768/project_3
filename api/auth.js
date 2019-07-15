@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 // const bodyParser = require('body-parser');
 const config = require('./config');
 import checkUser from '../utils/checkUser';
@@ -69,7 +70,11 @@ router.post('/registration', function (req, res) {
 						if (err) return res.send({ status: 'db_error', DBError: err });
 						return res.send({
 							status: 'success',
-							user: newUser
+							user: {
+								username: newUser.userName,
+								email: newUser.email,
+								BTCAddress: newUser.BTCAddress
+							}
 						})
 					});
 
@@ -87,5 +92,54 @@ router.post('/registration', function (req, res) {
 
 
 });
+
+router.post('/login', (req, res) => {
+
+	UserModel.findOne({ userName: req.body.username }).then((user) => {
+		user.comparePassword(req.body.password, (err, isMatch) => {
+			if (isMatch) {
+				let token = jwt.sign({ userId: user.id }, config.tokenKey);
+				res.send({
+					token
+				})
+			}
+			else {
+				res.status(400).send({ message: 'Неверный Пароль/Имя пользователя' });
+			}
+		})
+	}).catch((err) => {
+		res.status(400).send({ message: 'Неверный Пароль/Имя пользователя' });
+	})
+
+})
+
+router.get('/user', (req, res) => {
+	const token = req.headers.authorization.match(/Bearer\s(\S+)(?:\s|$)/i)[1]
+	jwt.verify(token, config.tokenKey, function (err, payload) {
+		console.log(payload)
+		if (payload) {
+			UserModel.findById(payload.userId)
+				.then((user) => {
+					res.send({
+						user: {
+							username: user.userName,
+							email: user.email,
+							BTCAddress: user.BTCAddress
+						}
+					})
+				})
+				.catch(() => {
+					res.status(404).send({
+						status: 'not_exists'
+					})
+				})
+		} else {
+			res.status(500).send({
+				status: 'server_error'
+			})
+		}
+	})
+
+})
 
 module.exports = router;

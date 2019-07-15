@@ -10,7 +10,7 @@ app.use(express.urlencoded({
 
 let DBUSERNAME = process.env.DBUSERNAME !== undefined ? process.env.DBUSERNAME : "sigmapool";
 let DBPASSWORD = process.env.DBPASSWORD !== undefined ? process.env.DBPASSWORD : "sigmapool";
-let url = process.env.DBURL !== undefined ? process.env.DBURL : `mongodb://${DBUSERNAME}:${DBPASSWORD}127.0.0.1:27017`;
+let url = process.env.DBURL !== undefined ? process.env.DBURL : `mongodb://${DBUSERNAME}:${DBPASSWORD}@127.0.0.1:27017`;
 
 var mongoDB = `${url}/users`;
 console.log(mongoDB)

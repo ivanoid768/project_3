@@ -12,7 +12,8 @@
         </div>
         <div class="form-group">
           <label v-if="usernameError" class="error">{{usernameError}}</label>
-          <input @blur="checkLogin" required v-model="username" type="text" placeholder="Логин*" />
+          <input @blur="checkLogin" required v-model="username" type="text"
+            placeholder="Имя пользователя*" />
         </div>
         <div class="form-group">
           <label v-if="emailError" class="error">{{emailError}}</label>

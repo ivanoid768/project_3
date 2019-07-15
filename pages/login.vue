@@ -5,8 +5,9 @@
         <div class="logo-contrast">
           <Logo />
         </div>
-        <h1>ВОЙТИ</h1> 
+        <h1>ВОЙТИ</h1>
         <br />
+        <div v-if="loginError" class="login-error">{{loginError}}</div>
         <div class="form-group">
           <input required v-model="username" type="text" placeholder="Имя пользователя*" />
         </div>
@@ -29,7 +30,8 @@
     data: function () {
       return {
         username: "",
-        password: "", 
+        password: "",
+        loginError: ""
       }
     },
     computed: {
@@ -37,13 +39,35 @@
     },
     methods: {
       login: function () {
-        /*
-        this.$auth.login(/* .... *//*)
-          .then(() => this.$toast.success('Logged In!'))
-        */
-        //this.$router.push('/dashboard')
-        this.$store.commit("settings/setUserName", this.username);
-        this.$auth.$storage.setState('loggedIn', true)    
+        // /*
+        // this.$auth.login(/* .... *//*)
+        //   .then(() => this.$toast.success('Logged In!'))
+        // */
+        // //this.$router.push('/dashboard')
+        // this.$store.commit("settings/setUserName", this.username);
+        // this.$auth.$storage.setState('loggedIn', true)  
+        this.$auth.loginWith('local', {
+          data: {
+            username: this.username,
+            password: this.password,
+          }
+        })
+          .then((response) => {
+            console.log('Logged In!')
+            if (response.data.message) {
+              this.loginError = response.data.message;
+            } else if (response.data.token) {
+              this.loginError = null;
+              this.$store.commit("settings/setUserName", this.username);
+              this.$auth.$storage.setState('loggedIn', true)
+              this.$router.push('/dashboard')
+            }
+          })
+          .catch(err => {
+            if (err.response && err.response.data.message) {
+              this.loginError = err.response.data.message;
+            }
+          })
       }
     }
   }
@@ -52,8 +76,6 @@
 </script>
 
 <style>
-
-
   h2 {
     text-transform: uppercase;
     text-align: left;
@@ -66,7 +88,7 @@
     max-width: 100%;
     width: 100%;
     padding: 0 12px;
-    font: 14px/1.36 "proxima_novaregular",Arial,Helvetica,sans-serif;
+    font: 14px/1.36 "proxima_novaregular", Arial, Helvetica, sans-serif;
     border-radius: 2px;
     border: 1px solid #e8e8ee;
     background: #f4f4f9;
@@ -74,10 +96,10 @@
     -webkit-appearance: none;
   }
   .login {
-    width: 300px; 
+    width: 300px;
     margin: 20px 0;
     background: #fff;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
     padding: 20px;
   }
 
@@ -89,10 +111,10 @@
     align-items: center;
   }
   .btn-enter {
-    font: 14px/1.12 "proxima_novabold",Arial,Helvetica,sans-serif;
+    font: 14px/1.12 "proxima_novabold", Arial, Helvetica, sans-serif;
     display: flex;
     flex: 1 1;
-    width:100%;
+    width: 100%;
     margin: 0px;
     height: 43px;
     align-items: center;
@@ -113,10 +135,14 @@
     font: 28px/1.18 "proxima_novabold", Arial, Helvetica, sans-serif;
     color: #202020;
   }
-    .logo-contrast img {
-      height: 70px;
-      width: 150px;
-      max-width: 1000px;
-      margin-bottom: 21px;
-    }
+  .logo-contrast img {
+    height: 70px;
+    width: 150px;
+    max-width: 1000px;
+    margin-bottom: 21px;
+  }
+  .login-error {
+    color: red;
+    margin-bottom: 10px;
+  }
 </style>
