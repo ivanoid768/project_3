@@ -142,4 +142,65 @@ router.get('/user', (req, res) => {
 
 })
 
+router.use('/user', (req, res, next) => {
+	const token = req.headers.authorization.match(/Bearer\s(\S+)(?:\s|$)/i)[1]
+	jwt.verify(token, config.tokenKey, function (err, payload) {
+		if (payload) {
+			UserModel.findById(payload.userId)
+				.then((user) => {
+					req.user = user
+					next()
+				})
+				.catch(() => {
+					next()
+				})
+		} else {
+			next()
+		}
+	})
+
+})
+
+router.post('/user', (req, res) => {
+
+	let id = req.user && req.user.id;
+	let usr = req.body;
+	let updateUser = new Object(null);
+
+	if (usr.userName) {
+		updateUser.userName = usr.userName
+	}
+	if (usr.email) {
+		updateUser.email = usr.email
+	}
+
+	UserModel.findByIdAndUpdate(id, updateUser, (err, doc) => {
+		if (err) {
+			if (err.code == 11000) {
+				let message = '';
+				if (err.errmsg.indexOf('userName') != -1) {
+					message += 'Такое Имя пользователя уже занято, попробуйте другое.'
+				} else if (err.errmsg.indexOf('email') != -1) {
+					message += 'Такой Е-мэйл уже существует, попробуйте другой.'
+				}
+				return res.status(500).send({
+					message: message,
+					status: 'db_error'
+				})
+
+			} else {
+				return res.status(500).send({
+					status: 'db_error',
+					message: 'Ошибка сервера, поробуйте позже'
+				})
+
+			}
+		} else {
+			res.status(200).send({ status: 'success' })
+		}
+
+	})
+
+})
+
 module.exports = router;

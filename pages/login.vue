@@ -39,13 +39,7 @@
     },
     methods: {
       login: function () {
-        // /*
-        // this.$auth.login(/* .... *//*)
-        //   .then(() => this.$toast.success('Logged In!'))
-        // */
-        // //this.$router.push('/dashboard')
-        // this.$store.commit("settings/setUserName", this.username);
-        // this.$auth.$storage.setState('loggedIn', true)  
+
         this.$auth.loginWith('local', {
           data: {
             username: this.username,
