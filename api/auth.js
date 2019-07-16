@@ -173,6 +173,9 @@ router.post('/user', (req, res) => {
 	if (usr.email) {
 		updateUser.email = usr.email
 	}
+	if (usr.BTCAddress) {
+		updateUser.BTCAddress = usr.BTCAddress
+	}
 
 	UserModel.findByIdAndUpdate(id, updateUser, (err, doc) => {
 		if (err) {
