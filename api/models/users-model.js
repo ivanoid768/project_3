@@ -20,6 +20,7 @@ const UsersSchema = new Schema({
   password: {
     type: String,
     required: true,
+    match: /^\S{8,}$/i
   },
   BTCAddress: {
     type: String,

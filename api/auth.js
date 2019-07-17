@@ -176,6 +176,9 @@ router.post('/user', (req, res) => {
 	if (usr.BTCAddress) {
 		updateUser.BTCAddress = usr.BTCAddress
 	}
+	if (usr.password) {
+		updateUser.password = usr.password
+	}
 
 	UserModel.findByIdAndUpdate(id, updateUser, (err, doc) => {
 		if (err) {
@@ -192,6 +195,7 @@ router.post('/user', (req, res) => {
 				})
 
 			} else {
+				console.log('DB_ERROR: ', err)
 				return res.status(500).send({
 					status: 'db_error',
 					message: 'Ошибка сервера, поробуйте позже'
