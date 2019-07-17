@@ -8,7 +8,7 @@
         <div class="form-row">
           <div class="col-md-1 col-form-label">
             <label for="wordersDisabled" class="controll checkbox">
-              <input type="checkbox" id="wordersDisabled" v-model="workersTurnOffData" />
+              <input :checked="workersTurnOffData" type="checkbox" id="wordersDisabled" v-model="workersTurnOffData" />
               <span class="checkbox-check"> &#10003;</span>
             </label>
 
@@ -17,8 +17,7 @@
             <span class="option-label">Уведомлять при отключении воркеров</span>
           </div>
           <div class="col-md-4 col-form-label">
-            <button @click.prevent="updateWorkersTurnOff"
-              class="controll btn active">Обновить</button>
+            <button @click.prevent="updateWorkersTurnOff" class="controll btn active">Обновить</button>
           </div>
         </div>
       </div>
@@ -40,8 +39,7 @@
             <span class="option-label">Прятать имя пользователя в статистике пула</span>
           </div>
           <div class="col-md-4 col-form-label">
-            <button @click.prevent="updateHideUserNameInPool"
-              class="controll btn active">Обновить</button>
+            <button @click.prevent="updateHideUserNameInPool" class="controll btn active">Обновить</button>
           </div>
         </div>
       </div>
@@ -82,6 +80,7 @@
       return {
         workersTurnOffData: undefined,
         hideUserNameInPoolData: undefined,
+        setVModels: true
       }
     },
     computed: {
@@ -93,18 +92,33 @@
           name: 'workersTurnOff',
           value: this.workersTurnOffData
         })
+        this.$store.dispatch('settings/persistSettings')
       },
       updateHideUserNameInPool() {
         this.$store.commit('settings/setSettingParam', {
           name: 'hideUserNameInPool',
           value: this.hideUserNameInPoolData
         })
+        this.$store.dispatch('settings/persistSettings')
       }
     },
-    created: function () {
-      this.workersTurnOffData = this.workersTurnOff;
-      this.hideUserNameInPoolData = this.hideUserNameInPool
+    computed: {
+      workersChecked() {
+        return this.workersTurnOffData ? true : false;
+      }
+    },
+    updated: function () {
+      if (this.setVModels) {
+        this.workersTurnOffData = this.workersTurnOff;
+        this.hideUserNameInPoolData = this.hideUserNameInPool
+      }
+      this.setVModels = false;
+
+    },
+    created() {
+      this.setVModels = true;
     }
+
   }
 </script>
 

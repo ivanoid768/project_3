@@ -11,12 +11,10 @@
           </div>
           <div class="col-md-4  col-form-label">
             <div class="controll option-selector">
-              <input type="radio" id="PPS" name="paymentType" value="PPS" v-model="paymentTypeData"
-                style='visibility:hidden; display:none;' />
+              <input type="radio" id="PPS" name="paymentType" value="PPS" v-model="paymentTypeData" style='visibility:hidden; display:none;' />
               <label for="PPS" class="option" :style="PPSCheckedStyle"> PPS</label>
 
-              <input type="radio" id="PPLNS" name="paymentType" value="PPLNS"
-                v-model="paymentTypeData" style='visibility:hidden; display:none;' />
+              <input type="radio" id="PPLNS" name="paymentType" value="PPLNS" v-model="paymentTypeData" style='visibility:hidden; display:none;' />
               <label for="PPLNS" class="option" :style="PPLNSCheckedStyle"> PPLNS</label>
             </div>
           </div>
@@ -49,8 +47,8 @@
         <div class="form-row">
           <div class="col col-form-label">
             <span class="url-label col-mrg">Адрес выплат</span>
-            <input type="text" placeholder="Адрес выплат" v-model="paymentAddressData"
-              class="controll field-text full-width col-mrg" name="paymentAddress" />
+            <input type="text" placeholder="Адрес выплат" v-model="paymentAddressData" class="controll field-text full-width col-mrg"
+              name="paymentAddress" />
             <button @click.prevent="setPaymentAddress" class="controll btn active">Обновить</button>
           </div>
         </div>
@@ -95,15 +93,14 @@
           name: 'paymentType',
           value: this.paymentTypeData
         })
+        this.$store.dispatch('settings/persistSettings')
       },
       setPaymentLimit() {
-        this.$store.commit('settings/setSettingParam', {
-          name: 'paymentLimit',
-          value: [{
-            ...this.paymentLimit,
-            value: this.paymentLimitData
-          }]
+        this.$store.commit('settings/setPaymentLimit', {
+          currency: this.paymentLimit[0].currency,
+          value: this.paymentLimitData
         })
+        this.$store.dispatch('settings/persistSettings')
       },
       setPaymentAddress() {
         this.$axios.post('/api/auth/user', {
@@ -115,14 +112,20 @@
             })
 
           })
+      },
+      setVModelFromState() {
+        console.log(this.paymentLimit[0].value)
+        this.paymentTypeData = this.paymentType;
+        this.paymentLimitData = parseFloat(this.paymentLimit[0].value);
+        this.paymentAddressData = this.$store.state.auth.user.BTCAddress;
       }
     },
-    created: function () {
-      console.log(this.paymentLimit[0].value)
-      this.paymentTypeData = this.paymentType;
-      this.paymentLimitData = parseFloat(this.paymentLimit[0].value);
-      this.paymentAddressData = this.$store.state.auth.user.BTCAddress;
+    updated: function () {
+      this.setVModelFromState()
 
+    },
+    created() {
+      this.setVModelFromState()
     }
   }
 </script>

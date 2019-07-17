@@ -8,8 +8,8 @@ export const state = () => ({
   passwordReset: false,
   workersTurnOff: false,
   hideUserNameInPool: false,
-  paymentType: "PPS",
-  paymentLimit: [{ currency: "BTC", value: "0.1" }],
+  paymentType: "",
+  paymentLimit: [{ currency: "BTC", value: "" }],
   paymentAddress: "example@gmail.com",
   actionsHistory: null,
   exchangeRate: [{
@@ -36,6 +36,19 @@ export const mutations = {
   setApiKey(state, apiKey) {
     state.apiKey = apiKey
   },
+  updateSettings(state, settings) {
+
+    console.log(state, settings)
+    // debugger
+
+    for (let setting in settings) {
+      state[setting] = settings[setting]
+    }
+
+  },
+  setPaymentLimit(state, payload) {
+    state.paymentLimit.filter(limit => limit.currency == payload.currency).value = payload.value;
+  }
 }
 
 export const getters = {
@@ -49,4 +62,22 @@ export const getters = {
     return state.user;
   }
 
+}
+
+export const actions = {
+  persistSettings({ state }) {
+
+    console.log(state, state.paymentType);
+
+    this.$axios.post('/api/auth/settings', state)
+
+  },
+  fetchSettings({ state, commit }) {
+
+    this.$axios.get('/api/auth/settings')
+      .then(resp => {
+        commit('updateSettings', resp.data)
+      })
+
+  }
 }

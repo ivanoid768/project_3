@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Settings = require('./models/settings');
 // const bodyParser = require('body-parser');
 const config = require('./config');
 import checkUser from '../utils/checkUser';
@@ -68,6 +69,11 @@ router.post('/registration', function (req, res) {
 						console.log(err);
 
 						if (err) return res.send({ status: 'db_error', DBError: err });
+
+						Settings.create({
+							userId: newUser.id
+						})
+
 						return res.send({
 							status: 'success',
 							user: {
@@ -142,7 +148,7 @@ router.get('/user', (req, res) => {
 
 })
 
-router.use('/user', (req, res, next) => {
+router.use('/', (req, res, next) => {
 	const token = req.headers.authorization.match(/Bearer\s(\S+)(?:\s|$)/i)[1]
 	jwt.verify(token, config.tokenKey, function (err, payload) {
 		if (payload) {
@@ -246,6 +252,42 @@ router.get('/user/history', (req, res) => {
 			})
 		})
 
+
+})
+
+router.get('/settings', (req, res) => {
+
+	Settings.findOne({ userId: req.user.id }).then(settings => {
+
+		res.status(200).send({
+			...settings._doc
+		})
+	})
+		.catch((err) => {
+			res.status(500).send({
+				status: 'db_error',
+				erorr: err
+			})
+		})
+
+})
+
+router.post('/settings', (req, res) => {
+
+	let newSett = req.body;
+
+	Settings.findOneAndUpdate({ userId: req.user.id }, newSett).then(settings => {
+		res.status(200).send({
+			...settings._doc,
+			newSett: newSett
+		})
+	})
+		.catch((err) => {
+			res.status(500).send({
+				status: 'db_error',
+				erorr: err
+			})
+		})
 
 })
 

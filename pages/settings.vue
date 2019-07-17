@@ -25,7 +25,7 @@
         <div class="block">
           <div class="row">
             <div class="col-md-6">
-              <div class="plate">
+              <div class="plate pool-connection">
                 <div class="plate_title">
                   <h3>
                     Подключение к пулу
@@ -134,9 +134,15 @@
         this.$store.commit(`settings/setSettingParam`, { name: name, value: value })
       }
     },
-    mounted: function () {
-
+    created: function () {
+      this.$store.dispatch('settings/fetchSettings')
 
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  .pool-connection {
+    height: 100%;
+  }
+</style>
