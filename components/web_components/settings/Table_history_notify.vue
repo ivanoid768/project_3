@@ -1,12 +1,12 @@
 <template>
   <table class="table_data history-notify">
     <tr>
-      <th v-for="head in headers">{{head}}</th>
+      <th v-for="(head,index) in headers" :key="index">{{head}}</th>
     </tr>
-    <tr v-for="item in data">
+    <tr v-for="(item,index) in data" :key="index">
       <td>{{item.name}}</td>
       <td>{{item.date}}</td>
-      <td>{{item.ipAddress}}</td> 
+      <td>{{item.ipAddress}}</td>
     </tr>
   </table>
 </template>
@@ -23,7 +23,7 @@
       },
       headers: {
         default: function () {
-        return  [
+          return [
             "Действие/Уведомление",
             "Дата",
             "IP",
@@ -33,11 +33,11 @@
       page: {
         default: 1
       },
-      pageSize:{
+      pageSize: {
         default: 20
       }
     },
-    data:function (){
+    data: function () {
       return {
 
       }
