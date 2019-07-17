@@ -210,4 +210,43 @@ router.post('/user', (req, res) => {
 
 })
 
+const UserHistory = require('./models/user-history');
+
+router.get('/user/history', (req, res) => {
+
+	console.log(req.query);
+
+	let page = req.query.page;
+	let per_page = 20;
+
+	let log = [];
+	let pagesNumber = 1;
+
+	UserHistory.find({ userId: req.user.id }, null, {
+		skip: (page - 1) * per_page,
+		limit: per_page
+	})
+		.then((history) => {
+			log = history;
+
+			return UserHistory.count({ userId: req.user.id })
+		})
+		.then(count => {
+			pagesNumber = Math.ceil(count / per_page)
+
+			return res.status(200).send({
+				log: log,
+				pagesCounter: pagesNumber
+			})
+		})
+		.catch((err) => {
+			res.status(404).send({
+				status: 'not_exists',
+				erorr: err
+			})
+		})
+
+
+})
+
 module.exports = router;

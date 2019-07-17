@@ -47,26 +47,26 @@
     },
     methods: {
       selectPage(page) {
-        getUserLog(page)
+        this.getUserLog(page)
           .then(() => this.page = page)
 
       },
       nextPage() {
         let page = this.page + 1;
-        if (page > pagesCounter)
+        if (page > this.pagesCounter)
           return false;
 
-        getUserLog(page)
+        this.getUserLog(page)
           .then(() => this.page = page)
 
       },
       lastPage() {
-        getUserLog(pagesCounter)
-          .then(() => this.page = pagesCounter)
+        this.getUserLog(this.pagesCounter)
+          .then(() => this.page = this.pagesCounter)
 
       },
       getUserLog(page = 1) {
-        return this.$axios.get('/api/user/history', {
+        return this.$axios.get('/api/auth/user/history', {
           params: {
             page: page
           }

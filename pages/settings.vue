@@ -112,7 +112,7 @@
 
   import { mapState } from 'vuex';
   export default {
-    components: { Navigation, Table_history_notify, Pagination, Payment, Notifications, Security },
+    components: { Navigation, Table_history_notify, Pagination, Payment, Notifications, Security, UserActionsHistory },
     props: {
       data: {
         default: function () {

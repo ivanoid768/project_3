@@ -4,7 +4,7 @@
 
     </div>
     <ul class="pagination ">
-      <li v-for="page in pages" :key="page" class="pagination-item ">
+      <li v-for="page in pagesArr" :key="page" class="pagination-item ">
         <button @click.prevent="setPage" v-if="page == selectedPageProp" class="pg-btn active">{{page}}</button>
         <button @click.prevent="setPage" v-else class="pg-btn">{{page}}</button>
       </li>
@@ -51,12 +51,14 @@
 
       }
     },
-    create() {
-      let pages = [];
-      for (let i = 1; i <= this.pagesNumber; i++) {
-        pages.push(i)
+    computed: {
+      pagesArr() {
+        let pages = [];
+        for (let i = 1; i <= this.pagesNumber; i++) {
+          pages.push(i)
+        }
+        return pages;
       }
-      this.pages = pages;
     }
   }
 </script>
