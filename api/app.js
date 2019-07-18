@@ -12,6 +12,10 @@ let DBUSERNAME = process.env.DBUSERNAME !== undefined ? process.env.DBUSERNAME :
 let DBPASSWORD = process.env.DBPASSWORD !== undefined ? process.env.DBPASSWORD : "sigmapool";
 let url = process.env.DBURL !== undefined ? process.env.DBURL : `mongodb://${DBUSERNAME}:${DBPASSWORD}@127.0.0.1:27017`;
 
+if (!process.env.DBURL && (!process.env.DBUSERNAME || !process.env.DBPASSWORD)) {
+	url = `mongodb://127.0.0.1:27017`
+}
+
 var mongoDB = `${url}/users`;
 console.log(mongoDB)
 mongoose.connect(mongoDB)
