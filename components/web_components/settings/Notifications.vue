@@ -80,7 +80,7 @@
       return {
         workersTurnOffData: undefined,
         hideUserNameInPoolData: undefined,
-        setVModels: true
+        workersTurnOffDataInit: undefined
       }
     },
     computed: {
@@ -102,21 +102,37 @@
         this.$store.dispatch('settings/persistSettings')
       }
     },
-    computed: {
-      workersChecked() {
-        return this.workersTurnOffData ? true : false;
+    watch: {
+      workersTurnOff: function (newVal, oldVal) {
+        console.log('watch: ', newVal, oldVal)
+        this.workersTurnOffData = newVal;
+      },
+      hideUserNameInPool: function (newVal, oldVal) {
+        console.log('watch: ', newVal, oldVal)
+        this.hideUserNameInPoolData = newVal;
       }
     },
     updated: function () {
-      if (this.setVModels) {
-        this.workersTurnOffData = this.workersTurnOff;
-        this.hideUserNameInPoolData = this.hideUserNameInPool
-      }
-      this.setVModels = false;
+      // console.log('updated', this.workersTurnOffDataInit, this.workersTurnOff);
 
+      // if (this.workersTurnOff != this.workersTurnOffDataInit) {
+      //   this.workersTurnOffData = this.workersTurnOff;
+      //   this.hideUserNameInPoolData = this.hideUserNameInPool;
+
+      //   this.workersTurnOffDataInit = this.workersTurnOff
+      //   // console.log('updated if', this.workersTurnOffDataInit);
+
+      // }
     },
-    created() {
-      this.setVModels = true;
+    beforeCreate: function () {
+      // console.log('created', this.workersTurnOffDataInit);
+
+      this.workersTurnOffData = this.workersTurnOff;
+      this.hideUserNameInPoolData = this.hideUserNameInPool;
+
+      // console.log('created', this.workersTurnOffDataInit);
+      // console.log('created', this.workersTurnOffData);
+
     }
 
   }

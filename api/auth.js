@@ -167,7 +167,7 @@ router.use('/', (req, res, next) => {
 
 })
 
-router.post('/user', (req, res) => {
+router.post('/user', (req, res, next) => {
 
 	let id = req.user && req.user.id;
 	let usr = req.body;
@@ -184,6 +184,20 @@ router.post('/user', (req, res) => {
 	}
 	if (usr.password) {
 		updateUser.password = usr.password
+
+		bcrypt.hash(updateUser.password, 10)
+			.then((pass_hash) => {
+				updateUser.password = pass_hash
+				return UserModel.findByIdAndUpdate(id, updateUser);
+			})
+			.then(() => {
+				res.status(200).send({ status: 'success' })
+				next()
+			})
+			.catch(err => {
+				res.status(500).send({ status: 'internal_error', err: err })
+				next()
+			})
 	}
 
 	UserModel.findByIdAndUpdate(id, updateUser, (err, doc) => {

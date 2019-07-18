@@ -1,16 +1,16 @@
-@import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-@import '../fonts/fonts.css';
-@import '_variables.scss';
-@import '_style.scss';
+@import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../fonts/fonts.css";
+@import "_variables.scss";
+@import "_style.scss";
 
 $textcolor: #313f61;
 $red: #ea665c;
 $white: #fff;
 $glow: 0px 0px 6px #ea665c;
-$global-font:  Gotham Pro;
+$global-font: Gotham Pro;
 $font-weight: 500;
 $gray-blue: #e9eff8;
-$light-blue:#7082a3;
+$light-blue: #7082a3;
 $outerline: #eef2f7;
 
 body {
@@ -21,16 +21,16 @@ body {
   font-family: $global-font;
   font-weight: $font-weight;
 }
-.container{
-  min-height:0px!important;
+.container {
+  min-height: 0px !important;
 }
 
-input{
-  outline:none;
+input {
+  outline: none;
 }
 
-.navbar-brand  img{
-  max-width:100px;
+.navbar-brand img {
+  max-width: 100px;
 }
 .wrapper_main.container {
   min-height: 100vh !important;
@@ -39,7 +39,7 @@ input{
 }
 
 .page {
-  width: 100%; 
+  width: 100%;
 }
 .block {
   margin-bottom: 20px;
@@ -62,7 +62,7 @@ h1 {
     padding: 0px !important;
   }
 
-  @media(min-width:1100px) {
+  @media (min-width: 1100px) {
     .container {
       justify-content: start;
     }
@@ -84,11 +84,15 @@ h1 {
     color: #7082a3;
     position: relative;
 
-    &:active, &:hover, &.nuxt-link-active {
+    &:active,
+    &:hover,
+    &.nuxt-link-active {
       color: #000;
     }
 
-    &:active:after, &:hover:after, &.nuxt-link-active:after {
+    &:active:after,
+    &:hover:after,
+    &.nuxt-link-active:after {
       content: "";
       display: block;
       height: 3px;
@@ -154,15 +158,15 @@ h1 {
   margin-right: 15px;
 
   &.btc {
-    background-image: url('~assets/img/Bitcoin.svg');
+    background-image: url("~assets/img/Bitcoin.svg");
   }
 
   &.dash {
-    background-image: url('~assets/img/dash-3.svg');
+    background-image: url("~assets/img/dash-3.svg");
   }
 
   &.ltc {
-    background-image: url('~assets/img/litecoin.svg');
+    background-image: url("~assets/img/litecoin.svg");
   }
 }
 
@@ -172,7 +176,6 @@ h1 {
 }
 
 .block {
-
   .block-title {
     font-family: Gotham Pro;
     font-weight: 500;
@@ -216,7 +219,6 @@ h1 {
   }
 
   .plate_body {
-
     &.max-width {
       margin: -20px -15px;
     }
@@ -230,7 +232,6 @@ h1 {
   display: flex;
   flex-direction: column;
 
-
   .prop_row {
     display: flex;
     flex-direction: row;
@@ -238,7 +239,8 @@ h1 {
     padding: 15px 0px;
   }
 
-  .prop_name, .prop_value {
+  .prop_name,
+  .prop_value {
     display: flex;
     align-items: center;
   }
@@ -275,8 +277,8 @@ h1 {
   font-size: 20px;
 }
 #block-statistics {
-  .plate{
-    height:100%;
+  .plate {
+    height: 100%;
   }
 
   .block_statistics_currency_course {
@@ -289,8 +291,7 @@ h1 {
   }
 }
 
-.table_graphic_plate{
- 
+.table_graphic_plate {
 }
 
 .table_data {
@@ -311,14 +312,18 @@ h1 {
     }
   }
 
-  &.history-notify, &.statistics, &.payments, &.accountants {
+  &.history-notify,
+  &.statistics,
+  &.payments,
+  &.accountants {
     tr {
       th {
         border-bottom: 1px solid $outerline;
         font-size: 16px;
       }
 
-      td, th {
+      td,
+      th {
         padding: 20px 30px;
       }
     }
@@ -339,13 +344,15 @@ h1 {
     }
   }
 
-  &.payments, &.accountants {
+  &.payments,
+  &.accountants {
     tr {
       th {
         border-bottom: 1px solid $outerline;
       }
 
-      td, th {
+      td,
+      th {
         padding: 20px 30px;
         text-align: right !important;
       }
@@ -353,7 +360,6 @@ h1 {
   }
 
   tr {
-
     th {
       font-family: Gotham Pro;
       font-weight: 500;
@@ -376,7 +382,8 @@ h1 {
       text-align: center;
     }
 
-    td, th {
+    td,
+    th {
       padding: 20px 30px;
     }
 
@@ -387,7 +394,6 @@ h1 {
 }
 
 .block_user {
-
   .user_name {
     font-family: Gotham Pro;
     font-weight: 500;
@@ -397,11 +403,10 @@ h1 {
   }
 }
 
-
 .helppage_subnav {
   button {
     display: block;
-    padding: 10px 10px; 
+    padding: 10px 10px;
     border: 1px solid transparent;
     cursor: pointer;
     text-transform: uppercase;
@@ -414,7 +419,10 @@ h1 {
     position: relative;
     background-color: transparent;
 
-    &:hover, &:active, &:focus,&.active {
+    &:hover,
+    &:active,
+    &:focus,
+    &.active {
       background-color: #ea665c;
       color: #fff;
       outline: none;
@@ -442,7 +450,7 @@ h1 {
     z-index: 1;
     background: $white;
     width: 200px;
-    height:100px;
+    height: 100px;
     bottom: 0px;
 
     &:after {
@@ -472,11 +480,9 @@ h1 {
   margin-top: 20px;
 }
 
-
-
 .settings {
-  .plate{
-    min-height:285px;
+  .plate {
+    min-height: 285px;
   }
   .form-sub-header {
     font-size: 16px;
@@ -499,29 +505,25 @@ h1 {
     font-weight: $font-weight;
     font-size: 13px;
   }
-
-
 }
-.option-link{
-  font-size:13px;
+.option-link {
+  font-size: 13px;
 }
 
-.full-width{
-  width:100%!important;
+.full-width {
+  width: 100% !important;
 }
 
-.col-mrg{
-
-  margin-top:10px;
-  margin-bottom:10px;
+.col-mrg {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-
 
 .pg-plate {
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-height: 0!important;
+  min-height: 0 !important;
 
   .pagination {
     margin: 0px;
@@ -529,17 +531,21 @@ h1 {
     margin-right: 10px;
   }
 
-  .pagination-next, .pagination-last {
+  .pagination-next,
+  .pagination-last {
     display: block;
     height: 30px;
     background: $white;
     color: $light-blue;
     font-family: $global-font;
-    outline:none;
+    outline: none;
     font-weight: $font-weight;
     border: 1px solid transparent;
 
-    &:hover, &:active, &:focus, &.active {
+    &:hover,
+    &:active,
+    &:focus,
+    &.active {
       cursor: pointer;
       color: $red;
       transition: color 0.2s;
@@ -547,7 +553,6 @@ h1 {
   }
 
   .pagination-item {
-
     button {
       font-family: $global-font;
       font-weight: $font-weight;
@@ -555,12 +560,15 @@ h1 {
       border: 1px solid transparent;
       width: 25px;
       height: 25px;
-      margin-right:10px;
-      margin-left:10px;
+      margin-right: 10px;
+      margin-left: 10px;
       color: $light-blue;
       outline: none;
 
-      &:hover, &:active, &:focus, &.active {
+      &:hover,
+      &:active,
+      &:focus,
+      &.active {
         background-color: $red;
         box-shadow: $glow;
         cursor: pointer;
@@ -582,13 +590,12 @@ h1 {
     font-weight: normal;
   }
 
-
   button {
     border: 1px solid transparent;
     background-color: #fff;
     outline: none;
     padding: 0px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     font-weight: $font-weight;
     font-family: $global-font;
     font-size: 16px;
@@ -601,7 +608,10 @@ h1 {
       border-radius: 15px;
     }
 
-    &:hover, &:active, &:focus, &.active {
+    &:hover,
+    &:active,
+    &:focus,
+    &.active {
       color: $light-blue;
       cursor: pointer;
     }
@@ -609,29 +619,26 @@ h1 {
 }
 
 .dropdown-block {
-  position:relative;
-  height:100%;
-
+  position: relative;
+  height: 100%;
 
   .dropdown-list {
     display: none;
-    position:absolute;
-    top:100%;
-    background-color:$white;
-    padding:10px 15px;
-
+    position: absolute;
+    top: 100%;
+    background-color: $white;
+    padding: 10px 15px;
   }
 
   &.open {
-    .dropdown-list{
-      display:block;
+    .dropdown-list {
+      display: block;
     }
   }
 }
 
-
-.dash_preloader{
-  text-align:center;
+.dash_preloader {
+  text-align: center;
 }
 
 .controll {
@@ -661,12 +668,15 @@ h1 {
       border: 1px solid transparent;
       color: $textcolor;
       outline: none;
-     line-height:28px;
+      line-height: 28px;
       &:nth-child(1) {
-        border-right: 1px solid #bbb
+        border-right: 1px solid #bbb;
       }
 
-      &:active, &:hover, &:focus, &.active {
+      &:active,
+      &:hover,
+      &:focus,
+      &.active {
         opacity: 1;
         background: $white;
       }
@@ -679,7 +689,6 @@ h1 {
     }
   }
 
-
   &.btn {
     width: 150px;
     display: block;
@@ -689,7 +698,10 @@ h1 {
     line-height: 1;
     height: 30px;
 
-    &:active, &:hover, &:focus, &.active {
+    &:active,
+    &:hover,
+    &:focus,
+    &.active {
       background: $red;
       border: 1px solid $red;
       color: $white;
@@ -707,7 +719,7 @@ h1 {
     line-height: 16px;
     border-radius: 20px;
     display: block;
-    height:30px;
+    height: 30px;
   }
 
   &.checkbox {
@@ -723,7 +735,7 @@ h1 {
     background: $gray-blue;
     color: $gray-blue;
 
-    &.active, &:hover, &.active, &:focus {
+    &.active, &:focus {
       color: $white;
       background: $red;
     }
@@ -744,7 +756,7 @@ h1 {
       text-align: center;
       font-size: 14px;
       margin-right: auto;
-      margin-left: 48px;
+      margin-left: 20px;
       padding-left: 20px;
       display: inline-block;
     }
@@ -808,7 +820,6 @@ h1 {
   }
 }
 
-
 .cabinet {
   .field-text {
     width: 100%;
@@ -820,10 +831,9 @@ h1 {
   }
 }
 
-.component-inline{
-  display:inline-block;
+.component-inline {
+  display: inline-block;
 }
-
 
 .scale {
   .component-inner {
@@ -850,11 +860,13 @@ h1 {
     border: 1px solid transparent;
     transition: 0.2s all;
     outline: none;
-    height:40px;
-    border-radius:3px;
-    font-size:14px;
-    width:50px;
-    &.active, &:active, &:hover {
+    height: 40px;
+    border-radius: 3px;
+    font-size: 14px;
+    width: 50px;
+    &.active,
+    &:active,
+    &:hover {
       transition: 0.2s all;
       cursor: pointer;
       outline: none;
@@ -864,10 +876,10 @@ h1 {
   }
 }
 
-.flex-disable{
-  display:block!important;
+.flex-disable {
+  display: block !important;
 }
-.prop_preloader { 
+.prop_preloader {
   height: 3px;
   background: #eee;
   position: relative;
@@ -884,11 +896,11 @@ h1 {
   width: 30px;
   background: $red;
   z-index: 1000;
-  height: 3px; 
+  height: 3px;
   border-radius: 5px;
   display: block;
 }
-   
+
 .auth-wrapper {
   height: 100vh;
   width: 100%;
@@ -910,7 +922,7 @@ h1 {
   box-shadow: 1px 1px 3px #bbb;
   display: none;
   left: auto;
-  right:0;
+  right: 0;
 
   .quick-panel-username {
     padding: 20px;
@@ -926,11 +938,9 @@ h1 {
     border: 1px solid #4b37a1;
     color: #fff;
   }
-
-  
 }
-.block_user{
-  position:relative;
+.block_user {
+  position: relative;
 }
 .block_user:hover {
   .quick-panel {
@@ -950,7 +960,7 @@ h1 {
 
     &.red {
       background: #ea665c;
-    } 
+    }
 
     &.yellow {
       background: #ffa573;
@@ -958,7 +968,7 @@ h1 {
   }
 }
 
-.collapse.show { 
+.collapse.show {
   position: absolute;
   top: 100%;
   background: #fff;
@@ -980,9 +990,9 @@ h1 {
   }
 }
 
-.sub_page{
-  display:none;
-  &.active{
-    display:block;
+.sub_page {
+  display: none;
+  &.active {
+    display: block;
   }
 }

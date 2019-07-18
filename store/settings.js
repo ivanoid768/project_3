@@ -47,7 +47,7 @@ export const mutations = {
 
   },
   setPaymentLimit(state, payload) {
-    state.paymentLimit.filter(limit => limit.currency == payload.currency).value = payload.value;
+    state.paymentLimit.filter(limit => limit.currency == payload.currency)[0].value = payload.value;
   }
 }
 

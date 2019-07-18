@@ -20,10 +20,10 @@
           <div class="col col-form-label">
             <span class="option-label">Двухфакторная аутентификация</span>
           </div>
-          <div class="col col-form-label">
-            <label class="controll switcher active">
-              <span v-if="doubleFactorAuthData" @click="updateDoubleFactorAuth" id="updateDoubleFactorAuthOn" class="switcher-label active">ВКЛ</span>
-              <span v-else @click="updateDoubleFactorAuth" id="updateDoubleFactorAuthOff" class="switcher-label">ВЫКЛ</span>
+          <div @click="updateDoubleFactorAuth"  class="col col-form-label">
+            <label class="controll switcher" :class="{active: switchOn}">
+              <span id="updateDoubleFactorAuthOn" class="switcher-label" :class="{active: switchOn}" >{{switchOn ? 'ВКЛ' : 'ВЫКЛ'}}</span>
+              <!-- <span v-else @click="updateDoubleFactorAuth" id="updateDoubleFactorAuthOff" class="switcher-label">ВЫКЛ</span> -->
               <!-- <input v-model="doubleFactorAuthData" type="hidden" value="false" /> -->
               <span class="toggle"></span>
             </label>
@@ -55,6 +55,7 @@
         newPassData: undefined,
         confirmPassData: undefined,
         errorData: '',
+        switchOn: undefined
       }
     },
     computed: {
@@ -62,12 +63,14 @@
     },
     methods: {
       updateDoubleFactorAuth(e) {
-        let id = e.target.id;
-        let doubleFactorAuthData = id === 'updateDoubleFactorAuthOn' ? true : false;
+        // let id = e.target.id;
+        // let doubleFactorAuthData = id == 'updateDoubleFactorAuthOn' ? false : true;
+        this.switchOn = !this.switchOn
         this.$store.commit('settings/setSettingParam', {
           name: 'doubleFactorAuth',
-          value: doubleFactorAuthData
+          value: this.switchOn
         })
+        this.$store.dispatch('settings/persistSettings')
       },
       setNewPassword() {
         if (this.newPassData != this.confirmPassData || this.newPassData.length < 8) {
@@ -85,10 +88,31 @@
 
       }
     },
+    watch:{
+      doubleFactorAuth: function(newVal){
+        this.switchOn = newVal
+      }
+    },
     created: function () {
-      this.doubleFactorAuthData = this.doubleFactorAuth;
+      this.switchOn = this.doubleFactorAuth;
 
     }
   }
 
 </script>
+
+<style lang="scss" scoped>
+// .toggle{
+//   right: 67px;
+//   transition: right 0.5s;
+// }
+
+// .switcher-label{
+//       color: darkseagreen;
+// }
+
+// .control.switcher.active{
+//   background-color: azure;
+// }
+
+</style>

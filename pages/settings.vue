@@ -134,7 +134,7 @@
         this.$store.commit(`settings/setSettingParam`, { name: name, value: value })
       }
     },
-    created: function () {
+    beforeCreate: function () {
       this.$store.dispatch('settings/fetchSettings')
 
     }

@@ -113,20 +113,18 @@
 
           })
       },
-      setVModelFromState() {
-        console.log(this.paymentLimit[0].value)
-        this.paymentTypeData = this.paymentType;
-        this.paymentLimitData = parseFloat(this.paymentLimit[0].value);
-        this.paymentAddressData = this.$store.state.auth.user.BTCAddress;
-      }
-    },
-    updated: function () {
-      this.setVModelFromState()
 
     },
+    watch: {
+      paymentType: function (newVal) {
+        this.paymentTypeData = newVal;
+        this.paymentLimitData = this.paymentLimit[0].value;
+      }
+    },
     created() {
-      this.setVModelFromState()
+      this.paymentAddressData = this.$store.state.auth.user.BTCAddress
     }
+
   }
 </script>
 
