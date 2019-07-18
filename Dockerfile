@@ -15,6 +15,6 @@ EXPOSE 3000
 
 # Default arguments, can be overriden
 
-CMD npm start
+CMD node mockAPI/index.js & npm start
 
 # End.

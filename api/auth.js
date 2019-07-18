@@ -13,7 +13,7 @@ const router = express.Router();
 const UserModel = require('./models/users-model');
 
 const axInst = axios.create({
-	baseURL: process.env.MOCKAPI || 'btc.sigmapool.com/v1',
+	baseURL: process.env.MOCKAPI || 'btc.devpool.com/api/v1',
 	params: {
 		key: config.sigmapoolToken
 	}
@@ -59,7 +59,7 @@ router.post('/registration', function (req, res) {
 
 				bcrypt.hash(user.password, 10, function (err, pass_hash) {
 
-					if (err) return res.send({ status: 'server_error', error: { message: 'server_error' } });
+					if (err) return res.send({ status: 'server_error', error: { err: err, message: 'server_error' } });
 
 					UserModel.create({
 						userName: user.username,
@@ -93,7 +93,7 @@ router.post('/registration', function (req, res) {
 			if (err.response) {
 				return res.send({ status: 'server_error', APIError: [err.response.data, err.response.status, err.response.headers] })
 			} else {
-				return res.send({ status: 'server_error', error: { message: 'server_error' } })
+				return res.send({ status: 'server_error', error: { err: err, message: 'server_error' } })
 			}
 		})
 

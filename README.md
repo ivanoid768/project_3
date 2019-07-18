@@ -21,6 +21,10 @@ $ npm run generate
 
 BASE_URL = http://0.0.0.0:3000
 
+# DBURL 
+DBURL env varible to set mongo db uri
+For example: mongodb://admin:abc123@127.0.0.1:27017
+
 # Mock API
 To use mock API run: node mockAPI/index.js.
 To set mock API host set MOCKAPI env varible: MOCKAPI=http://localhost:8080/mockapi npm run dev
