@@ -3,6 +3,7 @@ const axios = require('axios');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Settings = require('./models/settings');
+const UserHistory = require('./models/user-history');
 // const bodyParser = require('body-parser');
 const config = require('./config');
 import checkUser from '../utils/checkUser';
@@ -105,6 +106,15 @@ router.post('/login', (req, res) => {
 		user.comparePassword(req.body.password, (err, isMatch) => {
 			if (isMatch) {
 				let token = jwt.sign({ userId: user.id }, config.tokenKey);
+
+				UserHistory.create({
+					userId: user.id,
+					name: 'User logged in.',
+					date: Date.now(), // new Date(Date.now()).toLocaleString()
+					ipAddress: req.ip
+				})
+					.catch(console.log)
+
 				res.send({
 					token
 				})
@@ -229,8 +239,6 @@ router.post('/user', (req, res, next) => {
 	})
 
 })
-
-const UserHistory = require('./models/user-history');
 
 router.get('/user/history', (req, res) => {
 
