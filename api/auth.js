@@ -202,11 +202,11 @@ router.post('/user', (req, res, next) => {
 			})
 			.then(() => {
 				res.status(200).send({ status: 'success' })
-				next()
+				return next()
 			})
 			.catch(err => {
 				res.status(500).send({ status: 'internal_error', err: err })
-				next()
+				return next()
 			})
 	}
 
@@ -233,7 +233,7 @@ router.post('/user', (req, res, next) => {
 
 			}
 		} else {
-			res.status(200).send({ status: 'success' })
+			return res.status(200).send({ status: 'success' })
 		}
 
 	})

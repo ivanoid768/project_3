@@ -20,9 +20,9 @@
           <div class="col col-form-label">
             <span class="option-label">Двухфакторная аутентификация</span>
           </div>
-          <div @click="updateDoubleFactorAuth"  class="col col-form-label">
+          <div @click="updateDoubleFactorAuth" class="col col-form-label">
             <label class="controll switcher" :class="{active: switchOn}">
-              <span id="updateDoubleFactorAuthOn" class="switcher-label" :class="{active: switchOn}" >{{switchOn ? 'ВКЛ' : 'ВЫКЛ'}}</span>
+              <span id="updateDoubleFactorAuthOn" class="switcher-label" :class="{active: switchOn}">{{switchOn ? 'ВКЛ' : 'ВЫКЛ'}}</span>
               <!-- <span v-else @click="updateDoubleFactorAuth" id="updateDoubleFactorAuthOff" class="switcher-label">ВЫКЛ</span> -->
               <!-- <input v-model="doubleFactorAuthData" type="hidden" value="false" /> -->
               <span class="toggle"></span>
@@ -37,7 +37,7 @@
           <div class="col col-form-label">
             <input type="password" v-model="newPassData" class="controll field-text full-width col-mrg" placeholder="Новый пароль" />
             <input type="password" v-model="confirmPassData" class="controll field-text full-width col-mrg" placeholder="Подтвердить" />
-            <button @click="setNewPassword" class="controll btn active">Сменить пароль</button>
+            <button @click.prevent="setNewPassword" class="controll btn active">Сменить пароль</button>
           </div>
         </div>
       </div>
@@ -88,8 +88,8 @@
 
       }
     },
-    watch:{
-      doubleFactorAuth: function(newVal){
+    watch: {
+      doubleFactorAuth: function (newVal) {
         this.switchOn = newVal
       }
     },
@@ -102,17 +102,16 @@
 </script>
 
 <style lang="scss" scoped>
-// .toggle{
-//   right: 67px;
-//   transition: right 0.5s;
-// }
+  // .toggle{
+  //   right: 67px;
+  //   transition: right 0.5s;
+  // }
 
-// .switcher-label{
-//       color: darkseagreen;
-// }
+  // .switcher-label{
+  //       color: darkseagreen;
+  // }
 
-// .control.switcher.active{
-//   background-color: azure;
-// }
-
+  // .control.switcher.active{
+  //   background-color: azure;
+  // }
 </style>

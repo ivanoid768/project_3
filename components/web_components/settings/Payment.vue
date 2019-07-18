@@ -117,12 +117,15 @@
     },
     watch: {
       paymentType: function (newVal) {
+        console.log('watch: ', newVal)
         this.paymentTypeData = newVal;
         this.paymentLimitData = this.paymentLimit[0].value;
       }
     },
     created() {
       this.paymentAddressData = this.$store.state.auth.user.BTCAddress
+      this.paymentTypeData = this.paymentType;
+      this.paymentLimitData = this.paymentLimit[0].value;
     }
 
   }

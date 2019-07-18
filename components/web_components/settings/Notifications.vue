@@ -124,7 +124,7 @@
 
       // }
     },
-    beforeCreate: function () {
+    created: function () {
       // console.log('created', this.workersTurnOffDataInit);
 
       this.workersTurnOffData = this.workersTurnOff;
