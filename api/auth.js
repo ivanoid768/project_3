@@ -19,6 +19,10 @@ const axInst = axios.create({
 	}
 })
 
+let regHeaders = {
+	'Content-Type': process.env.MOCKAPI ? 'application/x-www-form-urlencoded; charset=UTF-8' : 'multipart/form-data; charset=UTF-8'
+}
+
 router.post('/registration', function (req, res) {
 	let user = req.body;
 
@@ -50,9 +54,7 @@ router.post('/registration', function (req, res) {
 		address: user.BTCAddress,
 		owner_comission: config.comission
 	}, {
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-			}
+			headers: regHeaders
 		})
 		.then(response => {
 			if (response.data.status === 'success') {
