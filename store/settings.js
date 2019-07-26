@@ -70,6 +70,9 @@ export const actions = {
     console.log(state, state.paymentType);
 
     this.$axios.post('/api/auth/settings', state)
+      .then(() => {
+        this.$toast.success('Настройки успешно обновлены!', { duration: 2000 })
+      })
 
   },
   fetchSettings({ state, commit }) {
