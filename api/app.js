@@ -18,6 +18,8 @@ if (!process.env.DBURL && (!process.env.DBUSERNAME || !process.env.DBPASSWORD)) 
 
 var mongoDB = `${url}/users`;
 console.log(mongoDB)
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useCreateIndex', true);
 mongoose.connect(mongoDB)
 	.then(() => {
 		app.use('/', require('./auth'))

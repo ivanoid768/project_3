@@ -140,6 +140,10 @@
     beforeCreate: function () {
       this.$store.dispatch('settings/fetchSettings')
 
+    },
+    async fetch({ store, app }) {
+      let { data } = await app.$axios.get('/api/auth/settings');
+      store.commit('settings/updateSettings', data)
     }
   }
 </script>
