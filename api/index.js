@@ -1,14 +1,37 @@
 import axios from 'axios';
 var express = require('express');
 var app = express();
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
+const config = require('./config');
+const UserModel = require('./models/users-model');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json())
+app.use(express.urlencoded({
+  extended: true
+}));
 
+app.use('/', (req, res, next) => {
+  const token = req.headers.authorization.match(/Bearer\s(\S+)(?:\s|$)/i)[1]
+  jwt.verify(token, config.tokenKey, function (err, payload) {
+    if (payload) {
+      UserModel.findById(payload.userId)
+        .then((user) => {
+          req.user = user
+          next()
+        })
+        .catch(() => {
+          next()
+        })
+    } else {
+      next()
+    }
+  })
 
+})
 
-var protocol = "https://";
-var apiUrl = ".sigmapool.com/api/v1/";
+var protocol = "https";
+var apiUrl = "sigmapool.com/api/v1/subaccounts";
 
 var ltcApiUrl = "";
 
@@ -28,11 +51,75 @@ var apiUrls = {
 
 };
 
+const routes_1 = ['stats', 'workers', 'shares', 'earnings', 'payments'];
 
+app.get('/:currency/:route/:count', (req, res) => { // count (/(|count)/ig) ?
+  let { currency, route, count } = req.params;
+  let { user, query } = req;
 
+  if (routes_1.indexOf(route) === -1) {
+    next('route');
+  }
 
+  let API_TOKEN = config.sigmapoolToken;
+  // /api/v1/subaccounts/:username/workers?page=1&limit=100
+  let url = `${protocol}://${currency}.${apiUrl}/${user.userName}/${route}`;
+  if (count && count == 'count')
+    url += '/count';
 
+  let qr = {
+    key: API_TOKEN,
+    ...query
+  }
 
+  axios.get(url, { params: qr }).then(resp => {
+    res.status(200).send(resp.data)
+  })
+    .catch(error => {
+      if (error.response) {
+        res.status(500).send({
+          error: [error.response.data, error.response.status, error.response.headers]
+        })
+      } else {
+        res.status(500).send(error)
+      }
+    })
+
+})
+
+const routes_charts = ['hashrate', 'sma', 'shares'];
+
+app.get('/:currency/charts/:route', (req, res) => {
+  let { currency, route } = req.params;
+  let { user, query } = req;
+
+  if (routes_charts.indexOf(route) === -1) {
+    next('route');
+  }
+
+  let API_TOKEN = config.sigmapoolToken;
+  // /api/v1/subaccounts/:username/charts/sma?period=12h||24h||3d
+  let url = `${protocol}://${currency}.${apiUrl}/${user.userName}/charts/${route}`;
+
+  let qr = {
+    key: API_TOKEN,
+    ...query
+  }
+
+  axios.get(url, { params: qr }).then(resp => {
+    res.status(200).send(resp.data)
+  })
+    .catch(error => {
+      if (error.response) {
+        res.status(500).send({
+          error: [error.response.data, error.response.status, error.response.headers]
+        })
+      } else {
+        res.status(500).send(error)
+      }
+    })
+
+})
 
 app.get('/:currency/stats', (req, res) => {
   let currency = req.params.currency;
