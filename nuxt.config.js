@@ -63,14 +63,12 @@ module.exports = {
     localStorage: {
       prefix: 'auth.'
     },
-    auth: {
-      strategies: {
-        local: {
-          endpoints: {
-            login: { url: '/api/auth/login', method: 'post', propertyName: 'token' },
-            logout: false,
-            user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
-          }
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/api/auth/login', method: 'post', propertyName: 'token' },
+          logout: false,
+          user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
         }
       }
     }

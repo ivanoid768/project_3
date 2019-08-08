@@ -13,7 +13,7 @@ const router = express.Router();
 const UserModel = require('./models/users-model');
 
 const axInst = axios.create({
-	baseURL: process.env.MOCKAPI || 'btc.devpool.com/api/v1',
+	baseURL: process.env.MOCKAPI || 'http://btc.sigmapool.com/api/v1',
 	params: {
 		key: config.sigmapoolToken
 	}
@@ -54,20 +54,25 @@ router.post('/registration', function (req, res) {
 		address: user.BTCAddress,
 		owner_comission: config.comission
 	}, {
-			headers: regHeaders
+			headers: regHeaders,
+			params: {
+				key: config.sigmapoolToken
+			}
 		})
 		.then(response => {
-			if (response.data.status === 'success') {
+			console.log('reg sub data: ', response.data)
+			if (response.status === 200) {
+				let data = response.data;
 
 				bcrypt.hash(user.password, 10, function (err, pass_hash) {
 
 					if (err) return res.send({ status: 'server_error', error: { err: err, message: 'server_error' } });
 
 					UserModel.create({
-						userName: user.username,
+						userName: data.username || user.username,
 						email: user.email,
 						password: pass_hash,
-						BTCAddress: user.BTCAddress
+						BTCAddress: data.address || user.BTCAddress
 					}, function (err, newUser) {
 						console.log(err);
 
