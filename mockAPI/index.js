@@ -67,7 +67,7 @@ app.get(`${baseURL}/workers`, (req, res) => {
 // GET /api/v1/subaccounts/:username/earnings/count
 // res: 13
 app.get(`${baseURL}/earnings/count`, (req, res) => {
-	let response = 13
+	let response = '100'
 
 	return res.status(200).send(response)
 })
@@ -75,6 +75,8 @@ app.get(`${baseURL}/earnings/count`, (req, res) => {
 // GET /api/v1/subaccounts/:username/earnings?page=1&limit=100
 // res: [{ amount, bonus, nshares }, ...]
 app.get(`${baseURL}/earnings`, (req, res) => {
+	let { limit, page } = req.query;
+
 	let response = [
 		{
 			"id": "23650336",
@@ -302,6 +304,8 @@ app.get(`${baseURL}/earnings`, (req, res) => {
 			"nshares": 4980736
 		}
 	]
+
+	response = response.slice(0, limit);
 
 	return res.status(200).send(response)
 })
@@ -559,7 +563,7 @@ app.get(`${baseURL}/dailybalances`, (req, res) => {
 // GET /api/v1/subaccounts/:username/payments/count
 // res: 1111
 app.get(`${baseURL}/payments/count`, (req, res) => {
-	let response = 1111;
+	let response = "208";
 
 	return res.status(200).send(response)
 })
@@ -567,6 +571,8 @@ app.get(`${baseURL}/payments/count`, (req, res) => {
 // GET /api/v1/subaccounts/:username/payments?page=1&limit=100
 // res: [{ id, amount, transactionconfirmationdata, created }]
 app.get(`${baseURL}/payments`, (req, res) => {
+	let { limit, page } = req.query;
+
 	let response = [
 		{
 			"id": "70241",
@@ -719,6 +725,8 @@ app.get(`${baseURL}/payments`, (req, res) => {
 			"created": 1545850643000
 		}
 	]
+
+	response = response.slice(0, limit);
 
 	return res.status(200).send(response)
 })
