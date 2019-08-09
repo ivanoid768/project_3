@@ -33,7 +33,7 @@ app.use('/', (req, res, next) => {
 })
 
 var protocol = "http";
-var apiUrl = "sigmapool.com/api/v1/subaccounts";
+var apiUrl = process.env.MOCKAPI ? 'localhost:8080/subaccounts' : "sigmapool.com/api/v1/subaccounts";
 
 var ltcApiUrl = "";
 
@@ -77,6 +77,9 @@ app.get(['/:currency/:route/:count', '/:currency/:route'], (req, res, next) => {
   let API_TOKEN = config.sigmapoolToken;
   // /api/v1/subaccounts/:username/workers?page=1&limit=100
   let url = `${protocol}://${currency}.${apiUrl}/${user.userName}/${route}`;
+  if (process.env.MOCKAPI)
+    url = `${protocol}://${apiUrl}/${user.userName}/${route}`;
+
   if (count && count == 'count')
     url += '/count';
 
@@ -89,7 +92,12 @@ app.get(['/:currency/:route/:count', '/:currency/:route'], (req, res, next) => {
   console.log(qr);
 
   axios.get(url, { params: qr }).then(resp => {
-    return res.status(200).send(resp.data)
+    console.log('count: ', resp.data)
+    let response = resp.data;
+    if (typeof (response) == 'number')
+      response = response.toString()
+
+    return res.status(200).send(response)
   })
     .catch(error => {
       if (error.response) {
@@ -118,6 +126,8 @@ app.get('/:currency/charts/:route', (req, res, next) => {
 
   // /api/v1/subaccounts/:username/charts/sma?period=12h||24h||3d
   let url = `${protocol}://${currency}.${apiUrl}/${user.userName}/charts/${route}`;
+  if (process.env.MOCKAPI)
+    url = `${protocol}://${apiUrl}/${user.userName}/charts/${route}`;
 
   let qr = {
     ...query,

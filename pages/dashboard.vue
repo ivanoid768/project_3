@@ -1,6 +1,6 @@
-<template> 
+<template>
   <div class="wrapper_main container">
-    <Navigation></Navigation> 
+    <Navigation></Navigation>
     <div class="page" v-if="accountInfo !==null">
 
       <div class="block" id="block-statistics">
@@ -45,7 +45,8 @@
                       Средний хешрейт<br /> за 24 часа
                     </span>
                     <span class="prop_value">
-                      <span class="prop_value_int">{{parseInt(accountInfo.avgHashrate24h)}}<i class="prop_value_currency">{{selectedMeasure}}</i></span>
+                      <span class="prop_value_int">{{parseInt(accountInfo.avgHashrate24h)}}<i
+                          class="prop_value_currency">{{selectedMeasure}}</i></span>
                     </span>
                   </div>
                   <div class="prop_row">
@@ -53,7 +54,8 @@
                       Средний хешрейт <br />за 1 час
                     </span>
                     <span class="prop_value">
-                      <span class="prop_value_int">{{parseInt(accountInfo.avgHashrate1h)}}<i class="prop_value_currency">{{selectedMeasure}}</i></span>
+                      <span class="prop_value_int">{{parseInt(accountInfo.avgHashrate1h)}}<i
+                          class="prop_value_currency">{{selectedMeasure}}</i></span>
                     </span>
                   </div>
                 </div>
@@ -153,9 +155,12 @@
                       </div>
                       <div class="scale-buttons">
                         <ul class="scale-buttons-list">
-                          <li class="scale-list-item"><button class="scale-button" v-bind:class="chartsPeriod === '12h'? 'active': ''" data-period="12h" @click="setChartsPeriod">12 ч</button></li>
-                          <li class="scale-list-item "><button class="scale-button " v-bind:class="chartsPeriod === '24h'? 'active': ''" data-period="24h" @click="setChartsPeriod">24 ч</button></li>
-                          <li class="scale-list-item"><button class="scale-button" v-bind:class="chartsPeriod === '3d'? 'active': ''" data-period="3d" @click="setChartsPeriod">3 д </button></li>
+                          <li class="scale-list-item"><button class="scale-button" v-bind:class="chartsPeriod === '12h'? 'active': ''"
+                              data-period="12h" @click="setChartsPeriod">12 ч</button></li>
+                          <li class="scale-list-item "><button class="scale-button " v-bind:class="chartsPeriod === '24h'? 'active': ''"
+                              data-period="24h" @click="setChartsPeriod">24 ч</button></li>
+                          <li class="scale-list-item"><button class="scale-button" v-bind:class="chartsPeriod === '3d'? 'active': ''" data-period="3d"
+                              @click="setChartsPeriod">3 д </button></li>
                         </ul>
                       </div>
                     </div>
@@ -173,42 +178,42 @@
                 </div>
               </div>
             </div>
-              <div v-if="chartHashrate !==null">
-                <Table_graphic_line :height="200" :chartData="chartHashrate"  :period="chartsPeriod"/>
-              </div>
-              <div class="dash_preloader" v-else>
-                <img src="~assets/img/gears-anim.gif" />
-              </div>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-6">
-                    <b>Шары</b><br /><br />
-                  </div>
-                  <div class="col-md-6 text-right">
+            <div v-if="chartHashrate !==null">
+              <Table_graphic_line :height="200" :chartData="chartHashrate" :period="chartsPeriod" />
+            </div>
+            <div class="dash_preloader" v-else>
+              <img src="~assets/img/gears-anim.gif" />
+            </div>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <b>Шары</b><br /><br />
+                </div>
+                <div class="col-md-6 text-right">
 
-                  </div>
                 </div>
               </div>
-              <div v-if="chartShares !==null">
-                <Table_graphic_bar :height="200" :chartData="chartShares" :period="chartsPeriod"/>
-              </div>
-              <div class="dash_preloader" v-else>
-                <img src="~assets/img/gears-anim.gif" />
-              </div>
-              <div class="plate-legend container-fluid">
-                <div class="row">
-                  <div class="col">
-                    <span class="legend-marker red"></span>
-                    Рассчетный хэшрейт -  2-х часовое SMA
-                  </div>
-                  <div class="col">
-                    <span class="legend-marker yellow"></span>
-                    Принятые шары
-                  </div>
+            </div>
+            <div v-if="chartShares !==null">
+              <Table_graphic_bar :height="200" :chartData="chartShares" :period="chartsPeriod" />
+            </div>
+            <div class="dash_preloader" v-else>
+              <img src="~assets/img/gears-anim.gif" />
+            </div>
+            <div class="plate-legend container-fluid">
+              <div class="row">
+                <div class="col">
+                  <span class="legend-marker red"></span>
+                  Рассчетный хэшрейт - 2-х часовое SMA
+                </div>
+                <div class="col">
+                  <span class="legend-marker yellow"></span>
+                  Принятые шары
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
       <div class="block" id="remuniration_calc">
         <div class="block-title">
@@ -231,7 +236,7 @@
         <div class="block-body">
           <div class="plate ">
             <div class="plate_body max-width">
-              <Table_calc :btc="accountInfo.profit" :dash="accountInfo.profit" :ltc="accountInfo.profit"/>
+              <Table_calc :btc="accountInfo.profit" :dash="accountInfo.profit" :ltc="accountInfo.profit" />
             </div>
           </div>
         </div>
@@ -256,17 +261,17 @@
 
   let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
   let apiUrl = "https://btc.sigmapool.com/api/v1/";
-  let apiSet ={
-      getWorkers:`${apiUrl}workers`,
-      getShares: `${apiUrl}charts/shares`,
-      getEarnings:`${apiUrl}earnings`,
+  let apiSet = {
+    getWorkers: `${apiUrl}workers`,
+    getShares: `${apiUrl}charts/shares`,
+    getEarnings: `${apiUrl}earnings`,
   }
 
   export default {
-    components: {   Navigation, Table_data, Table_graphic_bar, Table_graphic_line, Table_calc  },
-    
-    data: function(){
-    return {
+    components: { Navigation, Table_data, Table_graphic_bar, Table_graphic_line, Table_calc },
+
+    data: function () {
+      return {
         name: "Dashboard",
         //accountInfo:null,
         updateData: null,
@@ -283,11 +288,10 @@
         return this.$store.state.settings.currency.toLowerCase();
       },
       activeWorkers() {
-        return 1
+        return this.$store.state.dashboard.workersCount.active;
       },
       notActiveWorkers() {
-        //return this.$store.state.payments.currency.toLowerCase();
-        return 0
+        return this.$store.state.dashboard.workersCount.notActive;
       },
       apiKey() {
         return this.$store.state.settings.apiKey;
@@ -299,19 +303,20 @@
         return this.$store.state.dashboard.charts.shares;
       },
       chartHashrate() {
-        return this.$store.state.dashboard.charts.hashrate;
+        let hashrate = this.$store.state.dashboard.charts.hashrate;
+        return hashrate;
       },
       workersInfo() {
         return this.$store.state.dashboard.workersInfo;
       }
-      
+
     },
-    watch:{
+    watch: {
       selectedCurrency(newCount, oldCount) {
         this.clearAll();
         this.getDataFromApi();
         this.getChartShares();
-        this.getChartHashrate(); 
+        this.getChartHashrate();
       }
     },
     methods: {
@@ -331,36 +336,63 @@
         this.$store.commit("dashboard/setChartShares", null);
         this.$store.commit("dashboard/setChartHashrate", null);
       },
-      getDataFromApi: function(){
+      getDataFromApi: function () {
         let _this = this;
         axios.get(`/api/${this.selectedCurrency}/stats?key=${this.apiKey}`)
           .then(function (response) {
             console.log("response", response)
-          _this.$store.commit("dashboard/setAccountInfo", response.data);
-          //_this.$forceUpdate();
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-      },
-      getWorkersFromApi: function () {
-        let _this = this;
-        axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`)
-          .then(function (response) { 
-            _this.$store.commit("dashboard/setWokersInfo", response.data);
-        
+            _this.$store.commit("dashboard/setAccountInfo", response.data);
+            //_this.$forceUpdate();
+            _this.$store.commit('dashboard/setSelectedMeasure', response.data.hashrate.split(' ')[1])
           })
           .catch(function (error) {
             console.log(error);
           });
 
       },
+      getWorkersFromApi: function () {
+        let _this = this;
+        axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`)
+          .then(function (response) {
+            _this.$store.commit("dashboard/setWokersInfo", response.data);
+            return true;
+          })
+          .then(() => {
+            return axios.get(`/api/${this.selectedCurrency}/workers/count?key=${this.apiKey}`)
+              .then(response => {
+                debugger
+                _this.$store.commit("dashboard/setWorkersCount", response.data)
+              })
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+      },
+      getWorkersCount() {
+        return this.$axios.get(`/api/${this.selectedCurrency}/workers/count?key=${this.apiKey}`, {
+          params: {
+            status: 'online'
+          }
+        })
+          .then(response => {
+            let active = response.data;
+            return this.$axios.get(`/api/${this.selectedCurrency}/workers/count?key=${this.apiKey}`, {
+              status: 'offline'
+            })
+              .then(response => {
+                return { active: active, notActive: response.data }
+              })
+          })
+          .then(workersCount => {
+            this.$store.commit("dashboard/setWorkersCount", workersCount)
+          })
+      },
       getChartShares: function () {
         let _this = this;
         axios.get(`/api/${this.selectedCurrency}/charts/shares?period=${this.chartsPeriod}&key=${this.apiKey}`)
           .then(function (response) {
-            _this.$store.commit("dashboard/setChartShares",  response.data);
+            _this.$store.commit("dashboard/setChartShares", response.data);
             // _this.chartShares = response.data;
             //_this.$forceUpdate();
           })
@@ -371,10 +403,10 @@
       },
       getChartHashrate: function () {
         let _this = this;
-        axios.get(`/api/${this.selectedCurrency}/charts/hashrate?period=${this.chartsPeriod}&key=${this.apiKey}`)
+        return axios.get(`/api/${this.selectedCurrency}/charts/hashrate?period=${this.chartsPeriod}&key=${this.apiKey}`)
           .then(function (response) {
-           
-            _this.$store.commit("dashboard/setChartHashrate",   response.data);
+
+            _this.$store.commit("dashboard/setChartHashrate", response.data);
             //_this.chartHashrate = response.data;
             //_this.$forceUpdate();
           })
@@ -386,59 +418,66 @@
 
     },
     created: function () {
-        let _this = this;
-        this.getDataFromApi();
-        this.getChartShares();
-        this.getChartHashrate();
+      let _this = this;
+      this.getDataFromApi();
+      this.getChartShares();
+      this.getChartHashrate();
+      this.getWorkersCount()
     },
-    mounted : function() {
+    async fetch({ store, params }) {
+      let selectedCurrency = store.state.settings.currency.toLowerCase();
+      let { data } = await axios.get(`/api/${selectedCurrency}/charts/hashrate?period=${"24h"}&key=${this.apiKey}`)
+      store.commit("dashboard/setChartHashrate", data)
+      let shares = await axios.get(`/api/${selectedCurrency}/charts/shares?period=${'24'}&key=${this.apiKey}`)
+      store.commit("dashboard/setChartShares", shares.data);
+    },
+    mounted: function () {
       console.log(">>>>", this.$store.state.dashboard);
 
       this.$nextTick(() => {
-      this.$nuxt.$loading.start();
+        this.$nuxt.$loading.start();
         setTimeout(() => this.$nuxt.$loading.finish(), 500)
 
         //setInterval(() => {
         //  //this.getChartShares();
         //  //this.getChartHashrate();
         //}, 500)
-    })
-  },
-  beforeDestroy: function(){
-       
+      })
+    },
+    beforeDestroy: function () {
+
     }
   }
 </script>
 
 <style>
- 
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+  .container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  .title {
+    font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: block;
+    font-weight: 300;
+    font-size: 100px;
+    color: #35495e;
+    letter-spacing: 1px;
+  }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+  .subtitle {
+    font-weight: 300;
+    font-size: 42px;
+    color: #526488;
+    word-spacing: 5px;
+    padding-bottom: 15px;
+  }
 
-.links {
-  padding-top: 15px;
-}
+  .links {
+    padding-top: 15px;
+  }
 </style>
