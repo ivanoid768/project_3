@@ -74,7 +74,7 @@
   import axios from "axios";
   import { async } from 'q';
 
-  const limit = 10;
+  const limit = 15;
 
   export default {
     components: { Navigation, Table_payments, Table_accountants, Pagination },
@@ -117,7 +117,7 @@
       setePage(p) {
         let page = p;
         this.ePage = page;
-        this.paymentsData = null;
+        this.earningsData = null;
         this.getEarningsFromApi();
       },
       setpPage(p) {
@@ -151,7 +151,7 @@
           )
           .then(function (response) {
             _this.earningsData = response.data;
-            _this.$forceUpdate();
+            // _this.$forceUpdate();
           })
           .catch(function (error) {
             console.log(error);
