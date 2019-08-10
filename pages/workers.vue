@@ -28,14 +28,14 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_workers v-bind:dataset="workersData" />
+                <Table_workers :workersCount="workersCount" v-bind:dataset="workersData" :onFilter="onFilter" @onSearch="onSearch" />
               </div>
             </div>
           </div>
         </div>
-      </div> 
+      </div>
       <!--END block-title-->
-    
+
     </div>
   </div>
 </template>
@@ -45,11 +45,11 @@
   import axios from 'axios';
 
   export default {
-    components: {   Navigation , Table_workers },
-    data:()=>{
-       return {
-           workersData:null
-       }
+    components: { Navigation, Table_workers },
+    data: () => {
+      return {
+        workersData: null
+      }
     },
 
     computed: {
@@ -62,41 +62,85 @@
     },
     watch: {
       selectedCurrency(newCount, oldCount) {
-         this.workersData = null;
+        this.workersData = null;
         this.getWorkersFromApi();
       }
     },
-  methods:{
-      getWorkersFromApi: function(){
+    methods: {
+      getWorkersFromApi: function () {
         let _this = this;
         axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`)
-        .then(function (response) {
-          _this.workersData = response.data;
-    
-          _this.$forceUpdate();
+          .then(function (response) {
+            _this.workersData = response.data;
+
+            _this.$forceUpdate();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+      },
+      async onFilter(status) {
+        let { data: workersData } = await this.$axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`, {
+          params: {
+            status: status
+          }
         })
-        .catch(function (error) {
-          console.log(error);
-        });
+
+        this.workersData = workersData;
+      },
+      async onSearch(search) {
+        let params = {}
+
+        if (search)
+          params.search = search
+
+        let { data: workersData } = await this.$axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`, {
+          params: params
+        })
+
+        this.workersData = workersData;
+      }
+    },
+    async asyncData({ store, app }) {
+      let selectedCurrency = store.state.settings.currency.toLowerCase();
+
+      let { data: onlineWorkersCount } = await app.$axios.get(`/api/${selectedCurrency}/workers/count`, {
+        params: {
+          status: 'online'
+        }
+      })
+
+      let { data: offlineWorkersCount } = await app.$axios.get(`/api/${selectedCurrency}/workers/count`, {
+        params: {
+          status: 'offline'
+        }
+      })
+      return {
+        workersCount: {
+          all: onlineWorkersCount + offlineWorkersCount,
+          online: onlineWorkersCount,
+          offline: offlineWorkersCount
+        }
 
       }
     },
     created: function () {
-          let _this = this;
-          this.getWorkersFromApi();
+      let _this = this;
+      this.getWorkersFromApi();
     },
-    mounted : function() {
+    mounted: function () {
 
 
 
       this.$nextTick(() => {
-      this.$nuxt.$loading.start()
+        this.$nuxt.$loading.start()
 
 
-      setTimeout(() => this.$nuxt.$loading.finish(), 500)
-    })
-  },
-  beforeDestroy: function(){
+        setTimeout(() => this.$nuxt.$loading.finish(), 500)
+      })
+    },
+    beforeDestroy: function () {
 
     }
   }</script>

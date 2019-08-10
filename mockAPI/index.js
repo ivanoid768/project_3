@@ -59,7 +59,25 @@ app.get(`${baseURL}/workers/count`, (req, res) => {
 // GET /api/v1/subaccounts/:username/workers?page=1&limit=100 // get sub user workers
 // res: [...]
 app.get(`${baseURL}/workers`, (req, res) => {
-	let response = {}
+	let response = [{
+		name: 'indimining.WORKER_NAME',
+		lastShareTime: Date.now() - 1000 * 60 * 60 * 15,
+		hashrate: '10 H/s',
+		avg1Hashrate: '30 H/s',
+		avg24Hashrate: '50 H/s'
+	}, {
+		name: 'indimining.WORKER_NAME',
+		lastShareTime: Date.now() - 1000 * 60 * 60 * 5,
+		hashrate: '15 H/s',
+		avg1Hashrate: '25 H/s',
+		avg24Hashrate: '70 H/s'
+	}, {
+		name: 'indimining.WORKER_NAME',
+		lastShareTime: Date.now() - 1000 * 60 * 60 * 10,
+		hashrate: '10 H/s',
+		avg1Hashrate: '35 H/s',
+		avg24Hashrate: '60 H/s'
+	}]
 
 	return res.status(200).send(response)
 })

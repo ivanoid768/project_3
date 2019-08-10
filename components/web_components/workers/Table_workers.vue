@@ -1,22 +1,25 @@
 <template>
-  <div class="table_workers" >
+  <div class="table_workers">
     <div class="block_table_filter">
       <div class="row">
         <div class="col-md-4">
           <div class="filter" id="item-pagesize">
-            <button><span class="filter-button-label">Онлайн</span>  <span class="filter-indicator">{{dataset instanceof Array && dataset.hashrate !== 0 ? dataset.length : 0}}</span></button>
-            <button><span class="filter-button-label">Оффлайн</span>  <span class="filter-indicator">{{dataset instanceof Array && dataset.hashrate === 0 ? dataset.length : 0}}</span></button>
-            <button><span class="filter-button-label">Общее</span>  <span class="filter-indicator">{{dataset instanceof Array ? dataset.length : 0}}</span></button>
+            <button @click="filterOnline"><span class="filter-button-label">Онлайн</span> <span
+                class="filter-indicator">{{workersCount.online}}</span></button>
+            <button @click="filterOffline"><span class="filter-button-label">Оффлайн</span> <span
+                class="filter-indicator">{{workersCount.offline}}</span></button>
+            <button @click="filterAll"><span class="filter-button-label">Общее</span> <span
+                class="filter-indicator">{{workersCount.all}}</span></button>
             <div class="filter-text">
-              Отображаются только <b>online</b> воркеры
+              Отображаются только <b>{{filterStatus}}</b> воркеры
             </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="filter search" id="item-search">
             <div class="search inner">
-              <input type="text" value="Поиск" />
-              <i class="icon-search"></i>
+              <input @keypress.enter="onSearch" type="text" placeholder="Поиск" v-model="search" />
+              <i @click="onSearch" class="icon-search"></i>
             </div>
           </div>
         </div>
@@ -58,9 +61,9 @@
     </div>
     <table class="table_data workers" v-if="dataset !==null">
       <tr>
-        <th v-for="head in headers">{{head}}</th>
+        <th v-for="(head, index) in headers" :key="index">{{head}}</th>
       </tr>
-      <tr v-for="item in dataset">
+      <tr v-for="(item, index) in dataset" :key="index">
         <td>{{item.name}}</td>
         <td>{{item.lastShareTime}}</td>
         <td>{{item.hashrate}}</td>
@@ -77,8 +80,15 @@
 <script>
   export default {
     props: {
+      workersCount: {
+        default: {
+          all: 0,
+          online: 0,
+          offline: 0
+        }
+      },
       dataset: {
-        default: function () { 
+        default: function () {
           return [
             {}, {}, {}, {}, {}, {}, {}, {}, {}
           ]
@@ -86,30 +96,59 @@
       },
       headers: {
         default: function () {
-        return  [
-        "Имя",
-        "Последняя шара",
-        "Текущий хешрейт", 
-        "Средний хешрейт за час", 
-        "Средний хешрейт за 24 часа" 
+          return [
+            "Имя",
+            "Последняя шара",
+            "Текущий хешрейт",
+            "Средний хешрейт за час",
+            "Средний хешрейт за 24 часа"
           ]
         }
+      },
+      onFilter: {
+        default: () => { }
       },
       page: {
         default: 1
       },
-      pageSize:{
+      pageSize: {
         default: 20
       }
     },
     data: function () {
       return {
         limit: 25,
-        sort: "имени"
+        sort: "имени",
+        filterStatus: 'online',
+        search: ''
       }
     },
-    mounted: function() {
-     
+    methods: {
+      filterOnline() {
+        this.onFilter('online')
+        this.filterStatus = 'online'
+      },
+      filterOffline() {
+        this.onFilter('offline')
+        this.filterStatus = 'offline'
+      },
+      filterAll() {
+        this.onFilter('any')
+        this.filterStatus = 'all'
+      },
+      onSearch() {
+        this.$emit('onSearch', this.search)
+      }
+    },
+    mounted: function () {
+
     }
   }
 </script>
+
+<style lang="scss" scoped>
+  div#item-pagesize.filter:hover ul {
+    display: block;
+    margin-left: 135px;
+  }
+</style>
