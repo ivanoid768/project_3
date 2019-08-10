@@ -25,7 +25,7 @@
             <div class="plate">
               <div class="plate_title"></div>
               <div class="plate_body max-width">
-                <Table_statistics v-bind:dataset="statistics"/>
+                <Table_statistics v-bind:dataset="statistics" />
               </div>
             </div>
           </div>
@@ -54,7 +54,9 @@
             <div class="plate">
               <div class="plate_title"></div>
               <div class="plate_body max-width">
-                <Table_graphic_bar :height="200" :chartData="chartHashrate" :period="chartsPeriod"/>
+                <div v-if="chartHashrate !==null">
+                  <Table_graphic_bar :height="200" :chartData="chartHashrate" :period="chartsPeriod" />
+                </div>
               </div>
             </div>
           </div>
@@ -84,7 +86,9 @@
             <div class="plate">
               <div class="plate_title"></div>
               <div class="plate_body max-width">
-                <Table_graphic_bar :height="200" :chartData="chartHashrate" :period="chartsPeriod"/>
+                <div v-if="chartHashrate !==null">
+                  <Table_graphic_bar :height="200" :chartData="chartHashrate" :period="chartsPeriod" />
+                </div>
               </div>
             </div>
           </div>
@@ -97,184 +101,194 @@
   </div>
 </template>
 <script>
-import Navigation from "~/components/web_components/header_components/Navigation.vue";
-import Table_statistics from "~/components/web_components/statistics/Table_statistics.vue";
-import Table_graphic_line from "~/components/web_components/dashboard/Table_graphic_line.vue";
-import Table_graphic_bar from "~/components/web_components/dashboard/Table_graphic_bar.vue";
-import axios from "axios";
-let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
+  import Navigation from "~/components/web_components/header_components/Navigation.vue";
+  import Table_statistics from "~/components/web_components/statistics/Table_statistics.vue";
+  import Table_graphic_line from "~/components/web_components/dashboard/Table_graphic_line.vue";
+  import Table_graphic_bar from "~/components/web_components/dashboard/Table_graphic_bar.vue";
+  import axios from "axios";
+  let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
 
-export default {
-  components: {
-    Navigation,
-    Table_statistics,
-    Table_graphic_line,
-    Table_graphic_bar
-  },
-  data: () => {
-    return {
-      chartsPeriod: "24h"
-    };
-  },
-  computed: {
-    statistics() {
-      let data = this.$store.state.dashboard.accountInfo;
-      let currency = this.$store.state.settings.currency;
-      if (data === null) {
-        return null;
+  export default {
+    components: {
+      Navigation,
+      Table_statistics,
+      Table_graphic_line,
+      Table_graphic_bar
+    },
+    data: () => {
+      return {
+        chartsPeriod: "24h"
+      };
+    },
+    computed: {
+      statistics() {
+        let data = this.$store.state.dashboard.accountInfo;
+        let currency = this.$store.state.settings.currency;
+        if (data === null) {
+          return null;
+        }
+        let statTable = [
+          { label: "Монета", name: "currency", value: currency },
+          {
+            label: "Доходность за 24 часа",
+            name: "24hprofit",
+            value: data.profit.day
+          },
+          { label: "Схема выплат", name: "paymentscheme", value: data.scheme },
+          { label: "Процент комиссии", name: "Comission", value: data.threshold },
+          { label: "Подключенные майнеры", name: "Miners", value: "-" },
+          { label: "Хэшрейт пула", name: "HashratePool", value: "-" },
+          { label: "Хешрейт сети", name: "HashrateNet", value: "-" },
+          { label: "Высота блока", name: "BlockHeight", value: "-" }
+        ];
+        console.log(statTable);
+        return statTable;
+      },
+      selectedCurrency() {
+        return this.$store.state.settings.currency.toLowerCase();
+      },
+      apiKey() {
+        return this.$store.state.settings.apiKey;
+      },
+      selectedMeasure() {
+        return this.$store.state.dashboard.selectedMeasure;
+      },
+      chartShares() {
+        return this.$store.state.dashboard.charts.shares;
+      },
+      chartHashrate() {
+        let hashrate = this.$store.state.dashboard.charts.hashrate;
+        console.log(hashrate);
+
+        return hashrate
       }
-      let statTable = [
-        { label: "Монета", name: "currency", value: currency },
-        {
-          label: "Доходность за 24 часа",
-          name: "24hprofit",
-          value: data.profit.day
-        },
-        { label: "Схема выплат", name: "paymentscheme", value: data.scheme },
-        { label: "Процент комиссии", name: "Comission", value: data.threshold },
-        { label: "Подключенные майнеры", name: "Miners", value: "-" },
-        { label: "Хэшрейт пула", name: "HashratePool", value: "-" },
-        { label: "Хешрейт сети", name: "HashrateNet", value: "-" },
-        { label: "Высота блока", name: "BlockHeight", value: "-" }
-      ];
-      console.log(statTable);
-      return statTable;
     },
-    selectedCurrency() {
-      return this.$store.state.settings.currency.toLowerCase();
+    watch: {
+      selectedCurrency(newCount, oldCount) {
+        this.clearAll();
+        this.getDataFromApi();
+        this.getChartShares();
+        this.getChartHashrate();
+      }
     },
-    apiKey() {
-      return this.$store.state.settings.apiKey;
+
+    methods: {
+      setChartsPeriod(e) {
+        let period = e.currentTarget.dataset.period;
+        this.chartsPeriod = period;
+        this.clearCharts();
+        this.getChartShares();
+        this.getChartHashrate();
+      },
+      clearAll: function () {
+        this.$store.commit("dashboard/setAccountInfo", null);
+        this.$store.commit("dashboard/setChartShares", null);
+        this.$store.commit("dashboard/setChartHashrate", null);
+      },
+      clearCharts: function () {
+        this.$store.commit("dashboard/setChartShares", null);
+        this.$store.commit("dashboard/setChartHashrate", null);
+      },
+      getDataFromApi: function () {
+        let _this = this;
+        axios
+          .get(`/api/${this.selectedCurrency}/stats?key=${this.apiKey}`)
+          .then(function (response) {
+            console.log("response", response);
+            _this.$store.commit("dashboard/setAccountInfo", response.data);
+            //_this.$forceUpdate();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+      getWorkersFromApi: function () {
+        let _this = this;
+        axios
+          .get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`)
+          .then(function (response) {
+            _this.$store.commit("dashboard/setWokersInfo", response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+      getChartShares: function () {
+        let _this = this;
+        axios
+          .get(
+            `/api/${this.selectedCurrency}/charts/shares?period=${
+            this.chartsPeriod
+            }&key=${this.apiKey}`
+          )
+          .then(function (response) {
+            _this.$store.commit("dashboard/setChartShares", response.data);
+            // _this.chartShares = response.data;
+            //_this.$forceUpdate();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+      getChartHashrate: function () {
+        let _this = this;
+        axios
+          .get(
+            `/api/${this.selectedCurrency}/charts/hashrate?period=${
+            this.chartsPeriod
+            }&key=${this.apiKey}`
+          )
+          .then(function (response) {
+            _this.$store.commit("dashboard/setChartHashrate", response.data);
+            //_this.chartHashrate = response.data;
+            //_this.$forceUpdate();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+      getSMAHashrate: function () {
+        let _this = this;
+        axios
+          .get(
+            `/api/${this.selectedCurrency}/charts/sma?period=${
+            this.chartsPeriod
+            }&key=${this.apiKey}`
+          )
+          .then(function (response) {
+            _this.$store.commit("dashboard/setChartSMAHashrate", response.data);
+            //_this.chartHashrate = response.data;
+            //_this.$forceUpdate();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     },
-    selectedMeasure() {
-      return this.$store.state.dashboard.selectedMeasure;
-    },
-    chartShares() {
-      return this.$store.state.dashboard.charts.shares;
-    },
-    chartHashrate() {
-      return this.$store.state.dashboard.charts.hashrate;
-    }
-  },
-  watch: {
-    selectedCurrency(newCount, oldCount) {
+    created: function () {
+      let _this = this;
       this.clearAll();
       this.getDataFromApi();
       this.getChartShares();
       this.getChartHashrate();
+    },
+    async fetch({ store, app }) {
+      let selectedCurrency = store.state.settings.currency.toLowerCase();
+      let { data: hashrate } = await app.$axios.get(`/api/${selectedCurrency}/charts/hashrate?period=${"24h"}&key=${this.apiKey}`)
+      store.commit("dashboard/setChartHashrate", hashrate)
+      let { data: shares } = await app.$axios.get(`/api/${selectedCurrency}/charts/shares?period=${'24'}&key=${this.apiKey}`)
+      store.commit("dashboard/setChartShares", shares);
+    },
+    mounted: function () {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+        setTimeout(() => this.$nuxt.$loading.finish(), 500);
+      });
+    },
+    beforeDestroy: function () {
+      if (typeof this.updateData !== "null") {
+        clearInterval(this.updateData);
+      }
     }
-  },
-
-  methods: {
-    setChartsPeriod(e) {
-      let period = e.currentTarget.dataset.period;
-      this.chartsPeriod = period;
-      this.clearCharts();
-      this.getChartShares();
-      this.getChartHashrate();
-    },
-    clearAll: function() {
-      this.$store.commit("dashboard/setAccountInfo", null);
-      this.$store.commit("dashboard/setChartShares", null);
-      this.$store.commit("dashboard/setChartHashrate", null);
-    },
-    clearCharts: function() {
-      this.$store.commit("dashboard/setChartShares", null);
-      this.$store.commit("dashboard/setChartHashrate", null);
-    },
-    getDataFromApi: function() {
-      let _this = this;
-      axios
-        .get(`/api/${this.selectedCurrency}/stats?key=${this.apiKey}`)
-        .then(function(response) {
-          console.log("response", response);
-          _this.$store.commit("dashboard/setAccountInfo", response.data);
-          //_this.$forceUpdate();
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
-    getWorkersFromApi: function() {
-      let _this = this;
-      axios
-        .get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`)
-        .then(function(response) {
-          _this.$store.commit("dashboard/setWokersInfo", response.data);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
-    getChartShares: function() {
-      let _this = this;
-      axios
-        .get(
-          `/api/${this.selectedCurrency}/charts/shares?period=${
-            this.chartsPeriod
-          }&key=${this.apiKey}`
-        )
-        .then(function(response) {
-          _this.$store.commit("dashboard/setChartShares", response.data);
-          // _this.chartShares = response.data;
-          //_this.$forceUpdate();
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
-    getChartHashrate: function() {
-      let _this = this;
-      axios
-        .get(
-          `/api/${this.selectedCurrency}/charts/hashrate?period=${
-            this.chartsPeriod
-          }&key=${this.apiKey}`
-        )
-        .then(function(response) {
-          _this.$store.commit("dashboard/setChartHashrate", response.data);
-          //_this.chartHashrate = response.data;
-          //_this.$forceUpdate();
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
-    getSMAHashrate: function() {
-      let _this = this;
-      axios
-        .get(
-          `/api/${this.selectedCurrency}/charts/sma?period=${
-            this.chartsPeriod
-          }&key=${this.apiKey}`
-        )
-        .then(function(response) {
-          _this.$store.commit("dashboard/setChartSMAHashrate", response.data);
-          //_this.chartHashrate = response.data;
-          //_this.$forceUpdate();
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
-  },
-  created: function() {
-    let _this = this;
-    this.clearAll();
-    this.getDataFromApi();
-    this.getChartShares();
-    this.getChartHashrate();
-  },
-  mounted: function() {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start();
-      setTimeout(() => this.$nuxt.$loading.finish(), 500);
-    });
-  },
-  beforeDestroy: function() {
-    if (typeof this.updateData !== "null") {
-      clearInterval(this.updateData);
-    }
-  }
-};
+  };
 </script>

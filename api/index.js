@@ -69,7 +69,7 @@ app.get(['/:currency/:route/:count', '/:currency/:route'], (req, res, next) => {
   let { user, query } = req;
 
   if (routes_1.indexOf(route) === -1) {
-    next('route');
+    return next('route');
   }
 
   console.log(req.route.path, req.user)
@@ -118,10 +118,11 @@ app.get('/:currency/charts/:route', (req, res, next) => {
   let { user, query } = req;
 
   if (routes_charts.indexOf(route) === -1) {
-    next('route');
+    return next('route');
   }
 
   let API_TOKEN = config.sigmapoolToken;
+  console.log('>>>>>>>>>>>>>>>>', req.route.path, req.params)
   console.log(API_TOKEN);
 
   // /api/v1/subaccounts/:username/charts/sma?period=12h||24h||3d
