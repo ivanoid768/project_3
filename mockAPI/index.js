@@ -20,6 +20,24 @@ app.post(`${apiPrefix}/subaccounts`, (req, res) => {
 	res.send({ status: 'success' })
 })
 
+// PATCH /api/v1/subaccounts/:username // update sub
+// {
+//  address: '',
+//  owner_comission: 0.2,
+// }
+// res: { username, address, owner_comission }
+app.patch(`${baseURL}`, (req, res) => {
+	let { body } = req;
+
+	let response = {
+		username: body.username || 'digitalsystems',
+		address: body.address || '',
+		owner_comission: body.owner_comission || 0.2
+	}
+
+	return res.status(200).send(response)
+})
+
 // GET /api/v1/subaccounts/:username/stats // get sub user stats
 // res: { hashrate, avgHashrate1h, avgHashrate24h, balance, rewards, rewards24, paid, scheme, address, threshold, profit: { hour, day, week, month, halfyear, yaer } }
 
@@ -51,7 +69,15 @@ app.get(`${baseURL}/stats`, (req, res) => {
 // GET /api/v1/subaccounts/:username/workers/count // get sub user workers count
 // res: 12
 app.get(`${baseURL}/workers/count`, (req, res) => {
-	let response = '12';
+
+	let { status } = req.query;
+
+	let response = '90';
+
+	if (status == 'online')
+		response = '60'
+	if (status == 'offline')
+		response = '30'
 
 	return res.status(200).send(response)
 })
@@ -59,25 +85,57 @@ app.get(`${baseURL}/workers/count`, (req, res) => {
 // GET /api/v1/subaccounts/:username/workers?page=1&limit=100 // get sub user workers
 // res: [...]
 app.get(`${baseURL}/workers`, (req, res) => {
-	let response = [{
-		name: 'indimining.WORKER_NAME',
+
+	let { limit, page, search, status } = req.query;
+
+	let responseMock = [{
+		name: 'indimining.WORKER_NAME_1',
 		lastShareTime: Date.now() - 1000 * 60 * 60 * 15,
 		hashrate: '10 H/s',
 		avg1Hashrate: '30 H/s',
-		avg24Hashrate: '50 H/s'
+		avg24Hashrate: '50 H/s',
+		status: 'online'
 	}, {
-		name: 'indimining.WORKER_NAME',
+		name: 'indimining.WORKER_NAME_2',
 		lastShareTime: Date.now() - 1000 * 60 * 60 * 5,
 		hashrate: '15 H/s',
 		avg1Hashrate: '25 H/s',
-		avg24Hashrate: '70 H/s'
+		avg24Hashrate: '70 H/s',
+		status: 'online'
 	}, {
-		name: 'indimining.WORKER_NAME',
+		name: 'indimining.WORKER_NAME_3',
 		lastShareTime: Date.now() - 1000 * 60 * 60 * 10,
 		hashrate: '10 H/s',
 		avg1Hashrate: '35 H/s',
-		avg24Hashrate: '60 H/s'
+		avg24Hashrate: '60 H/s',
+		status: 'offline'
 	}]
+
+	let response = [];
+
+	for (let i = 0; i < 30; i++) {
+
+		response = response.concat(responseMock)
+
+	}
+
+	if (search)
+		response = response.filter(item => item.name.indexOf(search) != -1)
+	if (status && status != 'any')
+		response = response.filter(item => item.status == status)
+
+	if (!page)
+		page = 1;
+	if (!limit)
+		limit = 25;
+
+	let end = page * limit;
+	if (page * limit > response.length) {
+		end = limit - (page * limit - response.length)
+		end = ((page - 1) * limit) + end
+	}
+
+	response = response.slice((page - 1) * limit, end);
 
 	return res.status(200).send(response)
 })
@@ -323,7 +381,18 @@ app.get(`${baseURL}/earnings`, (req, res) => {
 		}
 	]
 
-	response = response.slice(0, limit);
+	if (!page)
+		page = 1;
+	if (!limit)
+		limit = 25;
+
+	let end = page * limit;
+	if (page * limit > response.length) {
+		end = limit - (page * limit - response.length)
+		end = ((page - 1) * limit) + end
+	}
+
+	response = response.slice((page - 1) * limit, end);
 
 	return res.status(200).send(response)
 })
@@ -567,6 +636,20 @@ app.get(`${baseURL}/dailyearnings`, (req, res) => {
 		}
 	]
 
+	let { limit, page } = req.query;
+	if (!page)
+		page = 1;
+	if (!limit)
+		limit = 25;
+
+	let end = page * limit;
+	if (page * limit > response.length) {
+		end = limit - (page * limit - response.length)
+		end = ((page - 1) * limit) + end
+	}
+
+	response = response.slice((page - 1) * limit, end);
+
 	return res.status(200).send(response)
 })
 
@@ -744,7 +827,22 @@ app.get(`${baseURL}/payments`, (req, res) => {
 		}
 	]
 
-	response = response.slice(0, limit);
+	if (!page)
+		page = 1;
+	if (!limit)
+		limit = 25;
+
+	// console.log(page, limit, response.length);
+
+	let end = page * limit;
+	if (page * limit > response.length) {
+		end = limit - (page * limit - response.length)
+		end = ((page - 1) * limit) + end
+	}
+
+	response = response.slice((page - 1) * limit, end);
+
+	// console.log(limit, response.length);
 
 	return res.status(200).send(response)
 })
@@ -763,6 +861,10 @@ app.get(`${baseURL}/charts/hashrate`, (req, res) => {
 		y: 0.05
 	}]
 
+	for (let i = 0; i < 3; i++) {
+		response = response.concat(response)
+	}
+
 	return res.status(200).send(response)
 })
 
@@ -780,6 +882,10 @@ app.get(`${baseURL}/charts/sma`, (req, res) => {
 		y: 0.57
 	}]
 
+	for (let i = 0; i < 3; i++) {
+		response = response.concat(response)
+	}
+
 	return res.status(200).send(response)
 })
 
@@ -796,6 +902,10 @@ app.get(`${baseURL}/charts/shares`, (req, res) => {
 		x: Date.now() - 1000 * 60 * 60 * 1,
 		y: 0.57
 	}]
+
+	for (let i = 0; i < 3; i++) {
+		response = response.concat(response)
+	}
 
 	return res.status(200).send(response)
 })

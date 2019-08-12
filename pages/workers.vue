@@ -28,7 +28,8 @@
               <div class="plate_title">
               </div>
               <div class="plate_body">
-                <Table_workers :workersCount="workersCount" v-bind:dataset="workersData" :onFilter="onFilter" @onSearch="onSearch" />
+                <Table_workers :workersCount="workersCount" v-bind:dataset="sortedWorkersData" :onFilter="onFilter" @onSearch="onSearch"
+                  @onLimit="onLimit" @onSort="onSort" />
               </div>
             </div>
           </div>
@@ -48,7 +49,9 @@
     components: { Navigation, Table_workers },
     data: () => {
       return {
-        workersData: null
+        workersData: null,
+        reqParams: {},
+        sort: 'name'
       }
     },
 
@@ -58,12 +61,15 @@
       },
       apiKey() {
         return this.$store.state.settings.apiKey;
+      },
+      sortedWorkersData() {
+        return this.sortWorkers(this.sort)
       }
     },
     watch: {
       selectedCurrency(newCount, oldCount) {
         this.workersData = null;
-        this.getWorkersFromApi();
+        this.updateWorkers();
       }
     },
     methods: {
@@ -80,26 +86,59 @@
           });
 
       },
-      async onFilter(status) {
+      async updateWorkers(params) {
+        let prm = params || this.reqParams;
+
         let { data: workersData } = await this.$axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`, {
-          params: {
-            status: status
-          }
+          params: prm
         })
 
         this.workersData = workersData;
       },
+      async onFilter(status) {
+        if (status)
+          this.reqParams.status = status;
+        else
+          delete this.reqParams.status
+
+        await this.updateWorkers();
+
+      },
       async onSearch(search) {
-        let params = {}
-
         if (search)
-          params.search = search
+          this.reqParams.search = search;
+        else
+          delete this.reqParams.search
 
-        let { data: workersData } = await this.$axios.get(`/api/${this.selectedCurrency}/workers?key=${this.apiKey}`, {
-          params: params
+        await this.updateWorkers();
+      },
+      async onLimit(limit) {
+        if (limit)
+          this.reqParams.limit = limit;
+        else
+          delete this.reqParams.limit
+
+        await this.updateWorkers();
+      },
+      onSort(sort) {
+        // debugger
+        this.sort = sort;
+        this.workersData = this.sortWorkers(sort)
+      },
+      sortWorkers(sort) {
+        if (!this.workersData)
+          return null;
+
+        let workers = [...this.workersData];
+
+        workers.sort((a, b) => {
+          if (a[sort] > b[sort]) return 1;
+          if (a[sort] == b[sort]) return 0;
+          if (a[sort] < b[sort]) return -1;
         })
 
-        this.workersData = workersData;
+        return workers;
+        // console.log(workers);
       }
     },
     async asyncData({ store, app }) {

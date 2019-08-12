@@ -378,7 +378,9 @@
           .then(response => {
             let active = response.data;
             return this.$axios.get(`/api/${this.selectedCurrency}/workers/count?key=${this.apiKey}`, {
-              status: 'offline'
+              params: {
+                status: 'offline'
+              }
             })
               .then(response => {
                 return { active: active, notActive: response.data }

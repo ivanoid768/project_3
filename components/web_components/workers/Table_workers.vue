@@ -32,9 +32,9 @@
             <div class="dropdown-block">
               <span class="dropdown-active"></span>
               <ul class="dropdown-list">
-                <li><button> 25</button></li>
-                <li><button> 50 </button></li>
-                <li><button> 100</button></li>
+                <li><button @click="onLimitChanged" data-limit="25"> 25</button></li>
+                <li><button @click="onLimitChanged" data-limit="50"> 50 </button></li>
+                <li><button @click="onLimitChanged" data-limit="100"> 100</button></li>
               </ul>
             </div>
           </div>
@@ -48,11 +48,11 @@
             <div class="dropdown-block">
               <span class="dropdown-active"></span>
               <ul class="dropdown-list">
-                <li><button> Имя</button></li>
-                <li><button> Последняя шара</button></li>
-                <li><button> Текущий хешрейт</button></li>
-                <li><button> Средний хешрейт за час</button></li>
-                <li><button> Средний хешрейт за 24ч</button></li>
+                <li><button @click="onSort" data-sort="name"> Имя</button></li>
+                <li><button @click="onSort" data-sort="lastShareTime"> Последняя шара</button></li>
+                <li><button @click="onSort" data-sort="hashrate"> Текущий хешрейт</button></li>
+                <li><button @click="onSort" data-sort="avg1Hashrate"> Средний хешрейт за час</button></li>
+                <li><button @click="onSort" data-sort="avg24Hashrate"> Средний хешрейт за 24ч</button></li>
               </ul>
             </div>
           </div>
@@ -118,7 +118,7 @@
     data: function () {
       return {
         limit: 25,
-        sort: "имени",
+        sort: "Имя",
         filterStatus: 'online',
         search: ''
       }
@@ -138,6 +138,26 @@
       },
       onSearch() {
         this.$emit('onSearch', this.search)
+      },
+      onLimitChanged(e) {
+        // debugger
+        let limit = e.target.dataset.limit
+        this.limit = limit
+        this.$emit('onLimit', this.limit)
+      },
+      onSort(e) {
+        let sort = e.target.dataset.sort
+
+        let namekeyhash = {
+          name: 'Имя',
+          lastShareTime: 'Последняя шара',
+          hashrate: 'Текущий хешрейт',
+          avg1Hashrate: 'Средний хешрейт за час',
+          avg24Hashrate: 'Средний хешрейт за 24ч'
+        }
+
+        this.sort = namekeyhash[sort]
+        this.$emit('onSort', sort)
       }
     },
     mounted: function () {
@@ -149,6 +169,26 @@
 <style lang="scss" scoped>
   div#item-pagesize.filter:hover ul {
     display: block;
-    margin-left: 135px;
+    margin-left: 140px;
+    padding: 0;
+    text-align: right;
+  }
+
+  div#item-name.filter:hover .dropdown-list {
+    display: block;
+    padding: 0;
+    text-align: center;
+  }
+
+  // div#item-name.filter:hover .dropdown-list button {
+  //   text-align: right;
+  // }
+
+  .dropdown-list li {
+    list-style: none;
+  }
+
+  .dropdown-list {
+    padding-left: 0;
   }
 </style>
