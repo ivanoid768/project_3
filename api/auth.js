@@ -66,7 +66,7 @@ router.post('/registration', function (req, res) {
 
 				bcrypt.hash(user.password, 10, function (err, pass_hash) {
 
-					if (err) return res.send({ status: 'server_error', error: { err: err, message: 'server_error' } });
+					if (err) return res.send({ status: 'server_error', error: { err: err, message: 'server_error_hash' } });
 
 					UserModel.create({
 						userName: data.username || user.username,
