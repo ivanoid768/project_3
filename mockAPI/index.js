@@ -1,23 +1,38 @@
 const express = require('express');
 
 const app = express();
-const baseURL = '/subaccounts/:username';
+let baseURL = '/subaccounts/:username';
 
 let apiPrefix = '';
 
 if (!module.parent) {
 	apiPrefix = '/mockapi'
+	baseURL = apiPrefix + baseURL;
 }
+console.log(baseURL);
 
 app.use(express.json())
 app.use(express.urlencoded({
 	extended: true
 }));
 
+// POST /api/v1/subaccounts // create sub
+// {
+//  subaccount: 'sub username',
+//  address: 'wallet address',
+//  owner_comission: 0.01, 
+// }
+// res: { subaccount, address, owner_comission }
 app.post(`${apiPrefix}/subaccounts`, (req, res) => {
-	console.log(req.body);
+	console.log(req.body)
+	let { subaccount, address, owner_comission } = req.body
 
-	res.send({ status: 'success' })
+	res.send({
+		subaccount: subaccount || 'digitalsystems',
+		address: address || '',
+		owner_comission: owner_comission || 0.01
+	})
+
 })
 
 // PATCH /api/v1/subaccounts/:username // update sub

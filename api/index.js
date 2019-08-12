@@ -33,7 +33,13 @@ app.use('/', (req, res, next) => {
 })
 
 var protocol = "http";
-var apiUrl = process.env.MOCKAPI ? 'localhost:8080/subaccounts' : "sigmapool.com/api/v1/subaccounts";
+var apiUrl = process.env.MOCKAPI ? `${process.env.MOCKAPI}/subaccounts` : "sigmapool.com/api/v1/subaccounts";
+
+if (process.env.MOCKAPI) {
+  if (apiUrl.indexOf('://') >= 0) {
+    apiUrl = apiUrl.split('://')[1];
+  }
+}
 
 var ltcApiUrl = "";
 
