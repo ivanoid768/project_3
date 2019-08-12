@@ -931,5 +931,5 @@ module.exports = {
 };
 
 if (!module.parent) {
-	app.listen(8080, port => console.log(port))
+	app.listen(8080, port => console.log(app))
 }
