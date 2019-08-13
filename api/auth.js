@@ -6,6 +6,7 @@ const Settings = require('./models/settings');
 const UserHistory = require('./models/user-history');
 // const bodyParser = require('body-parser');
 const config = require('./config');
+const FormData = require('form-data');
 import checkUser from '../utils/checkUser';
 
 const router = express.Router();
@@ -19,9 +20,7 @@ const axInst = axios.create({
 	}
 })
 
-let regHeaders = {
-	'Content-Type': process.env.MOCKAPI ? 'application/x-www-form-urlencoded; charset=UTF-8' : 'multipart/form-data; charset=UTF-8'
-}
+
 
 router.post('/registration', function (req, res) {
 	let user = req.body;
@@ -48,17 +47,21 @@ router.post('/registration', function (req, res) {
 	}
 
 	console.log(axInst.defaults, config.comission);
+	let fd = new FormData();
+	fd.append('subaccount', user.username)
+	fd.append('address', user.BTCAddress)
+	fd.append('owner_comission', config.comission)
 
-	axInst.post('/subaccounts', {
-		subaccount: user.username,
-		address: user.BTCAddress,
-		owner_comission: config.comission
-	}, {
-			headers: regHeaders,
-			params: {
-				key: config.sigmapoolToken
-			}
-		})
+	let regHeaders = {
+		'Content-Type': process.env.MOCKAPI ? 'application/x-www-form-urlencoded; charset=UTF-8' : `multipart/form-data; ; boundary=${fd.getBoundary()}`
+	}
+
+	axInst.post('/subaccounts', fd, {
+		headers: fd.getHeaders(),
+		params: {
+			key: config.sigmapoolToken
+		}
+	})
 		.then(response => {
 			console.log('reg sub data: ', response.data)
 			if (response.status === 200) {
@@ -69,7 +72,7 @@ router.post('/registration', function (req, res) {
 					if (err) return res.send({ status: 'server_error', error: { err: err, message: 'server_error_hash' } });
 
 					UserModel.create({
-						userName: data.username || user.username,
+						userName: data.subaccount || user.username,
 						email: user.email,
 						password: pass_hash,
 						BTCAddress: data.address || user.BTCAddress

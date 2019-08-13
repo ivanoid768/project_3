@@ -137,6 +137,7 @@ app.get('/:currency/charts/:route', (req, res, next) => {
   if (process.env.MOCKAPI)
     url = `${protocol}://${apiUrl}/${user.userName}/charts/${route}`;
 
+  console.log(url);
   let qr = {
     ...query,
     key: API_TOKEN
