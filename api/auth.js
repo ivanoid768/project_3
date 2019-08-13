@@ -13,7 +13,7 @@ const router = express.Router();
 const UserModel = require('./models/users-model');
 
 const axInst = axios.create({
-	baseURL: process.env.MOCKAPI || 'http://btc.sigmapool.com/api/v1',
+	baseURL: process.env.MOCKAPI || 'https://btc.sigmapool.com/api/v1',
 	params: {
 		key: config.sigmapoolToken
 	}

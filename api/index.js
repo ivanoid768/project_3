@@ -32,13 +32,14 @@ app.use('/', (req, res, next) => {
 
 })
 
-var protocol = "http";
+var protocol = "https";
 var apiUrl = process.env.MOCKAPI ? `${process.env.MOCKAPI}/subaccounts` : "sigmapool.com/api/v1/subaccounts";
 
 if (process.env.MOCKAPI) {
   if (apiUrl.indexOf('://') >= 0) {
     apiUrl = apiUrl.split('://')[1];
   }
+  protocol = "http"
 }
 
 var ltcApiUrl = "";
