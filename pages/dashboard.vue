@@ -426,7 +426,7 @@
       let selectedCurrency = store.state.settings.currency.toLowerCase();
       let { data } = await app.$axios.get(`/api/${selectedCurrency}/charts/hashrate?period=${"24h"}&key=${this.apiKey}`)
       store.commit("dashboard/setChartHashrate", data)
-      let shares = await app.$axios.get(`/api/${selectedCurrency}/charts/shares?period=${'24'}&key=${this.apiKey}`)
+      let shares = await app.$axios.get(`/api/${selectedCurrency}/charts/shares?period=${'24h'}&key=${this.apiKey}`)
       store.commit("dashboard/setChartShares", shares.data);
     },
     mounted: function () {
