@@ -1,9 +1,9 @@
 <template>
   <table class="table_data accountants" v-if="dataset !==null">
     <tr>
-      <th v-for="head in headers">{{head}}</th>
+      <th v-for="(head,index) in headers" :key="index">{{head}}</th>
     </tr>
-    <tr v-for="item in dataset">
+    <tr v-for="(item,index) in dataset" :key="index">
       <td>{{moment(item.created).format("DD.MM.YYYY HH:mm:ss")}}</td>
       <td>{{item.amount}} {{currency}}</td>
       <td>{{item.usage}}</td>
@@ -30,7 +30,7 @@
       },
       headers: {
         default: function () {
-        return  [
+          return [
             "Дата ",
             "Сумма",
             "Информация",
@@ -41,18 +41,18 @@
       page: {
         default: 1
       },
-      pageSize:{
+      pageSize: {
         default: 20
       }
     },
-    data:function (){
+    data: function () {
       return {
-        currency:"BTC"//this.$store.settings.currentCurrency
+        currency: "BTC"//this.$store.settings.currentCurrency
       }
     },
-    methods:{
-      moment: function () {
-        return moment()
+    methods: {
+      moment: function (...args) {
+        return moment(args)
       }
     }
 
