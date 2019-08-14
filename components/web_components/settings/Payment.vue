@@ -6,39 +6,19 @@
     <div class="plate_body">
       <div class="form-group">
         <div class="form-row">
-          <div class="col-md-4 col-form-label">
-            <span class="url-label">Схема выплат</span>
-          </div>
-          <div class="col-md-4  col-form-label">
-            <div class="controll option-selector">
-              <input type="radio" id="PPS" name="paymentType" value="PPS" v-model="paymentTypeData" style='visibility:hidden; display:none;' />
-              <label for="PPS" class="option" :style="PPSCheckedStyle"> PPS</label>
-
-              <input type="radio" id="PPLNS" name="paymentType" value="PPLNS" v-model="paymentTypeData" style='visibility:hidden; display:none;' />
-              <label for="PPLNS" class="option" :style="PPLNSCheckedStyle"> PPLNS</label>
-            </div>
-          </div>
-          <div class="col-md-4 col-form-label">
-            <button @click.prevent="updatePaymentType" class="controll btn active">Обновить</button>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div class="form-group">
-        <div class="form-row">
           <div class="col-md-3 col-form-label">
             <span class="url-label">Порог выплат <br />
               <i class="label-measure" style="font-style:normal">(>= 0.01 LTC)</i></span>
           </div>
           <div class="col-md-5  col-form-label">
             <div class="controll  number-selector">
-              <input type="number" step="0.01" v-model="paymentLimitData" />
+              <input disabled type="number" step="0.01" v-model="paymentLimitData" />
               <span class="arrow-top"></span>
               <span class="arrow-bottom"></span>
             </div>
           </div>
           <div class="col-md-4 col-form-label">
-            <button @click.prevent="setPaymentLimit" class="controll btn active">Изменить</button>
+            <button disabled @click.prevent="setPaymentLimit" class="controll btn active">Изменить</button>
           </div>
         </div>
       </div>

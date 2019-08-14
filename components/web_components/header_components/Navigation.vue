@@ -3,13 +3,11 @@
     <div class="container">
       <Logo />
       <DropdownCurrency />
-      <button class="navbar-toggler" type="button" @click="menuToggle" data-toggle="collapse"
-        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" @click="menuToggle" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" v-bind:class="show ? 'show' : ''"
-        id="navbarNavDropdown">
+      <div class="collapse navbar-collapse" v-bind:class="show ? 'show' : ''" id="navbarNavDropdown">
         <ul class="navbar nav">
           <li class="nav-item">
             <nuxt-link class="nav-link " to="/dashboard">Дашборд</nuxt-link>
@@ -21,13 +19,7 @@
             <nuxt-link class="nav-link " to="/payments">Начисления</nuxt-link>
           </li>
           <li class="nav-item">
-            <nuxt-link class="nav-link " to="/statistics">Статистика</nuxt-link>
-          </li>
-          <li class="nav-item">
             <nuxt-link class="nav-link " to="/settings">Настройки</nuxt-link>
-          </li>
-          <li class="nav-item">
-            <nuxt-link class="nav-link " to="/help">Помощь</nuxt-link>
           </li>
         </ul>
 

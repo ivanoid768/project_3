@@ -1,14 +1,13 @@
 <template>
   <div class="btn-group dropdown-currency">
-   
-  <button type="button" class="btn btn-light dropdown-toggle " @click="dropToggle">
-    <i class="currency-icon" v-bind:class="currencyIcon"></i>  {{currency}}
-  </button> 
+
+    <button type="button" class="btn btn-light dropdown-toggle " @click="dropToggle">
+      <i class="currency-icon" v-bind:class="currencyIcon"></i> {{currency}}
+    </button>
     <!--<button type="button" class="btn btn-light dropdown-toggle"   @click="$store.commit('increment')">{{ //$store.state.counter }}</button>-->
     <div class="dropdown-menu" v-if="showDrop">
       <button class="dropdown-btn" @click="selectCurrency" data-currency="BTC"><i class="currency-icon btc"></i>BTC</button>
       <button class="dropdown-btn" @click="selectCurrency" data-currency="LTC"><i class="currency-icon  ltc"></i>LTC</button>
-      <button class="dropdown-btn" @click="selectCurrency" data-currency="DASH"><i class="currency-icon dash"></i>DASH</button>
     </div>
   </div>
 </template>
@@ -34,7 +33,7 @@
       currencyIcon() {
         return this.$store.state.settings.currency.toLowerCase();
       }
-    }, 
+    },
     methods: {
       selectCurrency: function (e) {
         let currency = e.currentTarget.dataset.currency;
@@ -46,7 +45,7 @@
       },
       dropToggle: function () {
         this.showDrop = !this.showDrop;
-      }, 
+      },
       ...mapMutations({
         settings: 'settings/setCurrency'
       }),
@@ -56,7 +55,7 @@
     mounted: function () {
 
     }
-    
-  } 
+
+  }
 
 </script>

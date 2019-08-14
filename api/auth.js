@@ -201,6 +201,32 @@ router.post('/user', (req, res, next) => {
 	}
 	if (usr.BTCAddress) {
 		updateUser.BTCAddress = usr.BTCAddress
+		if (!usr.email && !usr.userName && !usr.password) {
+
+			let fd = new FormData();
+			fd.append('address', usr.BTCAddress)
+			fd.append('owner_comission', config.comission)
+
+			axInst.patch(`/subaccounts/${req.user.userName}`, fd, {
+				headers: fd.getHeaders(),
+				params: {
+					key: config.sigmapoolToken
+				}
+			})
+				.then(({ data }) => {
+					updateUser.BTCAddress = data.address
+					return UserModel.findByIdAndUpdate(id, updateUser);
+				})
+				.then(() => {
+					return res.status(200).send({ status: 'success' })
+					// return next()
+				})
+				.catch(err => {
+					res.status(500).send({ status: 'error', err: err })
+					return next()
+				})
+
+		}
 	}
 	if (usr.password) {
 		updateUser.password = usr.password
@@ -320,6 +346,13 @@ router.post('/settings', (req, res) => {
 				erorr: err
 			})
 		})
+
+})
+
+router.get('/settings/poolconnurls', (req, res) => {
+	let pcurls = config.poolConnUrls;
+
+	return res.status(200).send(pcurls)
 
 })
 

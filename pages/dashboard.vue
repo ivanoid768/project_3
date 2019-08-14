@@ -14,10 +14,6 @@
               </div>
               <div class="col-md-4">
                 <div class="block-title-slot">
-                  <div class="block_statistics_currency_course">
-                    <span class="crypto_currency_selected">BITCOIN</span>
-                    <span class="currseny_selected_course">USD: <i class="currency_selected_value">55.40</i></span>
-                  </div>
                 </div>
               </div>
             </div>

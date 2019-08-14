@@ -16,22 +16,6 @@
     </div>
     <div class="plate_body">
       <div class="option form-group">
-        <div class="form-row">
-          <div class="col col-form-label">
-            <span class="option-label">Двухфакторная аутентификация</span>
-          </div>
-          <div @click="updateDoubleFactorAuth" class="col col-form-label">
-            <label class="controll switcher" :class="{active: switchOn}">
-              <span id="updateDoubleFactorAuthOn" class="switcher-label" :class="{active: switchOn}">{{switchOn ? 'ВКЛ' : 'ВЫКЛ'}}</span>
-              <!-- <span v-else @click="updateDoubleFactorAuth" id="updateDoubleFactorAuthOff" class="switcher-label">ВЫКЛ</span> -->
-              <!-- <input v-model="doubleFactorAuthData" type="hidden" value="false" /> -->
-              <span class="toggle"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div class="option form-group">
         <div class="form-sub-header">Настройки аккаунта</div>
         <div class="form-row">
           <div class="col col-form-label">

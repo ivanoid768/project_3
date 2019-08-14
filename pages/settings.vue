@@ -46,23 +46,23 @@
                     <div class="form-row">
                       <div class="col-sm-2 col-form-label"><span class="url-label">URL #1</span>
                       </div>
-                      <div class="col col-form-label"><span class="option-label">stratum+tcp://eu.ltc.sigmapool.com:3333</span></div>
+                      <div class="col col-form-label"><span class="option-label">{{poolConnUrls.one}}</span></div>
                     </div>
                     <div class="form-row">
                       <div class="col-sm-2 col-form-label"><span class="url-label">URL #2</span>
                       </div>
-                      <div class="col col-form-label"><span class="option-label">stratum+tcp://eu.ltc.sigmapool.com:3333</span></div>
+                      <div class="col col-form-label"><span class="option-label">{{poolConnUrls.two}}</span></div>
                     </div>
 
                     <div class="form-row">
                       <div class="col-sm-2 col-form-label"><span class="url-label">URL #3</span>
                       </div>
-                      <div class="col col-form-label"><span class="option-label">stratum+tcp://eu.ltc.sigmapool.com:3333</span></div>
+                      <div class="col col-form-label"><span class="option-label">{{poolConnUrls.three}}</span></div>
                     </div>
                     <div class="form-row">
                       <div class="col-sm-2 col-form-label"><span class="url-label">Майнер</span>
                       </div>
-                      <div class="col col-form-label"><span class="option-label">indimining.WORKER_NAME</span></div>
+                      <div class="col col-form-label"><span class="option-label">{{workerName}}</span></div>
                     </div>
                     <div class="form-row">
                       <div class="col-sm-2 col-form-label"><span class="url-label">Пароль</span>
@@ -86,9 +86,6 @@
             <div class="col-md-6">
               <Payment></Payment>
             </div>
-            <div class="col-md-6">
-              <Notifications></Notifications>
-            </div>
           </div>
         </div>
         <UserActionsHistory></UserActionsHistory>
@@ -106,13 +103,13 @@
   import Table_history_notify from '~/components/web_components/settings/Table_history_notify.vue';
   import Pagination from '~/components/web_components/edit_components/pagination.vue';
   import Payment from '~/components/web_components/settings/Payment';
-  import Notifications from '~/components/web_components/settings/Notifications';
   import Security from '~/components/web_components/settings/Security';
   import UserActionsHistory from '~/components/web_components/settings/UserActionsHistory';
 
   import { mapState } from 'vuex';
+  import { async } from 'q';
   export default {
-    components: { Navigation, Table_history_notify, Pagination, Payment, Notifications, Security, UserActionsHistory },
+    components: { Navigation, Table_history_notify, Pagination, Payment, Security, UserActionsHistory },
     props: {
       data: {
         default: function () {
@@ -125,7 +122,10 @@
       }
     },
     computed: {
-      ...mapState('settings', ['paymentType', 'paymentLimit', 'paymentAddress', 'doubleFactorAuth'])
+      ...mapState('settings', ['paymentType', 'paymentLimit', 'paymentAddress', 'doubleFactorAuth']),
+      workerName() {
+        return this.$store.state.auth.user.username;
+      }
     },
     methods: {
       setSettingValue: function (e) {
@@ -144,6 +144,16 @@
     async fetch({ store, app }) {
       let { data } = await app.$axios.get('/api/auth/settings');
       store.commit('settings/updateSettings', data)
+    },
+    async asyncData({ app }) {
+      let { data: poolurls } = await app.$axios.get('/api/auth/settings/poolconnurls');
+      return {
+        poolConnUrls: {
+          one: poolurls.one,
+          two: poolurls.two,
+          three: poolurls.three,
+        }
+      }
     }
   }
 </script>
