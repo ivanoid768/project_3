@@ -226,7 +226,7 @@
   import Table_graphic_bar from '~/components/web_components/dashboard/Table_graphic_bar.vue';
   import Table_graphic_line from '~/components/web_components/dashboard/Table_graphic_line.vue';
   import axios from 'axios';
-
+  import { hashThs, hashRoundWithPrefix } from '../utils/hashPrefix';
 
 
   let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
@@ -270,11 +270,26 @@
         return this.$store.state.dashboard.selectedMeasure;
       },
       chartShares() {
-        return this.$store.state.dashboard.charts.shares;
+        let shares = this.$store.state.dashboard.charts.shares;
+        shares = shares.map(hashrate => {
+          console.log(hashRoundWithPrefix(hashrate.y));
+
+          return {
+            x: hashrate.x,
+            y: parseInt(hashRoundWithPrefix(hashrate.y))
+          }
+        })
+        return shares;
       },
       chartHashrate() {
         let hashrate = this.$store.state.dashboard.charts.hashrate;
-        return hashrate;
+        let modedHashrate = hashrate.map(hashrate => {
+          return {
+            x: hashrate.x,
+            y: parseInt(hashThs(hashrate.y))
+          }
+        })
+        return modedHashrate;
       },
       workersInfo() {
         return this.$store.state.dashboard.workersInfo;

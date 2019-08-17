@@ -66,9 +66,9 @@
       <tr v-for="(item, index) in dataset" :key="index">
         <td>{{item.name}}</td>
         <td>{{item.lastShareTime}}</td>
-        <td>{{item.hashrate}}</td>
-        <td>{{item.avg1Hashrate}}</td>
-        <td>{{item.avg24Hashrate}}</td>
+        <td>{{btfyHash(item.hashrate)}}</td>
+        <td>{{btfyHash(item.avg1Hashrate)}}</td>
+        <td>{{btfyHash(item.avg24Hashrate)}}</td>
       </tr>
     </table>
     <div class="dash_preloader" v-else>
@@ -78,6 +78,8 @@
 </template> 
 
 <script>
+  import { hashRoundWithPrefix } from '../../../utils/hashPrefix'
+
   export default {
     props: {
       workersCount: {
@@ -158,6 +160,9 @@
 
         this.sort = namekeyhash[sort]
         this.$emit('onSort', sort)
+      },
+      btfyHash(hash) {
+        return hashRoundWithPrefix(hash)
       }
     },
     mounted: function () {
