@@ -52,7 +52,8 @@
     },
     methods: {
       moment: function (...args) {
-        return moment(args)
+
+        return moment(...args)
       }
     }
 
