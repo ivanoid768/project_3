@@ -1,5 +1,7 @@
  <script>
   import { Line, mixins } from 'vue-chartjs'
+  import { hashRoundWithPrefix } from '../../../utils/hashPrefix';
+
   const { reactiveProp } = mixins;
   export default {
     props: {
@@ -60,6 +62,7 @@
       this.renderChart({
 
         labels: labels,
+        yLabels: ['Th/s', 'Th/s'],
         datasets: [
           {
             backgroundColor: ['rgba(234, 102, 92, 0.2'],
@@ -73,7 +76,17 @@
         {
           legend: { display: false },
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          scales: {
+            yAxes: [{
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function (value, index, values) {
+                  return hashRoundWithPrefix(value);
+                }
+              }
+            }]
+          }
         }
       )
     }
