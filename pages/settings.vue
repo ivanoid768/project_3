@@ -124,7 +124,16 @@
     computed: {
       ...mapState('settings', ['paymentType', 'paymentLimit', 'paymentAddress', 'doubleFactorAuth']),
       workerName() {
-        return this.$store.state.auth.user.username;
+        return this.$store.state.auth.user.username + '.WORKER_NAME';
+      },
+      currency() {
+        return this.$store.state.settings.currency.toLowerCase();
+      }
+    },
+    watch: {
+      async currency(newVal) {
+        let { data: poolurls } = await this.$axios.get(`/api/auth/${newVal}/settings/poolconnurls`);
+        this.poolConnUrls = poolurls;
       }
     },
     methods: {
@@ -145,8 +154,9 @@
       let { data } = await app.$axios.get('/api/auth/settings');
       store.commit('settings/updateSettings', data)
     },
-    async asyncData({ app }) {
-      let { data: poolurls } = await app.$axios.get('/api/auth/settings/poolconnurls');
+    async asyncData({ app, store }) {
+      let currency = store.state.settings.currency.toLowerCase();
+      let { data: poolurls } = await app.$axios.get(`/api/auth/${currency}/settings/poolconnurls`);
       return {
         poolConnUrls: {
           one: poolurls.one,

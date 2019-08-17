@@ -6,8 +6,15 @@ module.exports = {
     comission: '0.5',
     tokenKey: process.env.TOKEN_KEY || "djghhdhuuwiduewihuwiehriwu",
     poolConnUrls: {
-        one: process.env.POOLCONNURL1 || "stratum+tcp://eu.ltc.sigmapool.com:3333",
-        two: process.env.POOLCONNURL2 || "stratum+tcp://eu.ltc.sigmapool.com:3333",
-        three: process.env.POOLCONNURL3 || "stratum+tcp://eu.ltc.sigmapool.com:3333"
+        btc: {
+            one: process.env.POOLCONNURL_BTC1 || "stratum+tcp://eu.btc.sigmapool.com:3333",
+            two: process.env.POOLCONNURL_BTC2 || "stratum+tcp://eu.btc.sigmapool.com:3333",
+            three: process.env.POOLCONNURL_BTC3 || "stratum+tcp://eu.btc.sigmapool.com:3333"
+        },
+        ltc: {
+            one: process.env.POOLCONNURL_LTC1 || "stratum+tcp://eu.ltc.sigmapool.com:3333",
+            two: process.env.POOLCONNURL_LTC2 || "stratum+tcp://eu.ltc.sigmapool.com:3333",
+            three: process.env.POOLCONNURL_LTC3 || "stratum+tcp://eu.ltc.sigmapool.com:3333"
+        }
     }
 };

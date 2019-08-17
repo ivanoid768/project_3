@@ -211,32 +211,6 @@
           </div>
         </div>
       </div>
-      <div class="block" id="remuniration_calc">
-        <div class="block-title">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="block-title-slot">
-                  <h3 class="block-title text-left">Калькулятор доходности</h3>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="block-title-slot">
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="block-body">
-          <div class="plate ">
-            <div class="plate_body max-width">
-              <Table_calc :btc="accountInfo.profit" :dash="accountInfo.profit" :ltc="accountInfo.profit" />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="dash_preloader" v-else>
       <img src="~assets/img/gears-anim.gif" />

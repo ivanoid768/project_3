@@ -349,8 +349,9 @@ router.post('/settings', (req, res) => {
 
 })
 
-router.get('/settings/poolconnurls', (req, res) => {
-	let pcurls = config.poolConnUrls;
+router.get('/:currency/settings/poolconnurls', (req, res) => {
+	let { currency } = req.params;
+	let pcurls = config.poolConnUrls[currency];
 
 	return res.status(200).send(pcurls)
 
