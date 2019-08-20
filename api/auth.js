@@ -130,15 +130,24 @@ router.post('/login', (req, res) => {
 						let apiUser = resp.data;
 						let { scheme, threshold } = apiUser;
 
-						Settings.findOneAndUpdate({ userId: user.id }, {
+						return Settings.findOneAndUpdate({ userId: user.id }, {
 							paymentType: scheme,
-							paymentLimit: threshold
+							paymentLimit: [
+								{ currency: "BTC", value: threshold }
+							]
 						})
 					})
+					.then(() => {
 
-				res.send({
-					token
-				})
+						return res.send({
+							token
+						})
+
+					})
+					.catch(err => {
+						return res.status(500).send(err)
+					})
+
 			}
 			else {
 				res.status(400).send({ message: 'Неверный Пароль/Имя пользователя' });
@@ -344,12 +353,37 @@ router.get('/settings', (req, res) => {
 router.post('/settings', (req, res) => {
 
 	let newSett = req.body;
+	let { user } = req;
 
-	Settings.findOneAndUpdate({ userId: req.user.id }, newSett).then(settings => {
-		res.status(200).send({
-			...settings._doc,
-			newSett: newSett
+	Settings.findOneAndUpdate({ userId: req.user.id }, newSett).then(() => {
+
+		Settings.findOne({ userId: user.id }, (err, settings) => {
+
+			console.log('Settings: >>>', settings);
+			let fd = new FormData()
+			fd.append('scheme', settings.paymentType);
+			fd.append('threshold', settings.paymentLimit[0].value)
+
+			axInst.patch(`/subaccounts/${user.userName}`, fd, {
+				headers: fd.getHeaders(),
+				params: { key: config.sigmapoolToken }
+			})
+				.then(resp => {
+					res.status(200).send({
+						...settings._doc,
+						newSett: newSett,
+						...resp.data
+					})
+				})
+				.catch(err => {
+					res.status(500).send({
+						status: 'api_error',
+						error: err
+					})
+				})
+
 		})
+
 	})
 		.catch((err) => {
 			res.status(500).send({

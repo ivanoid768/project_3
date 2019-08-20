@@ -21,7 +21,7 @@ const Schm = new Schema({
 	paymentType: {
 		type: String,
 		default: "PPS",
-		enum: ['PPS', 'PPLNS']
+		enum: ['PPS', 'FPPS', 'PPLNS']
 	},
 	paymentLimit: {
 		type: mongoose.Mixed,
