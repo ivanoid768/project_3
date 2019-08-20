@@ -125,6 +125,17 @@ router.post('/login', (req, res) => {
 				})
 					.catch(console.log)
 
+				axInst.get(`/subaccounts/${user.userName}`, { params: { key: config.sigmapoolToken } })
+					.then(resp => {
+						let apiUser = resp.data;
+						let { scheme, threshold } = apiUser;
+
+						Settings.findOneAndUpdate({ userId: user.id }, {
+							paymentType: scheme,
+							paymentLimit: threshold
+						})
+					})
+
 				res.send({
 					token
 				})
