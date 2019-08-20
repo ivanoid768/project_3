@@ -3,7 +3,7 @@
   // 2. Import the `generateChart()` method to create the vue component.
   import { generateChart } from "vue-chartjs";
   import { Bar, mixins } from "vue-chartjs";
-  import { hashRoundWithPrefix } from '../../../utils/hashPrefix';
+  import { hashRoundWithPrefix, hashRoundWithPrefixForChartLabel } from '../../../utils/hashPrefix';
 
   const { reactiveProp } = mixins;
   Chart.helpers.drawRoundedTopRectangle = function (
@@ -174,8 +174,8 @@
       };
       let generate3dtime = () => {
         let time = [];
-        for (let d = 1; d < 3; ++d) {
-          for (let i = 0; i <= 24; ++i) {
+        for (let d = 1; d <= 3; ++d) {
+          for (let i = 0; i < 24; ++i) {
             if (i < 10) {
               time.push(`0${i}.00`);
             } else {
@@ -224,7 +224,7 @@
               ticks: {
                 // Include a dollar sign in the ticks
                 callback: function (value, index, values) {
-                  return hashRoundWithPrefix(value);
+                  return hashRoundWithPrefixForChartLabel(value);
                 }
               }
             }],

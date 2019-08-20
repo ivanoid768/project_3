@@ -226,6 +226,7 @@
   import Table_graphic_bar from '~/components/web_components/dashboard/Table_graphic_bar.vue';
   import Table_graphic_line from '~/components/web_components/dashboard/Table_graphic_line.vue';
   import axios from 'axios';
+  import { hashChartAvg } from '../utils/hashPrefix';
 
   let apiKey = "6523bff0c04a55a9db2e8c1ffd332c38";
   let apiUrl = "https://btc.sigmapool.com/api/v1/";
@@ -269,11 +270,13 @@
       },
       chartShares() {
         let shares = this.$store.state.dashboard.charts.shares;
+        // let avgShares = hashChartAvg(shares, this)
         return shares;
       },
       chartHashrate() {
         let hashrate = this.$store.state.dashboard.charts.hashrate;
-        return hashrate;
+        let avgHashrate = hashChartAvg(hashrate, this)
+        return avgHashrate;
       },
       workersInfo() {
         return this.$store.state.dashboard.workersInfo;

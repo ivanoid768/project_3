@@ -1,6 +1,6 @@
  <script>
   import { Line, mixins } from 'vue-chartjs'
-  import { hashRoundWithPrefix } from '../../../utils/hashPrefix';
+  import { hashRoundWithPrefix, hashRoundWithPrefixForChartLabel } from '../../../utils/hashPrefix';
 
   const { reactiveProp } = mixins;
   export default {
@@ -26,8 +26,8 @@
       };
       let generate3dtime = () => {
         let time = [];
-        for (let d = 1; d < 3; ++d) {
-          for (let i = 0; i <= 24; ++i) {
+        for (let d = 1; d <= 3; ++d) {
+          for (let i = 0; i < 24; ++i) {
             if (i < 10) {
               time.push(`0${i}.00`);
             } else {
@@ -35,6 +35,8 @@
             }
           }
         }
+        console.log(time);
+
         return time;
       };
       let generate24time = () => {
@@ -82,7 +84,8 @@
               ticks: {
                 // Include a dollar sign in the ticks
                 callback: function (value, index, values) {
-                  return hashRoundWithPrefix(value);
+                  // return hashRoundWithPrefix(value);
+                  return hashRoundWithPrefixForChartLabel(value);
                 }
               }
             }]
