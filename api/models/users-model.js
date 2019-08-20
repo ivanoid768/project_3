@@ -9,7 +9,7 @@ const UsersSchema = new Schema({
     unique: true,
     trim: true,
     lowercase: true,
-    match: /^[a-zA-Z0-9_]{3,}$/i
+    match: /^[a-zA-Z0-9]{3,}$/i
   },
   email: {
     type: String,

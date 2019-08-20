@@ -28,10 +28,10 @@ function isPassword(password) {
 }
 
 function isLogin(login) {
-	if (login.match(/^[a-zA-Z0-9_]{3,}$/gi)) {
+	if (login.match(/^[a-zA-Z0-9]{3,}$/gi)) {
 		return true;
 	} else {
-		return new Error('Имя пользователя должно содержать только латинские буквы, цифры, и _')
+		return new Error('Имя пользователя должно содержать только латинские буквы и цифры')
 	}
 
 }

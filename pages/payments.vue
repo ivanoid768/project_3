@@ -163,10 +163,10 @@
 
       let { data: paymentsCount } = await app.$axios.get(`/api/${selectedCurrency}/payments/count`)
       // console.log('fetch: ', data, 15);
-      let ePagesTotal = Math.ceil(paymentsCount / limit)
+      let pPagesTotal = Math.ceil(paymentsCount / limit)
       // console.log('fetch: ', ePagesTotal);
       let { data: earningsCount } = await app.$axios.get(`/api/${selectedCurrency}/earnings/count`)
-      let pPagesTotal = Math.ceil(earningsCount / limit)
+      let ePagesTotal = Math.ceil(earningsCount / limit)
       return {
         ePagesTotal: ePagesTotal,
         pPagesTotal: pPagesTotal

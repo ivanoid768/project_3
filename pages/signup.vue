@@ -12,8 +12,7 @@
         </div>
         <div class="form-group">
           <label v-if="usernameError" class="error">{{usernameError}}</label>
-          <input @blur="checkLogin" required v-model="username" type="text"
-            placeholder="Имя пользователя*" />
+          <input @blur="checkLogin" required v-model="username" type="text" placeholder="Имя пользователя*" />
         </div>
         <div class="form-group">
           <label v-if="emailError" class="error">{{emailError}}</label>
@@ -21,17 +20,14 @@
         </div>
         <div class="form-group">
           <label v-if="passError" class="error">{{passError}}</label>
-          <input @blur="checkPassword" required v-model="password" type="password"
-            placeholder="Пароль*" />
+          <input @blur="checkPassword" required v-model="password" type="password" placeholder="Пароль*" />
         </div>
         <div class="form-group">
-          <input required v-model="confirmPass" type="password"
-            placeholder="Подтверждение пароля*" />
+          <input required v-model="confirmPass" type="password" placeholder="Подтверждение пароля*" />
         </div>
         <div class="form-group">
           <label v-if="BTCAddressError" class="error">{{BTCAddressError}}</label>
-          <input @blur="checkBTCAddress" required v-model="BTCAddress" type="text"
-            placeholder="BTC адресс*" />
+          <input @blur="checkBTCAddress" required v-model="BTCAddress" type="text" placeholder="BTC адресс*" />
         </div>
         <hr />
         <button type="submit" class="btn-enter">Зарегистрироваться</button>
@@ -97,7 +93,11 @@
               this.formError = tempErrors;
 
             } else if (data.status == "server_error") {
-              this.formError = 'Внутренняя ошибка сервера. Попробуйте зарегистрироваться позже.';
+              if (data.APIError && data.APIError[0] == 'username exist') {
+                this.usernameError = 'Такое Имя пользователя уже занято, попробуйте другое.'
+              } else {
+                this.formError = 'Внутренняя ошибка сервера. Попробуйте зарегистрироваться позже.';
+              }
             } else if (data.status == "db_error") {
 
               let dberr = data.DBError;
