@@ -6,6 +6,7 @@
     <ul class="pagination ">
       <li v-for="page in pagesArr" :key="page" class="pagination-item ">
         <button @click.prevent="setPage" v-if="page == selectedPage" class="pg-btn active">{{page}}</button>
+        <button v-else-if="page < 0" class="pg-btn">...</button>
         <button @click.prevent="setPage" v-else class="pg-btn">{{page}}</button>
       </li>
     </ul>
@@ -33,6 +34,9 @@
       },
       pagesNumber: {
         default: 1
+      },
+      length: {
+        default: 20
       }
     },
     data: () => {
@@ -79,6 +83,23 @@
         for (let i = 1; i <= this.pagesNumber; i++) {
           pages.push(i)
         }
+
+        let len = this.length;
+        let page = this.selectedPage;
+
+        if (len > pages.length)
+          return pages;
+
+        if (page > len - 3 && page <= pages.length - len + 4) {
+          pages = [pages[0], -1, ...pages.slice(page - Math.floor((len - 4) / 2), page + Math.floor((len - 4) / 2)), -2, ...pages.slice(-1)]
+        }
+        else if (page > pages.length - len + 4) {
+          pages = [pages[0], -1, ...pages.slice(-1 * len + 3)]
+        }
+        else {
+          pages = [...pages.slice(0, len - 2), -1, ...pages.slice(-1)]
+        }
+
         return pages;
       }
     }
